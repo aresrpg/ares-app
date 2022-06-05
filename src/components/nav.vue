@@ -1,15 +1,14 @@
 <template lang="pug">
 .nav__container
-  .connect.wallet Connect Wallet
-  .connect.minecraft Connect Minecraft
-    //- fa(icon="bars")
+  .title
+    h1 Ares
+    h1.rpg RPG
 </template>
 
 <style lang="stylus" scoped>
 .nav__container
   width 100%
   display flex
-  flex-flow row nowrap
   padding 1em
   align-items center
   position absolute
@@ -17,17 +16,24 @@
   left 0
   z-index 2
 
-  .connect
-    margin-right 1em
-    color #ECF0F1
-    border 1px solid @color
-    // background #292827
-    padding .5em 1em
-    border-radius 3px
-    opacity .7
-    box-shadow 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
-    font-size .8em
-    width max-content
+  .title
     display flex
-    cursor pointer
+    flex-flow row nowrap
+    font-size 1em
+    line-height 45px
+    position relative
+    text-transform uppercase
+    color #ECF0F1
+    z-index 2
+    margin-right auto
+
+    h1
+      filter drop-shadow(1px 2px 3px black)
+
+      &.rpg
+        font-weight 400
+        color white
+        opacity .7
+        font-size 2.5em
+
 </style>

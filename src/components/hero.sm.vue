@@ -14,10 +14,7 @@ mixin srcType(type)
     h1.gold MMORPG Experience
   .action
     span.top This project is under development
-    span.desc To start playing on the demo server, please connect your microsoft minecraft account and your solana wallet
-    .buttons
-      .button Connect Wallet
-      .button.gold Connect Minecraft
+    span.desc To start playing on the demo server, please open this website on desktop
 </template>
 
 <style lang="stylus" scoped>
@@ -28,7 +25,8 @@ mixin srcType(type)
   display flex
   flex-flow column nowrap
   overflow hidden
-  justify-content center
+  justify-content space-evenly
+  align-items center
   padding 2em
 
   .action
@@ -36,7 +34,6 @@ mixin srcType(type)
     flex-flow column nowrap
     position relative
     color #ECF0F1
-    padding-left 47px
     margin-top 2em
     z-index 2
     filter drop-shadow(1px 2px 3px black)
@@ -46,23 +43,9 @@ mixin srcType(type)
         padding-bottom .5em
         text-decoration underline
       &.desc
+        text-align justify
         font-size .875em
         max-width 600px
-    .buttons
-      display flex
-      flex-flow row nowrap
-      margin-top 3em
-      text-transform uppercase
-      font-size .7em
-      font-weight 800
-      .button
-        padding 1em 1.5em
-        margin 0 1em
-        border-radius 5px
-        box-shadow 1px 2px 3px black
-        background #282929
-        color #ECF0F1
-        border-radius: 5px;
 
   .title
     display flex
@@ -100,11 +83,10 @@ mixin srcType(type)
     z-index 1
 
   img
-    width 300px
+    width 50vw
     right 5%
     bottom 5%
     mix-blend-mode color-dodge
-    position absolute
     z-index 4
     animation grow 20s ease-in-out infinite alternate
 
