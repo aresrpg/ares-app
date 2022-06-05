@@ -23,7 +23,7 @@ vue_app.use(router).component('fa', FontAwesomeIcon).use(Toast).mount('#app');
 
 const updateSW = registerSW({
   onOfflineReady() {
-    toast('ready to work offline!');
+    toast('ready to work offline!', {});
   },
 });
 
