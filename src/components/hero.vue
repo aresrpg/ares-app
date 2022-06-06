@@ -16,11 +16,25 @@ mixin srcType(type)
     span.top This project is under development
     span.desc To start playing on the demo server, please connect your microsoft minecraft account and your solana wallet
     .buttons
-      .button Connect Wallet
-      .button.gold Connect Minecraft
+      .button(@click="props.connect_wallet") Connect Wallet
+      a.button.gold(:href="microsoft_login") Connect Minecraft
 </template>
 
+<script setup>
+const azure_client = 'f1b65b61-2f11-42b4-96bf-ce7479d1c85f'
+const redirect_uri = 'https://aresrpg.world/oauth'
+const microsoft_login = `https://login.live.com/oauth20_authorize.srf
+?client_id=${azure_client}
+&response_type=code
+&redirect_uri=${redirect_uri}
+&scope=XboxLive.signin%20offline_access`;
+</script>
+
 <style lang="stylus" scoped>
+
+a
+  text-decoration none
+
 .hero__container
   position relative
   width 100%

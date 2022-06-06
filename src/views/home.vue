@@ -16,7 +16,6 @@ const breakpoints = useBreakpoints({
   mobile: 1000,
 });
 
-
 </script>
 
 <style lang="stylus" scoped>
