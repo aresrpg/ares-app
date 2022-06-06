@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import useBreakpoints from "vue-next-breakpoints"
+import useBreakpoints from 'vue-next-breakpoints';
 
 import navbar from '../components/nav.vue';
 import hero from '../components/hero.vue';
@@ -15,7 +15,6 @@ import hero_sm from '../components/hero.sm.vue';
 const breakpoints = useBreakpoints({
   mobile: 1000,
 });
-
 </script>
 
 <style lang="stylus" scoped>

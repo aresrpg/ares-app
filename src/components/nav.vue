@@ -35,5 +35,4 @@
         color white
         opacity .7
         font-size 2.5em
-
 </style>

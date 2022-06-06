@@ -21,8 +21,8 @@ mixin srcType(type)
 </template>
 
 <script setup>
-const azure_client = 'f1b65b61-2f11-42b4-96bf-ce7479d1c85f'
-const redirect_uri = 'https://aresrpg.world/oauth'
+const azure_client = 'f1b65b61-2f11-42b4-96bf-ce7479d1c85f';
+const redirect_uri = 'https://aresrpg.world/oauth';
 const microsoft_login = `https://login.live.com/oauth20_authorize.srf
 ?client_id=${azure_client}
 &response_type=code
