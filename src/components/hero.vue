@@ -3,11 +3,9 @@ mixin srcType(type)
   source(src=`../assets/trailer.${type}` type=`video/${type}`)
 
 .hero__container
-  video(poster="../assets/snow-background.jpg" preload autoplay muted loop)
+  video(poster="../assets/snow-background.jpg" preload="auto" autoplay muted loop)
     +srcType('webm')
     +srcType('mp4')
-  .left
-
   img.logo(src="../assets/logo.png" alt="logo")
   .title
     h1 A Delightful
@@ -16,8 +14,8 @@ mixin srcType(type)
     span.top This project is under development
     span.desc To start playing on the demo server, please connect your microsoft minecraft account and your solana wallet
     .buttons
-      .button(@click="props.connect_wallet") Connect Wallet
       a.button.gold(:href="microsoft_login") Connect Minecraft
+      .button.disabled(@click="props.connect_wallet") Connect Wallet
 </template>
 
 <script setup>
@@ -77,6 +75,11 @@ a
         background #282929
         color #ECF0F1
         border-radius: 5px;
+        cursor pointer
+        user-select pointer
+        &.disabled
+          opacity .4
+          cursor not-allowed
 
   .title
     display flex
