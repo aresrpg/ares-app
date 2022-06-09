@@ -7,10 +7,14 @@
 
 <script setup>
 import useBreakpoints from 'vue-next-breakpoints';
+import { provide, ref } from 'vue';
 
-import navbar from '../components/nav.vue';
+import navbar from '../components/navbar.vue';
 import hero from '../components/hero.vue';
 import hero_sm from '../components/hero.sm.vue';
+
+const logged = ref(false);
+provide('logged', logged);
 
 const breakpoints = useBreakpoints({
   mobile: 1000,

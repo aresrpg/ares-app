@@ -14,24 +14,38 @@ mixin srcType(type)
     span.top This project is under development
     span.desc To start playing on the demo server, please connect your microsoft minecraft account and your solana wallet
     .buttons
-      a.button.gold(:href="microsoft_login") Connect Minecraft
+      .button(@click="handle_microsoft" :class="{ logged }") {{ logged ? 'Logout' : 'Connect Minecraft' }}
       .button.disabled(@click="props.connect_wallet") Connect Wallet
 </template>
 
 <script setup>
+import { inject } from 'vue';
+import { useRouter } from 'vue-router';
+
+import { VITE_MICROSOFT_REDIRECT_URI, VITE_API_URL } from '../env.js';
+
+const logged = inject('logged');
 const azure_client = 'f1b65b61-2f11-42b4-96bf-ce7479d1c85f';
-const redirect_uri = 'https://aresrpg.world/oauth';
 const microsoft_login = `https://login.live.com/oauth20_authorize.srf
 ?client_id=${azure_client}
 &response_type=code
-&redirect_uri=${redirect_uri}
+&redirect_uri=${VITE_MICROSOFT_REDIRECT_URI}
 &scope=XboxLive.signin%20offline_access`;
+const router = useRouter();
+
+const handle_microsoft = () => {
+  if (logged.value)
+    fetch(`${VITE_API_URL}/logout`, {
+      credentials: 'include',
+      // @ts-ignore
+    }).then(router.go);
+  else {
+    window.location.href = microsoft_login;
+  }
+};
 </script>
 
 <style lang="stylus" scoped>
-
-a
-  text-decoration none
 
 .hero__container
   position relative
@@ -77,6 +91,10 @@ a
         border-radius: 5px;
         cursor pointer
         user-select pointer
+
+        &.logged
+          background #F39C12
+
         &.disabled
           opacity .4
           cursor not-allowed
