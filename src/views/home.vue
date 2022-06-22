@@ -14,7 +14,10 @@ import hero from '../components/hero.vue';
 import hero_sm from '../components/hero.sm.vue';
 
 const logged = ref(false);
+const wallet = ref({})
+
 provide('logged', logged);
+provide('wallet', wallet)
 
 const breakpoints = useBreakpoints({
   mobile: 1000,

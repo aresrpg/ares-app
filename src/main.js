@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
 import 'vue-toastification/dist/index.css';
+import 'vue-universal-modal/dist/index.css';
+import VueUniversalModal from 'vue-universal-modal';
 
 import app from './app.vue';
 import router from './router.js';
@@ -19,7 +21,12 @@ console.log(
 const vue_app = createApp(app);
 const toast = useToast();
 
-vue_app.use(router).component('fa', FontAwesomeIcon).use(Toast).mount('#app');
+vue_app
+  .use(router)
+  .use(VueUniversalModal, { teleportTarget: '#modals' })
+  .component('fa', FontAwesomeIcon)
+  .use(Toast)
+  .mount('#app');
 
 const updateSW = registerSW({
   onOfflineReady() {

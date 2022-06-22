@@ -15,12 +15,26 @@ mixin srcType(type)
     span.desc To start playing on the demo server, please connect your microsoft minecraft account and your solana wallet
     .buttons
       .button(@click="handle_microsoft" :class="{ logged }") {{ logged ? 'Logout' : 'Connect Minecraft' }}
-      .button.disabled(@click="props.connect_wallet") Connect Wallet
+      .button(@click="handle_wallet" :class="{ disabled: !logged , connected: wallet.public_key }") {{ wallet.public_key ? 'Disconnect wallet' : 'Connect Wallet' }}
+  Modal(
+    v-model="modal"
+    :close="() => modal = false"
+    )
+    .modal__content
+      .phantom(@click="connect_phantom")
+        img(src="../assets/phantom.png")
+        span Phantom
+      .solflare(@click="connect_solflare")
+        img(src="../assets/solflare.png")
+        span Solflare
 </template>
 
 <script setup>
-import { inject } from 'vue';
+// @ts-nocheck
+
+import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useToast } from 'vue-toastification';
 
 import { VITE_MICROSOFT_REDIRECT_URI, VITE_API_URL } from '../env.js';
 
@@ -32,6 +46,61 @@ const microsoft_login = `https://login.live.com/oauth20_authorize.srf
 &redirect_uri=${VITE_MICROSOFT_REDIRECT_URI}
 &scope=XboxLive.signin%20offline_access`;
 const router = useRouter();
+const modal = ref(false)
+const wallet = inject('wallet')
+const toast = useToast()
+
+const find_phantom = () => window.solana?.isPhantom && window.solana
+const find_solflare = () => window.solflare?.isSolflare && window.solflare
+
+const connect_provider = ({ provider, type, link }) => async () => {
+  if (!provider) window.open(link, "_blank")
+  else provider
+    .connect()
+    .then(() => {
+      const public_key = provider.publicKey.toString()
+      wallet.value = { type, public_key }
+      return fetch(`${VITE_API_URL}/link-wallet`, {
+        method: 'POST',
+        body: JSON.stringify({public_key})
+      })
+    })
+    .catch(error => {
+      toast('Something went wrong', { type: 'error' })
+      console.error(error)
+    })
+    .finally(() => (modal.value = false))
+};
+
+const connect_phantom = connect_provider({
+  provider: find_phantom(),
+  type: 'phantom',
+  link: 'https://phantom.app/'
+})
+
+const connect_solflare = connect_provider({
+  provider: find_solflare(),
+  type: 'solflare',
+  link: 'https://solflare.com'
+})
+
+const handle_wallet = () => {
+  if (!logged.value) return
+  
+  const { type } = wallet.value
+  if(!type) modal.value = true
+  else {
+    wallet.value = {}
+    switch (type) {
+      case 'phantom':
+        find_phantom().disconnect()
+        break;
+      case 'solflare':
+        find_solflare().disconnect()
+        break;
+    }
+  }
+}
 
 const handle_microsoft = () => {
   if (logged.value)
@@ -46,6 +115,38 @@ const handle_microsoft = () => {
 </script>
 
 <style lang="stylus" scoped>
+
+.modal__content
+  color white
+  background #212121
+  border-radius 12px
+  padding 1em
+  display flex
+  flex-flow column nowrap
+  >div
+    display flex
+    flex-flow row nowrap
+    align-items center
+    cursor pointer
+    background #282828
+    padding-right 1em
+    border-radius 5px
+    box-shadow 1px 2px 3px black
+
+    &:first-child
+      margin-bottom 1em
+
+    span
+      padding-left 1em
+      font-size .875em
+      opacity .7a
+      user-select none
+
+    img
+      object-fit contain
+      width 50px
+      border-radius 5px
+      box-shadow 1px 1px 1px rgba(black, .3)
 
 .hero__container
   position relative
@@ -92,8 +193,11 @@ const handle_microsoft = () => {
         cursor pointer
         user-select pointer
 
+        &.connected
+          background #9B59B6
+
         &.logged
-          background #F39C12
+          background #2ECC71
 
         &.disabled
           opacity .4

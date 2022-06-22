@@ -15,7 +15,7 @@ const router = useRouter();
 
 onMounted(() => {
   const { query: { code } = {} } = route;
-  fetch(`${VITE_API_URL}/login`, {
+  fetch(`${VITE_API_URL}/oauth`, {
     method: 'POST',
     body: JSON.stringify({
       type: 'microsoft',

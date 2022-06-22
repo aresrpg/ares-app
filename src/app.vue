@@ -24,6 +24,9 @@ sc-disableScollBar()
   font-size 18px
   background #292827
 
+.vue-universal-modal
+  z-index 10
+
 *
   sc-reset()
   sc-disableScollBar()

@@ -4,6 +4,7 @@
     h1 Ares
     h1.rpg RPG
   .account(v-if="username") @{{ username }}
+  .wallet(v-if="wallet.public_key") @{{ reduce_key(wallet.public_key) }}
 </template>
 
 <script setup>
@@ -12,7 +13,9 @@ import { inject, onMounted, onRenderTriggered, ref } from 'vue';
 import { VITE_API_URL } from '../env';
 
 const username = ref();
-const logged = inject('logged');
+const wallet = inject('wallet')
+const logged = inject('logged')
+const reduce_key = key => `${key.substring(0, 5)}..${key.substring(key.length - 5)}`
 
 onMounted(() => {
   fetch(`${VITE_API_URL}/me`, {
@@ -37,7 +40,7 @@ onMounted(() => {
   left 0
   z-index 2
 
-  .account
+  .account, .wallet
     display flex
     flex-flow row nowrap
     color #2ECC71
@@ -45,6 +48,9 @@ onMounted(() => {
     font-size .875em
     align-items baseline
     text-shadow 1px 2px 3px black
+    padding-right 1em
+    &.wallet
+      color #9B59B6
 
   .title
     display flex
