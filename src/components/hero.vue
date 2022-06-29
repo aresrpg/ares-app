@@ -35,7 +35,7 @@ mixin srcType(type)
 import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
-import { binary_to_base58 } from 'base58-js';
+import bs58 from 'bs58';
 
 import fetch from '../fetch.js';
 import { VITE_MICROSOFT_REDIRECT_URI } from '../env.js';
@@ -80,7 +80,7 @@ const connect_provider =
             method: 'POST',
             body: JSON.stringify({
               public_key,
-              signature: binary_to_base58(signature),
+              signature: bs58.encode(signature),
             }),
           });
         })
