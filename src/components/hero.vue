@@ -35,8 +35,10 @@ mixin srcType(type)
 import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
+import { binary_to_base58 } from 'base58-js';
 
-import { VITE_MICROSOFT_REDIRECT_URI, VITE_API_URL } from '../env.js';
+import fetch from '../fetch.js';
+import { VITE_MICROSOFT_REDIRECT_URI } from '../env.js';
 
 const logged = inject('logged');
 const azure_client = 'f1b65b61-2f11-42b4-96bf-ce7479d1c85f';
@@ -46,68 +48,85 @@ const microsoft_login = `https://login.live.com/oauth20_authorize.srf
 &redirect_uri=${VITE_MICROSOFT_REDIRECT_URI}
 &scope=XboxLive.signin%20offline_access`;
 const router = useRouter();
-const modal = ref(false)
-const wallet = inject('wallet')
-const toast = useToast()
+const modal = ref(false);
+const wallet = inject('wallet');
+const toast = useToast();
 
-const find_phantom = () => window.solana?.isPhantom && window.solana
-const find_solflare = () => window.solflare?.isSolflare && window.solflare
+const find_phantom = () => window.solana?.isPhantom && window.solana;
+const find_solflare = () => window.solflare?.isSolflare && window.solflare;
 
-const connect_provider = ({ provider, type, link }) => async () => {
-  if (!provider) window.open(link, "_blank")
-  else provider
-    .connect()
-    .then(() => {
-      const public_key = provider.publicKey.toString()
-      wallet.value = { type, public_key }
-      return fetch(`${VITE_API_URL}/link-wallet`, {
-        method: 'POST',
-        body: JSON.stringify({public_key})
-      })
-    })
-    .catch(error => {
-      toast('Something went wrong', { type: 'error' })
-      console.error(error)
-    })
-    .finally(() => (modal.value = false))
-};
+const connect_provider =
+  ({ provider, type, link }) =>
+  async () => {
+    if (!provider) window.open(link, '_blank');
+    else
+      provider
+        .connect()
+        .then(() => {
+          return fetch(`/secure/signing-message-code`, {
+            method: 'POST',
+          });
+        })
+        .then(wallet_signing_message =>
+          provider.signMessage(
+            new TextEncoder().encode(wallet_signing_message),
+            'utf8'
+          )
+        )
+        .then(({ signature }) => {
+          const public_key = provider.publicKey.toBase58();
+          wallet.value = { type, public_key };
+          return fetch('/secure/verify-message', {
+            method: 'POST',
+            body: JSON.stringify({
+              public_key,
+              signature: binary_to_base58(signature),
+            }),
+          });
+        })
+        .then(() => {
+          wallet.value = { ...wallet.value, verified: true };
+          toast('Verification sucessful', { type: 'success' });
+        })
+        .catch(error => {
+          toast(error?.message, { type: 'error' });
+          console.error(error);
+        })
+        .finally(() => (modal.value = false));
+  };
 
 const connect_phantom = connect_provider({
   provider: find_phantom(),
   type: 'phantom',
-  link: 'https://phantom.app/'
-})
+  link: 'https://phantom.app/',
+});
 
 const connect_solflare = connect_provider({
   provider: find_solflare(),
   type: 'solflare',
-  link: 'https://solflare.com'
-})
+  link: 'https://solflare.com',
+});
 
 const handle_wallet = () => {
-  if (!logged.value) return
-  
-  const { type } = wallet.value
-  if(!type) modal.value = true
+  if (!logged.value) return;
+
+  const { type } = wallet.value;
+  if (!type) modal.value = true;
   else {
-    wallet.value = {}
+    wallet.value = {};
     switch (type) {
       case 'phantom':
-        find_phantom().disconnect()
+        find_phantom().disconnect();
         break;
       case 'solflare':
-        find_solflare().disconnect()
+        find_solflare().disconnect();
         break;
     }
   }
-}
+};
 
 const handle_microsoft = () => {
-  if (logged.value)
-    fetch(`${VITE_API_URL}/logout`, {
-      credentials: 'include',
-      // @ts-ignore
-    }).then(router.go);
+  if (logged.value) fetch(`/logout`).then(router.go);
   else {
     window.location.href = microsoft_login;
   }

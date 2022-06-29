@@ -4,28 +4,29 @@
     h1 Ares
     h1.rpg RPG
   .account(v-if="username") @{{ username }}
-  .wallet(v-if="wallet.public_key") @{{ reduce_key(wallet.public_key) }}
+  .wallet(v-if="wallet.public_key" :class="{ verified: wallet.verified }") @{{ display_key(wallet.public_key) }}
 </template>
 
 <script setup>
-import { inject, onMounted, onRenderTriggered, ref } from 'vue';
+import { inject, onMounted, ref } from 'vue';
 
-import { VITE_API_URL } from '../env';
+import fetch from '../fetch.js';
 
 const username = ref();
-const wallet = inject('wallet')
-const logged = inject('logged')
-const reduce_key = key => `${key.substring(0, 5)}..${key.substring(key.length - 5)}`
+const wallet = inject('wallet');
+const logged = inject('logged');
+const display_key = key => {
+  const reduced = `${key.substring(0, 5)}..${key.substring(key.length - 5)}`;
+  return wallet.value.verified ? reduced : `${reduced} (unverified)`;
+};
 
 onMounted(() => {
-  fetch(`${VITE_API_URL}/me`, {
-    credentials: 'include',
-  })
-    .then(result => result.json())
-    .then(({ username: name }) => {
+  fetch(`/secure/me`).then(name => {
+    if (name) {
       username.value = name;
-      if (name) logged.value = true;
-    });
+      logged.value = true;
+    }
+  });
 });
 </script>
 
@@ -50,7 +51,11 @@ onMounted(() => {
     text-shadow 1px 2px 3px black
     padding-right 1em
     &.wallet
-      color #9B59B6
+      color #95A5A6
+      opacity .5
+    &.verified
+      color #9B59B6 !important
+      opacity 1
 
   .title
     display flex

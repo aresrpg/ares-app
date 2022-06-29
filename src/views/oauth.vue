@@ -8,20 +8,19 @@
 import { onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-import { VITE_API_URL } from '../env';
+import fetch from '../fetch.js';
 
 const route = useRoute();
 const router = useRouter();
 
 onMounted(() => {
   const { query: { code } = {} } = route;
-  fetch(`${VITE_API_URL}/oauth`, {
+  fetch(`/login`, {
     method: 'POST',
     body: JSON.stringify({
       type: 'microsoft',
       code,
     }),
-    credentials: 'include',
   })
     .then(() => {
       router.push('/');
