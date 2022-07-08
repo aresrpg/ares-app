@@ -3,15 +3,22 @@ import { registerSW } from 'virtual:pwa-register';
 import Toast, { useToast } from 'vue-toastification';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
 import 'vue-toastification/dist/index.css';
 import 'vue-universal-modal/dist/index.css';
 import VueUniversalModal from 'vue-universal-modal';
+import {
+  faDiscord,
+  faGithub,
+  faGithubSquare,
+  faTwitter,
+  faTwitterSquare,
+  faYoutubeSquare,
+} from '@fortawesome/free-brands-svg-icons';
 
 import app from './app.vue';
 import router from './router.js';
 
-library.add(faBars, faUser);
+library.add(faGithubSquare, faYoutubeSquare, faTwitterSquare, faDiscord);
 
 console.log(
   `%c You're curious, i like you 😊`,
