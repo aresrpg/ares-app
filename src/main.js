@@ -9,16 +9,15 @@ import VueUniversalModal from 'vue-universal-modal';
 import {
   faDiscord,
   faGithub,
-  faGithubSquare,
   faTwitter,
-  faTwitterSquare,
-  faYoutubeSquare,
+  faYoutube,
+  faTelegram,
 } from '@fortawesome/free-brands-svg-icons';
 
 import app from './app.vue';
 import router from './router.js';
 
-library.add(faGithubSquare, faYoutubeSquare, faTwitterSquare, faDiscord);
+library.add(faGithub, faYoutube, faTwitter, faDiscord, faTelegram);
 
 console.log(
   `%c You're curious, i like you 😊`,

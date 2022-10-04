@@ -6,13 +6,15 @@
   footer
     .socials
       a(href="https://twitter.com/AresRPG" target="_blank" rel="noopener noreferrer" aria-label="Twitter")
-        fa(:icon="['fab', 'twitter-square']" size="3x")
+        fa(:icon="['fab', 'twitter']" :size="icon_size")
       a(href="https://www.youtube.com/channel/UC9YFBFi_jrBYIc449Io7adQ" target="_blank" rel="noopener noreferrer" aria-label="Youtube")
-        fa(:icon="['fab','youtube-square']" size="3x")
+        fa(:icon="['fab','youtube']" :size="icon_size")
       a(href="https://github.com/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Github")
-        fa(:icon="['fab','github-square']" size="3x")
+        fa(:icon="['fab','github']" :size="icon_size")
       a(href="https://discord.gg/kpzNeCW" target="_blank" rel="noopener noreferrer" aria-label="Discord")
-        fa(:icon="['fab','discord']" size="3x")
+        fa(:icon="['fab','discord']" :size="icon_size")
+      a(href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Telegram")
+        fa(:icon="['fab','telegram']" :size="icon_size")
     .bottom
       span Open for contributions !
 </template>
@@ -27,6 +29,8 @@ import hero_sm from '../components/hero.sm.vue';
 
 const logged = ref(false);
 const wallet = ref({});
+
+const icon_size = '2x';
 
 provide('logged', logged);
 provide('wallet', wallet);
@@ -57,14 +61,17 @@ footer
     padding 50px 0
     >*
       filter drop-shadow(1px 2px 3px black)
-    >:first-child
-      color #55acee
-    >:nth-child(2)
-      color #cd201f
-    >:nth-child(3)
-      color white
-    >:nth-child(4)
-      color #512DA8
+      color #f1c40f
+    // >:first-child
+    //   color #3498DB
+    // >:nth-child(2)
+    //   color #E74C3C
+    // >:nth-child(3)
+    //   color white
+    // >:nth-child(4)
+    //   color #8E44AD
+    // >:nth-child(5)
+    //   color #2980B9
   .bottom
     width 100%
     background darken(#212121, 20%)
