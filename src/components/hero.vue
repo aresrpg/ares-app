@@ -12,10 +12,11 @@ mixin srcType(type)
     h1.gold MMORPG Experience
   .action
     span.top This project is under development
-    span.desc To start playing on the demo server, please connect your microsoft minecraft account and your solana wallet
-    .buttons
-      .button(@click="handle_microsoft" :class="{ logged }") {{ logged ? 'Logout' : 'Connect Minecraft' }}
-      .button(@click="handle_wallet" :class="{ disabled: !logged , connected: wallet.public_key }") {{ wallet.public_key ? 'Disconnect wallet' : 'Connect Wallet' }}
+    //- span.desc
+    //- span.desc To start playing on the demo server once it is released (), please connect your microsoft minecraft account and your solana wallet
+    //- .buttons
+    //-   .button(@click="handle_microsoft" :class="{ logged }") {{ logged ? 'Logout' : 'Connect Minecraft' }}
+    //-   .button(@click="handle_wallet" :class="{ disabled: !logged , connected: wallet.public_key }") {{ wallet.public_key ? 'Disconnect wallet' : 'Connect Wallet' }}
   Modal(
     v-model="modal"
     :close="() => modal = false"
