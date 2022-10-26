@@ -12,12 +12,20 @@ import {
   faTwitter,
   faYoutube,
   faTelegram,
+  faTwitterSquare,
 } from '@fortawesome/free-brands-svg-icons';
 
 import app from './app.vue';
 import router from './router.js';
 
-library.add(faGithub, faYoutube, faTwitter, faDiscord, faTelegram);
+library.add(
+  faGithub,
+  faYoutube,
+  faTwitter,
+  faDiscord,
+  faTelegram,
+  faTwitterSquare
+);
 
 console.log(
   `%c You're curious, i like you 😊`,

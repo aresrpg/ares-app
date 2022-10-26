@@ -2,32 +2,46 @@
 mixin srcType(type)
   source(src=`../assets/trailer.${type}` type=`video/${type}`)
 
-.hero__container
-  video(poster="../assets/snow-background.jpg" preload="auto" autoplay muted loop)
-    +srcType('webm')
-    +srcType('mp4')
-  img.logo(src="../assets/logo.png" alt="logo")
-  .title
-    h1 A Delightful
-    h1.gold MMORPG Experience
-  .action
-    span.top This project is under development
-    //- span.desc
-    //- span.desc To start playing on the demo server once it is released (), please connect your microsoft minecraft account and your solana wallet
-    //- .buttons
-    //-   .button(@click="handle_microsoft" :class="{ logged }") {{ logged ? 'Logout' : 'Connect Minecraft' }}
-    //-   .button(@click="handle_wallet" :class="{ disabled: !logged , connected: wallet.public_key }") {{ wallet.public_key ? 'Disconnect wallet' : 'Connect Wallet' }}
-  Modal(
-    v-model="modal"
-    :close="() => modal = false"
-    )
-    .modal__content
-      .phantom(@click="connect_phantom")
-        img(src="../assets/phantom.png")
-        span Phantom
-      .solflare(@click="connect_solflare")
-        img(src="../assets/solflare.png")
-        span Solflare
+.home
+  navbar
+  .hero__container
+    video(poster="../assets/snow-background.jpg" preload="auto" autoplay muted loop)
+      +srcType('webm')
+      +srcType('mp4')
+    img.logo(src="../assets/logo.png" alt="logo")
+    .title
+      h1 A Delightful
+      h1.gold MMORPG Experience
+    .action
+      span.top This project is under development
+      //- span.desc
+      //- span.desc To start playing on the demo server once it is released (), please connect your microsoft minecraft account and your solana wallet
+      //- .buttons
+      //-   .button(@click="handle_microsoft" :class="{ logged }") {{ logged ? 'Logout' : 'Connect Minecraft' }}
+      //-   .button(@click="handle_wallet" :class="{ disabled: !logged , connected: wallet.public_key }") {{ wallet.public_key ? 'Disconnect wallet' : 'Connect Wallet' }}
+    Modal(
+      v-model="modal"
+      :close="() => modal = false"
+      )
+      .modal__content
+        .phantom(@click="connect_phantom")
+          img(src="../assets/phantom.png")
+          span Phantom
+        .solflare(@click="connect_solflare")
+          img(src="../assets/solflare.png")
+          span Solflare
+  footer
+    .socials
+      a(href="https://twitter.com/AresRPG" target="_blank" rel="noopener noreferrer" aria-label="Twitter")
+        fa(:icon="['fab', 'twitter']" :size="icon_size")
+      a(href="https://www.youtube.com/channel/UC9YFBFi_jrBYIc449Io7adQ" target="_blank" rel="noopener noreferrer" aria-label="Youtube")
+        fa(:icon="['fab','youtube']" :size="icon_size")
+      a(href="https://github.com/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Github")
+        fa(:icon="['fab','github']" :size="icon_size")
+      a(href="https://discord.gg/kpzNeCW" target="_blank" rel="noopener noreferrer" aria-label="Discord")
+        fa(:icon="['fab','discord']" :size="icon_size")
+      a(href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Telegram")
+        fa(:icon="['fab','telegram']" :size="icon_size")
 </template>
 
 <script setup>

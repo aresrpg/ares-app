@@ -30,7 +30,9 @@ sc-disableScollBar()
 *
   sc-reset()
   sc-disableScollBar()
-  font-family 'Raleway', sans-serif
+  font-family 'DM Sans'
+  font-family 'Montserrat'
+  font-family 'Roboto Condensed'
   outline none
   scroll-behavior smooth
   &::-webkit-scrollbar-track
