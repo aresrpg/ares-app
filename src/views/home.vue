@@ -4,6 +4,8 @@
   page_1_mobile
   page_2_mobile
   page_3_mobile
+  page_4_mobile
+  page_5_mobile
 .root(v-else)
   hero
 </template>
@@ -17,6 +19,8 @@ import hero_mobile from '../components/hero.mobile.vue';
 import page_1_mobile from '../components/page_1.mobile.vue';
 import page_2_mobile from '../components/page_2.mobile.vue';
 import page_3_mobile from '../components/page_3.mobile.vue';
+import page_4_mobile from '../components/page_4.mobile.vue';
+import page_5_mobile from '../components/page_5.mobile.vue';
 
 const logged = ref(false);
 const wallet = ref({});

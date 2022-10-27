@@ -33,7 +33,7 @@
   grid-row-gap 1em
   .logo
     grid-area logo
-    object-fit contain
+    object-fit containx
     width 100%
     height 100%
     max-width 400px
