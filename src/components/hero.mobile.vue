@@ -1,7 +1,31 @@
+<i18n>
+  fr:
+    title: UNE {adventure} INCROYABLE DANS UN UNIVERS {unique}
+    adventure: AVENTURE
+    unique: UNIQUE
+  en:
+    title: A {adventure} MMORPG EXPERIENCE IN {unique}
+    adventure: DELIGHTFUL
+    unique: MINECRAFT
+</i18n>
+
+<script setup>
+import { onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+</script>
+
 <template lang="pug">
 .frame
   img.logo(src="src/assets/text_logo_fr.png")
-  .title UNE #[b AVENTURE] INCROYABLE DANS UN UNIVERS #[b UNIQUE]
+  .title
+    i18n-t(keypath="title")
+      template(#adventure)
+        b {{ t('adventure') }}
+      template(#unique)
+        b {{ t('unique') }}
+  //- .title UNE #[b AVENTURE] INCROYABLE DANS UN UNIVERS #[b UNIQUE]
   .description AresRPG est un serveur minecraft sans mods dans lequel votre objectif est de réunir les 6 œufs de dragon. #[b Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences]
   .mail
     input(placeholder="Participe à la Bêta..")

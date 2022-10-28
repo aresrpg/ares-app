@@ -14,9 +14,15 @@ import {
   faTelegram,
   faTwitterSquare,
 } from '@fortawesome/free-brands-svg-icons';
+import { createI18n } from 'vue-i18n';
 
 import app from './app.vue';
 import router from './router.js';
+
+const i18n = createI18n({
+  locale: 'fr',
+  allowComposition: true, // you need to specify that!
+});
 
 library.add(
   faGithub,
@@ -38,6 +44,7 @@ const toast = useToast();
 vue_app
   .use(router)
   .use(VueUniversalModal, { teleportTarget: '#modals' })
+  .use(i18n)
   .component('fa', FontAwesomeIcon)
   .use(Toast)
   .mount('#app');
