@@ -1,38 +1,86 @@
+<i18n>
+fr:
+  title: Les musiques
+  desc: Une bande originale vous bercera tout au long de votre aventure
+en:
+  title: Musics
+  desc: An original soundtrack will bring more emotions to your adventure
+</i18n>
+
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import mirin from '../assets/mirin.mp4';
 import farlands from '../assets/farlands.mp4';
 import manracni from '../assets/manracni.mp4';
+import thebes from '../assets/thebes.mp4';
+import skylands from '../assets/skylands.mp4';
+import drylands from '../assets/drylands.mp4';
+import pandala from '../assets/pandala.mp4';
 
 import video_card from './video_card.vue';
 
-const videos = ref([manracni, mirin, farlands]);
-const switch_left = () => {
-  const [a, b, c] = videos.value;
-  videos.value = [c, a, b];
+const { t } = useI18n();
+const videos = ref([
+  mirin,
+  farlands,
+  manracni,
+  thebes,
+  skylands,
+  drylands,
+  pandala,
+]);
+const to_left = ref(true);
+const currently_playing = ref(null);
+
+const switch_next = () => {
+  to_left.value = true;
+  currently_playing.value?.video?.pause();
+  currently_playing.value?.reset_button?.();
+  videos.value.push(videos.value.shift());
 };
-const switch_right = () => {
-  const [a, b, c] = videos.value;
-  videos.value = [b, c, a];
+const switch_previous = () => {
+  to_left.value = false;
+  currently_playing.value?.video?.pause();
+  currently_playing.value?.reset_button?.();
+  videos.value.unshift(videos.value.pop());
 };
+
+const style_of = index => ({
+  'z-index': to_left.value ? videos.value.length - index : index,
+});
+
+const middle_index = computed(() => Math.floor(videos.value.length / 2));
 </script>
 
 <template lang="pug">
 .frame
-  .title Les musiques
-  .desc Une bande originale vous bercera tout au long de votre aventure
+  .title {{ t('title') }}
+  .desc {{ t('desc') }}
   .sounds
-    video_card.left(:video="videos[0]" @click.native="switch_left")
-    video_card.center(:video="videos[1]")
-    video_card.right(:video="videos[2]" @click="switch_right")
+    TransitionGroup(name="list")
+      video_card(
+        v-for="(video, index) in videos"
+        @playing="current => currently_playing = current"
+        :key="video"
+        :style="style_of(index)"
+        :video="video"
+        :class="{ selected: index === middle_index }"
+        @click="() => index >= middle_index ? switch_next() : switch_previous()"
+      )
 </template>
 
 <style lang="stylus" scoped>
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active
+  transition all .5s ease-in-out
+.list-enter-active
+  // z-index -1
+  position relative
 .frame
   display flex
-  width 100%
-  height 100vh
   align-items center
   justify-content center
   color white
@@ -52,17 +100,12 @@ const switch_right = () => {
     width 70%
     margin 1em
   .sounds
-    width 300%
+    width max-content
+    height 65vh
     display flex
     flex-flow row nowrap
     overflow hidden
     align-items center
-    padding 1em
-    >div
-      height 55vh
-      &.center
-        flex 1 1 70%
-        height 65vh
-        width 70vw
-        margin 0 1em
+    justify-content center
+    // padding 1em
 </style>

@@ -5,8 +5,9 @@ import { onMounted, onUnmounted, watch } from 'vue';
 import play from '../assets/play-button.png';
 import pause from '../assets/pause.png';
 
-const props = defineProps(['video']);
+const props = defineProps(['video', 'selected']);
 const video = ref(null);
+const emits = defineEmits('playing');
 const playing = ref(false);
 const current_button = computed(() => (playing.value ? pause : play));
 
@@ -14,6 +15,10 @@ const toggle = () => {
   if (video.value?.paused) {
     playing.value = true;
     video.value.play();
+    emits('playing', {
+      video: video.value,
+      reset_button: () => (playing.value = false),
+    });
   } else {
     playing.value = false;
     video.value.pause();
@@ -26,11 +31,11 @@ watch(video, () => {
 </script>
 
 <template lang="pug">
-.card
-  video(ref="video" :key="props.video")
+.card(:class="{selected: props.selected}")
+  video(ref="video" :key="props.video" loop)
     source(:src="props.video" type="video/mp4")
-  img.button(:src="current_button" @click="toggle")
-  .author AresRPG original soundtrack
+  img.button(:src="current_button" @click.stop="toggle")
+  span.author AresRPG original soundtrack
 </template>
 
 <style lang="stylus" scoped>
@@ -43,9 +48,14 @@ watch(video, () => {
   font-family 'Roboto Condensed'
   border-radius 30px
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
-  width 100%
+  width 70vw
   height 100%
+  max-height 50vh
   overflow hidden
+  transition max-height .5s ease-in-out
+  margin 0 .5em
+  &.selected
+    max-height 65vh
   video
     width 100%
     height 100%
@@ -66,6 +76,8 @@ watch(video, () => {
   .author
     opacity .65
     position absolute
-    left 1em
+    font-size .65em
+    text-shadow 1px 2px 3px black
+    left 2em
     bottom 1em
 </style>

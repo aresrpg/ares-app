@@ -9,9 +9,7 @@
 <style lang="stylus" scoped>
 .frame
   display flex
-  width 100%
   overflow hidden
-  height 100vh
   flex-flow column nowrap
   background url('src/assets/background_noise.jpeg') center / cover
   div

@@ -3,14 +3,21 @@
     title: UNE {adventure} INCROYABLE DANS UN UNIVERS {unique}
     adventure: AVENTURE
     unique: UNIQUE
+    desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est de réunir les 6 œufs de dragon. {desc_2}
+    desc_2: Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences
+    discover: DÉCOUVRIR
+    placeholder: Participe à la Bêta..
   en:
     title: A {adventure} MMORPG EXPERIENCE IN {unique}
     adventure: DELIGHTFUL
     unique: MINECRAFT
+    desc: AresRPG is a no mods minecraft mmorpg server in which your goal is to find all 6 dragon eggs. {desc_2}
+    desc_2: The world is full of diverse creatures that you can reduce to atoms in order to upgrade your stuff and skills
+    discover: DISCOVER
+    placeholder: 'Join the Beta..'
 </i18n>
 
 <script setup>
-import { onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -25,10 +32,12 @@ const { t } = useI18n();
         b {{ t('adventure') }}
       template(#unique)
         b {{ t('unique') }}
-  //- .title UNE #[b AVENTURE] INCROYABLE DANS UN UNIVERS #[b UNIQUE]
-  .description AresRPG est un serveur minecraft sans mods dans lequel votre objectif est de réunir les 6 œufs de dragon. #[b Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences]
+  .description
+    i18n-t(keypath="desc")
+      template(#desc_2)
+        b {{ t('desc_2')}}
   .mail
-    input(placeholder="Participe à la Bêta..")
+    input(:placeholder="t('placeholder')")
     svg(width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg")
       path(d="M19.632 0.532017H2.36803C1.26787 0.532017 0.376038 1.42385 0.376038 2.52401V14.476C0.376038 15.5762 1.26787 16.468 2.36803 16.468H19.632C20.7322 16.468 21.624 15.5762 21.624 14.476V2.52401C21.624 1.42385 20.7322 0.532017 19.632 0.532017ZM19.632 2.52401V4.21742C18.7015 4.97516 17.218 6.15343 14.0466 8.63674C13.3477 9.18649 11.9633 10.5072 11 10.4918C10.0369 10.5074 8.65199 9.18628 7.95338 8.63674C4.7825 6.1538 3.29867 4.97529 2.36803 4.21742V2.52401H19.632ZM2.36803 14.476V6.77352C3.31896 7.53094 4.6675 8.59379 6.72295 10.2033C7.63002 10.9173 9.21851 12.4935 11 12.4839C12.7728 12.4935 14.3411 10.9402 15.2767 10.2037C17.3321 8.59416 18.681 7.53102 19.632 6.77356V14.476H2.36803Z" fill="black")
   a.twitter(href="https://twitter.com/AresRPG" target="_blank" rel="noopener noreferrer" aria-label="Twitter")
@@ -38,7 +47,7 @@ const { t } = useI18n();
   a.discord(href="https://discord.gg/kpzNeCW" target="_blank" rel="noopener noreferrer" aria-label="Twitter")
     img(src="src/assets/discord.svg")
   .discover
-    span DÉCOUVRIR
+    span {{t('discover')}}
     img(src="src/assets/chevron.svg")
 </template>
 
@@ -55,6 +64,7 @@ const { t } = useI18n();
   padding 2em
   padding-bottom 1em
   grid-row-gap 1em
+  scroll-snap-align start
   .logo
     grid-area logo
     object-fit containx

@@ -1,6 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-import { onMounted, computed, ref } from 'vue';
+import { ref } from 'vue';
 
 import france from '../assets/france.png';
 import usa from '../assets/usa.png';
@@ -30,6 +30,8 @@ const select = ({ locale }) => {
   z-index 10
   top .25em
   right .5em
+  padding .25em
+  border-radius 5px
   img
     width 20px
   >img
@@ -37,6 +39,8 @@ const select = ({ locale }) => {
   .dropdown
     display none
   &:hover
+    transition all 300ms ease-in-out
+    background rgba(black, .3)
     .dropdown
       display flex
 </style>

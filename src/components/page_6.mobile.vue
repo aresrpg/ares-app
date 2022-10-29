@@ -1,7 +1,22 @@
+<i18n>
+fr:
+  title: Les Items
+  desc: Sans équipement, vous ne tiendrez pas longtemps sur AresRPG. Vous pouvez crafter vos items, les obtenir directement en tuant certains monstres, ou encore les acheter aux autres joueurs
+en:
+  title: Items
+  desc: Without equipments, you are going to die pretty fast on AresRPG. You can craft your items, loot them directly when killing specific monsters, or even use auctions houses to trade them
+</i18n>
+
+<script setup>
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+</script>
+
 <template lang="pug">
 .frame
-  .title Les Items
-  .desc Sans équipement, vous ne tiendrez pas longtemps sur AresRPG. Vous pouvez crafter vos items, les obtenir directement en tuant certains monstres, ou encore les acheter aux autres joueurs
+  .title {{ t('title') }}
+  .desc {{ t('desc') }}
   .weapons
     img(src="../assets/bow_1.png")
     img(src="../assets/sword_2.png")
@@ -13,8 +28,6 @@
 <style lang="stylus" scoped>
 .frame
   display flex
-  width 100%
-  height 100vh
   flex-flow column nowrap
   overflow hidden
   color white

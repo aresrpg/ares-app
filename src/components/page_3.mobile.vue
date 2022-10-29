@@ -1,7 +1,26 @@
+<i18n>
+fr:
+  title: Rejoins AresRPG sur les réseaux
+  forum: Le forum se trouve sur le discord
+  hire: Recrute pour DJ champs, lvl 15 mini
+  buy: J'achète toutes vos gemmes hades 100po/u, mp moi
+en:
+  title: Join us on our socials
+  forum: Forum is available on the discord
+  hire: Recruit for Aragog dungeon, lvl 15 mini
+  buy: Buying all your wheat 100gc/u, dm me
+</i18n>
+
+<script setup>
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+</script>
+
 <template lang="pug">
 .frame
   .top_img
-  .title Rejoins AresRPG sur les réseaux
+  .title {{ t('title') }}
   .socials
     a(href="https://www.youtube.com/channel/UC9YFBFi_jrBYIc449Io7adQ" target="_blank" rel="noopener noreferrer" aria-label="youtube")
       img.yt(src="src/assets/youtube.png")
@@ -25,10 +44,10 @@
       img.twitch(src="src/assets/twitch.png")
   .forum
     img(src="src/assets/chat-bubble.png")
-    span Le forum se trouve sur le discord
+    span {{ t('forum') }}
   .msgs
-    .first Recrute pour DJ champs, lvl 15 mini
-    .second J'achète toutes vos gemmes hades 100po/u, mp moi
+    .first {{ t('hire') }}
+    .second {{ t('buy') }}
     img.ares(src="src/assets/logo.png")
     img.parrot(src="src/assets/parrot.png")
 </template>
@@ -36,8 +55,6 @@
 <style lang="stylus" scoped>
 .frame
   display flex
-  width 100%
-  height 100vh
   flex-flow column nowrap
   background url('src/assets/background_noise.jpeg') center / cover
   position relative
