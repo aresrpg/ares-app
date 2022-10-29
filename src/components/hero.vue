@@ -30,18 +30,17 @@ mixin srcType(type)
         .solflare(@click="connect_solflare")
           img(src="../assets/solflare.png")
           span Solflare
-  footer
-    .socials
-      a(href="https://twitter.com/AresRPG" target="_blank" rel="noopener noreferrer" aria-label="Twitter")
-        fa(:icon="['fab', 'twitter']" :size="icon_size")
-      a(href="https://www.youtube.com/channel/UC9YFBFi_jrBYIc449Io7adQ" target="_blank" rel="noopener noreferrer" aria-label="Youtube")
-        fa(:icon="['fab','youtube']" :size="icon_size")
-      a(href="https://github.com/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Github")
-        fa(:icon="['fab','github']" :size="icon_size")
-      a(href="https://discord.gg/kpzNeCW" target="_blank" rel="noopener noreferrer" aria-label="Discord")
-        fa(:icon="['fab','discord']" :size="icon_size")
-      a(href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Telegram")
-        fa(:icon="['fab','telegram']" :size="icon_size")
+  .socials
+    a(href="https://twitter.com/AresRPG" target="_blank" rel="noopener noreferrer" aria-label="Twitter")
+      fa(:icon="['fab', 'twitter']" :size="icon_size")
+    a(href="https://www.youtube.com/channel/UC9YFBFi_jrBYIc449Io7adQ" target="_blank" rel="noopener noreferrer" aria-label="Youtube")
+      fa(:icon="['fab','youtube']" :size="icon_size")
+    a(href="https://github.com/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Github")
+      fa(:icon="['fab','github']" :size="icon_size")
+    a(href="https://discord.gg/kpzNeCW" target="_blank" rel="noopener noreferrer" aria-label="Discord")
+      fa(:icon="['fab','discord']" :size="icon_size")
+    a(href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Telegram")
+      fa(:icon="['fab','telegram']" :size="icon_size")
 </template>
 
 <script setup>
@@ -66,7 +65,7 @@ const router = useRouter();
 const modal = ref(false);
 const wallet = inject('wallet');
 const toast = useToast();
-
+const icon_size = ref('2x');
 const find_phantom = () => window.solana?.isPhantom && window.solana;
 const find_solflare = () => window.solflare?.isSolflare && window.solflare;
 
@@ -149,7 +148,26 @@ const handle_microsoft = () => {
 </script>
 
 <style lang="stylus" scoped>
-
+.socials
+  width 100%
+  height 70px
+  display flex
+  flex-flow row wrap
+  justify-content space-evenly
+  align-items center
+  >*
+    filter drop-shadow(1px 2px 3px black)
+    color #f1c40f
+  // >:first-child
+  //   color #3498DB
+  // >:nth-child(2)
+  //   color #E74C3C
+  // >:nth-child(3)
+  //   color white
+  // >:nth-child(4)
+  //   color #8E44AD
+  // >:nth-child(5)
+  //   color #2980B9
 .modal__content
   color white
   background #212121

@@ -1,13 +1,10 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted } from 'vue';
-
 const props = defineProps(['count', 'selected']);
 </script>
 
 <template lang="pug">
 .container
   span
-  //- div(v-for="i in props.count" :key="i" :class="{selected: props.selected === i -1}")
 </template>
 
 <style lang="stylus" scoped>
@@ -27,7 +24,7 @@ const props = defineProps(['count', 'selected']);
   span
     background #1976D2
     width 3px
-    height 20px
+    height 10px
     position absolute
     top calc(10px * v-bind(props.selected))
     transition top .3s ease-in-out
