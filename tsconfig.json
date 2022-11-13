@@ -12,6 +12,7 @@
     "emitDeclarationOnly": true,
     "resolveJsonModule": true,
     "outDir": "types",
-    "types": ["element-plus/global"]
+    "types": ["element-plus/global"],
+    "jsx": "preserve"
   }
 }

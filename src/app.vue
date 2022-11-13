@@ -3,7 +3,7 @@ router-view
 </template>
 
 <script setup>
-const name = 'app';
+const name = 'app'
 </script>
 
 <style lang="stylus">
@@ -24,10 +24,15 @@ sc-disableScollBar()
   font-size 18px
   background #292827
 
+.vue-universal-modal
+  z-index 10
+
 *
   sc-reset()
   sc-disableScollBar()
-  font-family 'Raleway', sans-serif
+  font-family 'DM Sans'
+  font-family 'Montserrat'
+  font-family 'Roboto Condensed'
   outline none
   scroll-behavior smooth
   &::-webkit-scrollbar-track
