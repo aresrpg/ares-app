@@ -14,6 +14,8 @@
   lang_selector
   .gold_line
   hero
+  news_layer
+  page_1_desktop
 </template>
 
 <script setup>
@@ -31,6 +33,8 @@ import page_6_mobile from '../components/page_6.mobile.vue'
 import page_7_mobile from '../components/page_7.mobile.vue'
 import lang_selector from '../components/lang_selector.vue'
 import scroll_indicator from '../components/scroll_indicator.vue'
+import news_layer from '../components/layer_news.desktop.vue'
+import page_1_desktop from '../components/page_1.desktop.vue'
 
 const logged = ref(false)
 const wallet = ref({})
@@ -55,12 +59,8 @@ onBeforeUnmount(() => window.removeEventListener('scroll', on_scroll))
 
 <style lang="stylus" scoped>
 .root_sm
-  // min-width 300px
   width 100vw
-  // height 100vh
   overflow hidden
-  // overflow-y auto
-  // scroll-snap-type y proximity
   display flex
   flex-flow column nowrap
   .frame
@@ -71,6 +71,15 @@ onBeforeUnmount(() => window.removeEventListener('scroll', on_scroll))
   width 100vw
   display flex
   flex-flow column nowrap
+  position relative
   .gold_line
-    background url('../assets/goldline2.png') repeat-x
+    position absolute
+    opacity .3
+    width 100px
+    top -2em
+    bottom 0
+    left 2em
+    background url('../assets/goldline2.png') repeat-y
+    mix-blend-mode luminosity
+    z-index 5
 </style>

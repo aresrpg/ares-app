@@ -15,6 +15,7 @@ import {
   faTelegram,
   faTwitterSquare,
 } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { createI18n } from 'vue-i18n'
 
 import { VITE_RECAPTCHA_KEY } from './env'
@@ -32,7 +33,8 @@ library.add(
   faTwitter,
   faDiscord,
   faTelegram,
-  faTwitterSquare
+  faTwitterSquare,
+  faEnvelope
 )
 
 console.log(
