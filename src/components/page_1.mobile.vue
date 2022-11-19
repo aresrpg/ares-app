@@ -3,7 +3,7 @@
     title: Un Gameplay exclusif
     desc: Choisissez votre classe, équipez vous et forgez vos armes en fonction de votre élément favori. Les synergies possibles sont infinies et complètement personnalisables
     carac: CARACTÉRISTIQUES
-    carac_desc: Chaque niveau suplementaire vous permets d'augmenter vos stats
+    carac_desc: Chaque niveau supplémentaire vous permet d'augmenter vos compétences
     items: items
     items_desc: Des centaines d'items sont disponibles en jeux. Vous pouvez les obtenir en tuant des monstres, en les forgeant vous mêmes, ou bien grâce au commerce entre joueurs
     fights: combats

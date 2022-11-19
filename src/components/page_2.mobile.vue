@@ -114,7 +114,6 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
 <style lang="stylus" scoped>
 .frame
   background url('../assets/background_noise.reverse.jpg') center / cover
-  font-family 'Montserrat'
   color white
   display flex
   flex-flow column nowrap
@@ -129,6 +128,7 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
     font-size 20px
     font-weight 100
     opacity .65
+    font-family 'Montserrat'
     letter-spacing 2px
     margin-bottom 2em
     b

@@ -3,10 +3,11 @@ fr:
   title: News
   news: LE SERVEUR EST EN DÉVELOPPEMENT ET PROPOSERA UN {kickstarter} TRÈS PROCHAINEMENT, {joinus} POUR ÊTRE PRIORITAIRE !
   kickstarter: KICKSTARTER
-  joinus: REJOIGNEZ LE DISCORD
+  joinus: REJOINT LE DISCORD
 en:
   title: News
-  news: The serveur is currently under development and will launch a {kickstarter} campagin soon, {joinus} to secure your slot
+  news: The serveur is currently under development and will launch a {kickstarter} campaign real soon, {joinus} to secure your slot
+  joinus: JOIN THE DISCORD
 </i18n>
 
 <script setup>
@@ -23,7 +24,7 @@ const { t } = useI18n()
       template(#kickstarter)
         span.kick {{ t('kickstarter') }}
       template(#joinus)
-        span.join {{ t('joinus') }}
+        a.join(href="https://discord.gg/aresrpg" target="_blank") {{ t('joinus') }}
 </template>
 
 <style lang="stylus" scoped>
@@ -38,6 +39,7 @@ text-color = rgba(#2C3E50, .9)
   left 0
   transform translateY(-50%)
   backdrop-filter blur(50px)
+  font-family 'DM Sans'
   display flex
   flex-flow column nowrap
   padding 1.5em 10%
@@ -45,6 +47,7 @@ text-color = rgba(#2C3E50, .9)
     font-weight 900
     position relative
     width max-content
+    margin-bottom 1em
     &::after
       content ''
       position absolute
@@ -60,6 +63,8 @@ text-color = rgba(#2C3E50, .9)
     text-align center
     .kick
       color #27AE60
+      font-weight 900
     .join
+      color inherit
       text-decoration underline
 </style>

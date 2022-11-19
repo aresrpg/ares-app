@@ -6,9 +6,9 @@
     desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est de réunir les 6 œufs de dragon. {desc_2}
     desc_2: Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences
     discover: Découvrir
-    placeholder: Participe à la Bêta..
     wip: Le serveur est en développement et proposera un {kick} très prochainement, rejoignez le discord pour être prioritaire !
     email: Enregistrement réussi !
+    email_invalid: L'email semble incorrect
   en:
     title: A {adventure} MMORPG EXPERIENCE IN {unique}
     adventure: DELIGHTFUL
@@ -16,19 +16,18 @@
     desc: AresRPG is a no mods minecraft mmorpg server in which your goal is to find all 6 dragon eggs. {desc_2}
     desc_2: The world is full of diverse creatures that you can reduce to atoms in order to upgrade your stuff and skills
     discover: Discover
-    placeholder: 'Join the Beta..'
     wip: The server is under construction and will launch a {kick} campaign very soon, join the discord to skip the line !
     email: Sign up sucess !
+    email_invalid: Email seems invalid!
 </i18n>
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useReCaptcha } from 'vue-recaptcha-v3'
 
 import { fade_up, fade_down } from '../core/anime'
 
-const { executeRecaptcha, recaptchaLoaded, instance } = useReCaptcha()
+import mail from './mail_input.vue'
 
 const { t } = useI18n()
 const scroll_down = () =>
@@ -48,27 +47,7 @@ const animations = [
   fade_up(discord, 600),
 ]
 
-const mail = ref('')
-const email_regex = /[\w-]+@([\w-]+\.)+[\w-]+/gm
-
-const submit_mail = async () => {
-  const token = await executeRecaptcha('submit')
-  if (!mail.value.match(email_regex)) alert('Email seems invalid!')
-  else {
-    await fetch('/.netlify/functions/save_email', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: mail.value,
-        token,
-      }),
-    })
-    alert(t('email'))
-    mail.value = ''
-  }
-}
-
 onMounted(() => {
-  recaptchaLoaded().then(() => instance.value.hideBadge())
   animations.forEach(animation => animation.mount())
 })
 onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
@@ -87,12 +66,7 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
     i18n-t(keypath="desc")
       template(#desc_2)
         b {{ t('desc_2')}}
-  .mail
-    input(:placeholder="t('placeholder')" @keyup.enter="submit_mail" v-model="mail")
-    svg(
-      @click="submit_mail"
-      width="22" height="17" viewBox="0 0 22 17" fill="none" xmlns="http://www.w3.org/2000/svg")
-      path(d="M19.632 0.532017H2.36803C1.26787 0.532017 0.376038 1.42385 0.376038 2.52401V14.476C0.376038 15.5762 1.26787 16.468 2.36803 16.468H19.632C20.7322 16.468 21.624 15.5762 21.624 14.476V2.52401C21.624 1.42385 20.7322 0.532017 19.632 0.532017ZM19.632 2.52401V4.21742C18.7015 4.97516 17.218 6.15343 14.0466 8.63674C13.3477 9.18649 11.9633 10.5072 11 10.4918C10.0369 10.5074 8.65199 9.18628 7.95338 8.63674C4.7825 6.1538 3.29867 4.97529 2.36803 4.21742V2.52401H19.632ZM2.36803 14.476V6.77352C3.31896 7.53094 4.6675 8.59379 6.72295 10.2033C7.63002 10.9173 9.21851 12.4935 11 12.4839C12.7728 12.4935 14.3411 10.9402 15.2767 10.2037C17.3321 8.59416 18.681 7.53102 19.632 6.77356V14.476H2.36803Z" fill="black")
+  mail
   a.twitter(href="https://twitter.com/AresRPG" target="_blank" rel="noopener noreferrer" aria-label="Twitter" ref="twitter")
     fa.icon(:icon="['fab', 'twitter']" size="2x")
   a.telegram(href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Telegram" ref="telegram")
@@ -175,34 +149,6 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
     b
       margin-top 1em
       font-weight @font-weight
-  .mail
-    grid-area mail
-    border 2px solid white
-    border-radius 30px
-    display flex
-    position relative
-    height 40px
-    max-width 400px
-    width 85%
-    input
-      background none
-      width 100%
-      margin 0 .5em
-      color white
-      border none
-      padding 0 5em 0 1em
-    svg
-      position absolute
-      top 50%
-      right 0
-      transform translateY(-50%)
-      background white
-      width 60px
-      height 105%
-      padding .6em
-      border-radius 30px
-      path
-        fill #212121
 
   a
     color white

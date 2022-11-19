@@ -3,19 +3,33 @@ fr:
   ip: play.aresrpg.world
   desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est de réunir les 6 œufs de dragon. Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences
   title: Entrez dans La Legende
-  play: Jouer
-  commu: Communauté
+  trailer: Trailer
+  class: Classes
+  game: Gameplay
+  server: Serveur
+  assets: Assets
+  layers: Mondes
+  copy: adresse copiée
 en:
   desc: AresRPG is a no-mods mmorpg minecraft server in which your goal is to find all 6 dragons eggs. The world is infested of creatures that you will need to fight and destroy in order to upgrade your equipment and stats
   title: A Delightful RP Adventure
-  play: Play now
-  commu: Community
+  trailer: Trailer
+  class: Classes
+  game: Gameplay
+  server: Server
+  assets: Assets
+  layers: Worlds
+  copy: copied to clipboard
 </i18n>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { useToast } from 'vue-toastification'
 
+const toast = useToast()
 const { t } = useI18n()
+
+const on_copy = () => toast.info(t('copy'))
 </script>
 
 <template lang="pug">
@@ -23,10 +37,18 @@ const { t } = useI18n()
   .grain
   .fog
   img.logo(src="../assets/logo.png")
-  .ip {{ t('ip') }}
+  .ip(
+    v-clipboard:copy="'play.aresrpg.world'"
+    v-clipboard:success="on_copy"
+    v-clipboard:error="on_copy_error"
+    ) {{ t('ip') }}
   nav
-    .play {{ t('play') }}
-    .commu {{ t('commu')}}
+    .trailer.selected {{ t('trailer') }}
+    .class {{ t('class') }}
+    .game {{ t('game') }}
+    .server {{ t('server') }}
+    .assets {{ t('assets') }}
+    .layers {{ t('layers') }}
   .left
     .desc {{ t('desc') }}
     .title {{ t('title') }}
@@ -41,11 +63,12 @@ classic = 1px 2px 3px black
   width 100%
   height 100vh
   background url('../assets/ice_dragon.jpeg') center / cover
-  font-family 'DM Sans'
+  font-family 'Roboto Condensed'
   display flex
   flex-flow row nowrap
   color white
   align-items center
+  position relative
   .left
     position relative
     flex 1 1 50%
@@ -82,7 +105,8 @@ classic = 1px 2px 3px black
     right 0
     bottom 0
     background url('../assets/iron-grid.png') repeat
-    opacity .4
+    opacity .2
+    z-index 2
   img
     position absolute
     top 2em
@@ -93,32 +117,36 @@ classic = 1px 2px 3px black
     filter drop-shadow(1px 2px 3px black)
     object-fit contain
   nav
-    position absolute
+    position fixed
     top 5em
     right 1em
     text-transform uppercase
     align-items flex-end
-    font-size .75em
-    text-shadow 1px 2px 3px black
+    font-size .7em
     display flex
     flex-flow column nowrap
+    z-index 10
+    text-shadow 1px 2px 3px black
     >div
       cursor pointer
-    .play
+      opacity .7
+    .selected
       position relative
+      opacity 1
       &::before
         content ''
         position absolute
         top 50%
-        left -110px
+        left -50px
         transform translateY(-50%)
-        width 100px
+        width 40px
         height 1px
         box-shadow 1px 2px 3px black
         background white
   .ip
     position fixed
     top 1em
+    font-family 'DM Sans'
     left 50%
     transform translateX(-50%)
     text-shadow classic
@@ -127,13 +155,14 @@ classic = 1px 2px 3px black
     mix-blend-mode exclusion
     text-transform uppercase
     z-index 50
+    cursor pointer
   .fog
     position absolute
     bottom 0
     left 0
     width 100%
     height 100vh
-    z-index 1
-    background url('../assets/fog.png')
-
+    z-index 3
+    display flex
+    background url('../assets/fog.png') bottom / cover
 </style>

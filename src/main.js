@@ -7,6 +7,7 @@ import 'vue-toastification/dist/index.css'
 import 'vue-universal-modal/dist/index.css'
 import VueUniversalModal from 'vue-universal-modal'
 import { VueReCaptcha } from 'vue-recaptcha-v3'
+import { VueClipboard } from '@soerenmartius/vue3-clipboard'
 import {
   faDiscord,
   faGithub,
@@ -55,6 +56,7 @@ vue_app
   .use(VueReCaptcha, { siteKey: '6LfklcMiAAAAAG6KxHTI23ytDJz1Sow5sJvS4vab' })
   .use(VueUniversalModal, { teleportTarget: '#modals' })
   .use(i18n)
+  .use(VueClipboard)
   .component('fa', FontAwesomeIcon)
   .use(Toast)
   .mount('#app')
