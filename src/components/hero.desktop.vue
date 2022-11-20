@@ -40,7 +40,6 @@ const on_copy = () => toast.info(t('copy'))
   .ip(
     v-clipboard:copy="'play.aresrpg.world'"
     v-clipboard:success="on_copy"
-    v-clipboard:error="on_copy_error"
     ) {{ t('ip') }}
   nav
     .trailer.selected {{ t('trailer') }}
@@ -62,6 +61,8 @@ classic = 1px 2px 3px black
 .container
   width 100%
   height 100vh
+  border-top-left-radius 30px
+  border-top-right-radius 30px
   background url('../assets/ice_dragon.jpeg') center / cover
   font-family 'Roboto Condensed'
   display flex

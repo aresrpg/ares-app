@@ -3,12 +3,14 @@
     music: Les Musiques
     music_desc: Une bande originale créée spécialement pour AresRPG
     items: Les Items
-    items_desc: Une multitude de modèles pour les armes et armures sont intégrées au jeu, le flex devient réel
+    items_desc: Une multitude de modèles pour les armes et armures sont intégrées au jeu, {flex}
+    flex: le flex devient réel
   en:
     music: The Musics
     music_desc: An original soundtrack made specially for AresRPG
     items: The Items
-    items_desc: A bunch of 3D models for weapons and armors are integrated in the game, the flex is real
+    items_desc: A bunch of 3D models for weapons and armors are integrated in the game, {flex}
+    flex: the flex is real
   </i18n>
 
 <script setup>
@@ -39,11 +41,22 @@ page_container(:img="bg")
         +youtube('https://www.youtube.com/embed/bxCMfOtlS08')
         +youtube('https://www.youtube.com/embed/rPQ9yM9BUW4')
     .items_title
-      .desc {{ t('items_desc') }}
+      .desc
+        i18n-t(keypath="items_desc")
+          template(#flex)
+            b {{ t('flex') }}
       .line
       .title {{ t('items') }}
       .line.l2
     .items
+      .scrollable
+        img(src="../assets/bow_1.png")
+        img(src="../assets/sword_3.png")
+        img(src="../assets/axe_1.png")
+        img(src="../assets/staff_2.png")
+        img(src="../assets/bow_2.png")
+        img(src="../assets/axe_2.png")
+        img(src="../assets/sword_2.png")
 </template>
 
 <style lang="stylus" scoped>
@@ -51,9 +64,9 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
 .page
   display flex
   flex-flow column nowrap
-  justify-content center
+  justify-content space-evenly
   overflow hidden
-  .musics
+  .musics, .items
     width 100%
     overflow-x scroll
     .scrollable
@@ -61,6 +74,10 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
       display flex
       flex-flow row nowrap
       width max-content
+      img
+        width 300px
+        object-fit contain
+        filter drop-shadow(1px 2px 3px black)
       iframe
         z-index 4
         width 500px
@@ -90,6 +107,11 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
     .desc
       flex 1 2
       padding 0 1em
+      font-family 'Montserrat'
+      font-weight 100
+      b
+        font-weight 300
+        text-shadow 1px 2px 3px rgba(black .4)
   .musics_title
     display flex
     flex-flow row nowrap
@@ -109,4 +131,6 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
     .desc
       flex 1
       padding-left 1em
+      font-family 'Montserrat'
+      font-weight 100
 </style>

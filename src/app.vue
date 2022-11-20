@@ -7,10 +7,6 @@ const name = 'app'
 </script>
 
 <style lang="stylus">
-@font-face
-  font-family "nimbus-sans"
-  src url("assets/nimbus-sans.bold.otf") format("otf");
-
 sc-reset()
     margin 0
     padding 0

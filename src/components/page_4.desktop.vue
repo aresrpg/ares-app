@@ -61,6 +61,8 @@ page_container(:img="bg")
       feature_card(:icon="earth" :title="t('immersive')" :desc="t('immersive_desc')")
     .center
       img.circle(src="../assets/circle.png")
+      img.circle.second(src="../assets/circle.png")
+      img.circle.third(src="../assets/circle.png")
       img.helmet(src="../assets/spartan.png")
     .right
       .title
@@ -101,13 +103,23 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
       height auto
       z-index 1
       object-fit contain
+      opacity .8
+      animation float 5s infinite alternate ease-in-out
     .circle
       position absolute
       width 800px
       top 50%
       left 50%
-      mix-blend-mode luminosity
+      opacity .4
       transform translateY(-50%) translateX(-50%)
+      animation rotate 30s linear infinite, disapear 5s ease-in-out 5s infinite alternate
+      mix-blend-mode screen
+      &.second
+        mix-blend-mode luminosity
+        animation rotate 25s linear infinite, disapear 5s ease-in-out infinite alternate
+      &.third
+        mix-blend-mode luminosity
+        animation rotate 35s linear infinite reverse
       @media screen and (max-width: 1300px)
         display none
   .right
@@ -133,6 +145,8 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
     .desc
       text-align end
       padding-right 2em
+      font-family 'Montserrat'
+      font-weight 100
     img
       object-fit contain
       min-width 550px
@@ -140,4 +154,22 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
       margin-top 2em
       mix-blend-mode lighten
       align-self flex-end
+
+@keyframes disapear
+  from
+    opacity .5
+  to
+    opacity 0
+
+@keyframes float
+  0%
+    transform translateY(30px)
+  100%
+    transform translateY(0)
+
+@keyframes rotate
+  from
+    transform translateY(-50%) translateX(-50%) rotate(0)
+  to
+    transform translateY(-50%) translateX(-50%) rotate(360deg)
 </style>

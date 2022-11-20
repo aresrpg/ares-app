@@ -114,4 +114,5 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
       width 500px
       font-size .9em
       font-weight 100
+      font-family 'Montserrat'
 </style>

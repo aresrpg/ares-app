@@ -64,6 +64,8 @@ classic = 1px 2px 3px black
   align-items center
   position relative
   padding-top 100px
+  border-bottom-left-radius 30px
+  border-bottom-right-radius 30px
   .trailer
     display flex
     flex-flow row nowrap

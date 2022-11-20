@@ -21,6 +21,7 @@
   page_4_desktop
   page_5_desktop
   page_6_desktop
+  footer_desktop
 </template>
 
 <script setup>
@@ -45,6 +46,7 @@ import page_3_desktop from '../components/page_3.desktop.vue'
 import page_4_desktop from '../components/page_4.desktop.vue'
 import page_5_desktop from '../components/page_5.desktop.vue'
 import page_6_desktop from '../components/page_6.desktop.vue'
+import footer_desktop from '../components/footer.desktop.vue'
 
 const logged = ref(false)
 const wallet = ref({})

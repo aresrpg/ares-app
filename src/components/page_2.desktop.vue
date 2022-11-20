@@ -79,6 +79,7 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
     .desc
       font-weight 100
       place-self center start
+      font-family 'Montserrat'
       font-size 1.1em
     .bar
       grid-area middle

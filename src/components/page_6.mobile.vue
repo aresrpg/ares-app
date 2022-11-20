@@ -37,7 +37,7 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
   .weapons
     img(ref="c1" src="../assets/bow_1.png")
     img(ref="c2" src="../assets/sword_2.png")
-    img(ref="c3" src="../assets/Staff_2.png")
+    img(ref="c3" src="../assets/staff_2.png")
     img(ref="c4" src="../assets/sword_3.png")
   img.gif(src="../assets/axe_2.gif")
 </template>
