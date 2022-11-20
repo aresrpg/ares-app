@@ -13,14 +13,14 @@
 .root(v-else)
   lang_selector
   .gold_line
-  hero
+  hero(:page="selected_page" :scroller="Scroller")
   news_layer
-  page_1_desktop
-  page_2_desktop
-  page_3_desktop
-  page_4_desktop
-  page_5_desktop
-  page_6_desktop
+  page_1_desktop(ref="trailer")
+  page_2_desktop(ref="classes")
+  page_3_desktop(ref="gameplay")
+  page_4_desktop(ref="server")
+  page_5_desktop(ref="assets")
+  page_6_desktop(ref="worlds")
   footer_desktop
 </template>
 
@@ -53,7 +53,29 @@ const wallet = ref({})
 const root = ref()
 const scrolled_index = ref(0)
 
+const trailer = ref()
+const classes = ref()
+const gameplay = ref()
+const server = ref()
+const assets = ref()
+const worlds = ref()
+
+const scroll_into_view = ref => () =>
+  ref.value.$el.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  })
+const Scroller = {
+  trailer: scroll_into_view(trailer),
+  classes: scroll_into_view(classes),
+  gameplay: scroll_into_view(gameplay),
+  server: scroll_into_view(server),
+  assets: scroll_into_view(assets),
+  worlds: scroll_into_view(worlds),
+}
+
 const icon_size = '2x'
+const selected_page = ref('trailer')
 
 provide('logged', logged)
 provide('wallet', wallet)
@@ -65,7 +87,25 @@ const breakpoints = useBreakpoints({
 const on_scroll = () =>
   (scrolled_index.value = Math.ceil(window.scrollY / window.innerHeight))
 
-onMounted(() => window.addEventListener('scroll', on_scroll))
+const observe = (ref, name) => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) selected_page.value = name
+    },
+    { threshold: [0.5] }
+  )
+  observer.observe(ref.value.$el)
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', on_scroll)
+  observe(trailer, 'trailer')
+  observe(classes, 'classes')
+  observe(gameplay, 'gameplay')
+  observe(server, 'server')
+  observe(assets, 'assets')
+  observe(worlds, 'worlds')
+})
 onBeforeUnmount(() => window.removeEventListener('scroll', on_scroll))
 </script>
 

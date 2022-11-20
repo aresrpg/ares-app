@@ -12,13 +12,22 @@ en:
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
+import { appear_right, minimal_fade_up } from '../core/anime'
+
+const title = ref()
 const { t } = useI18n()
+const animations = [appear_right(title, 100)]
+onMounted(() => {
+  animations.forEach(animation => animation.mount())
+})
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
 </script>
 
 <template lang="pug">
 .container
-  .title {{ t('title') }}
+  .title(ref="title") {{ t('title') }}
   .news
     i18n-t(keypath="news")
       template(#kickstarter)

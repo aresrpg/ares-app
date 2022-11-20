@@ -5,7 +5,7 @@ fr:
   title: Entrez dans La Legende
   trailer: Trailer
   class: Classes
-  game: Gameplay
+  game: Jeu
   server: Serveur
   assets: Assets
   layers: Mondes
@@ -15,7 +15,7 @@ en:
   title: A Delightful RP Adventure
   trailer: Trailer
   class: Classes
-  game: Gameplay
+  game: Game
   server: Server
   assets: Assets
   layers: Worlds
@@ -25,32 +25,60 @@ en:
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+import {
+  anime,
+  appear_left,
+  appear_right,
+  minimal_fade_up,
+} from '../core/anime'
 
 const toast = useToast()
 const { t } = useI18n()
+const props = defineProps(['page', 'scroller'])
 
 const on_copy = () => toast.info(t('copy'))
+
+const ip = ref()
+const logo = ref()
+const nav = ref()
+const desc = ref()
+const title = ref()
+const animations = [
+  anime({ translateY: ['-100%', 0], translateX: ['-50%', '-50%'] })(ip, 200),
+  appear_left(logo, 100),
+  appear_right(nav, 2000),
+  minimal_fade_up(desc, 400),
+  minimal_fade_up(title, 800),
+]
+
+onMounted(() => {
+  animations.forEach(animation => animation.mount())
+})
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
 </script>
 
 <template lang="pug">
 .container
   .grain
   .fog
-  img.logo(src="../assets/logo.png")
+  img.logo(ref="logo" src="../assets/logo.png")
   .ip(
+    ref="ip"
     v-clipboard:copy="'play.aresrpg.world'"
     v-clipboard:success="on_copy"
     ) {{ t('ip') }}
-  nav
-    .trailer.selected {{ t('trailer') }}
-    .class {{ t('class') }}
-    .game {{ t('game') }}
-    .server {{ t('server') }}
-    .assets {{ t('assets') }}
-    .layers {{ t('layers') }}
+  nav(ref="nav")
+    .trailer(@click="props.scroller.trailer" :class="{ selected: props.page === 'trailer' }") {{ t('trailer') }}
+    .class(@click="props.scroller.classes" :class="{ selected: props.page === 'classes' }") {{ t('class') }}
+    .game(@click="props.scroller.gameplay" :class="{ selected: props.page === 'gameplay' }") {{ t('game') }}
+    .server(@click="props.scroller.server" :class="{ selected: props.page === 'server' }") {{ t('server') }}
+    .assets(@click="props.scroller.assets" :class="{ selected: props.page === 'assets' }") {{ t('assets') }}
+    .layers(@click="props.scroller.worlds" :class="{ selected: props.page === 'worlds' }") {{ t('layers') }}
   .left
-    .desc {{ t('desc') }}
-    .title {{ t('title') }}
+    .desc(ref="desc") {{ t('desc') }}
+    .title(ref="title") {{ t('title') }}
   .right
 </template>
 

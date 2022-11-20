@@ -33,6 +33,7 @@ en:
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 import bg from '../assets/page3_bg.jpeg'
 import eagle from '../assets/eagle.png'
@@ -41,20 +42,31 @@ import helmet from '../assets/helmetsword.png'
 import spells from '../assets/spells.png'
 import cards from '../assets/cards.png'
 import dj from '../assets/dj.png'
+import { fade_up, rotate_in } from '../core/anime'
 
 import feature_card from './feature_card.big.desktop.vue'
 import page_container from './page_container.desktop.vue'
 
 const { t } = useI18n()
+
+const title = ref()
+const line = ref()
+const desc = ref()
+
+const animations = [fade_up(title, 100), fade_up(line, 200), fade_up(desc, 300)]
+onMounted(() => {
+  animations.forEach(animation => animation.mount())
+})
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
 </script>
 
 <template lang="pug">
 page_container(:img="bg")
   .page
     .top
-      .title {{ t('game') }}
-      .line
-      .desc {{ t('desc') }}
+      .title(ref="title") {{ t('game') }}
+      .line(ref="line")
+      .desc(ref="desc") {{ t('desc') }}
     img.sword(src="../assets/skullsword.png")
     .bottom
       feature_card(:img="eagle" :title="t('stats')" :desc="t('stats_desc')")

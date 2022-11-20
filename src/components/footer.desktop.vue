@@ -16,6 +16,9 @@ en:
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+import { rotate_in, minimal_fade_up } from '../core/anime'
 
 const { t } = useI18n()
 const toast = useToast()
@@ -25,6 +28,33 @@ const scroll_top = () =>
     behavior: 'smooth',
   })
 const on_copy = () => toast.info(t('copy'))
+const a0 = ref()
+const a1 = ref()
+const a2 = ref()
+const a3 = ref()
+const a4 = ref()
+const a5 = ref()
+const a6 = ref()
+const a8 = ref()
+const texts = ref()
+const designed = ref()
+
+const animations = [
+  rotate_in(a0, 100),
+  rotate_in(a1, 200),
+  rotate_in(a2, 300),
+  rotate_in(a3, 400),
+  rotate_in(a4, 500),
+  rotate_in(a5, 600),
+  rotate_in(a6, 700),
+  rotate_in(a8, 800),
+  minimal_fade_up(texts, 1000),
+  minimal_fade_up(designed, 1200),
+]
+onMounted(() => {
+  animations.forEach(animation => animation.mount())
+})
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
 </script>
 
 <template lang="pug">
@@ -46,7 +76,7 @@ footer
       img.insta(src="../assets/instagram.png")
     a(ref="a8" href="https://tiktok.com/@aresrpg.world" target="_blank" rel="noopener noreferrer" aria-label="tiktok")
       img.tiktok(src="../assets/tiktok.png")
-  .texts
+  .texts(ref="texts")
     .home(@click="scroll_top") {{ t('home') }}
     a.support(href="mailto:contact@aresrpg.fr") {{ t('support') }}
     a.carrers(href="https://discord.com/channels/265104803531587584/1032277246616014961" target="_blank") {{ t('careers') }}
@@ -54,7 +84,7 @@ footer
     v-clipboard:copy="'play.aresrpg.world'"
     v-clipboard:success="on_copy"
     ) {{ t('play') }}
-  .designed Designed & Integrated by #[a(href="https://sceat.xyz/" target="_blank") Sceat]
+  .designed(ref="designed") Designed & Integrated by #[a(href="https://sceat.xyz/" target="_blank") Sceat]
 </template>
 
 <style lang="stylus" scoped>
@@ -89,12 +119,12 @@ footer
     text-transform uppercase
     font-size .7em
     font-weight 900
-    opacity .65
     >div, a
       text-decoration none
       color white
       cursor pointer
       padding 0 2em
+      opacity .65
   .socials
     display flex
     flex-flow row nowrap

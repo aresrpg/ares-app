@@ -24,7 +24,9 @@ en:
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
+import { fade_left, minimal_fade_up } from '../core/anime'
 import snow from '../assets/snow.jpeg'
 import barbarian from '../assets/barbarian_light.png'
 import paladin from '../assets/paladin.png'
@@ -35,18 +37,32 @@ import class_card from './class_card.vue'
 import page_container from './page_container.desktop.vue'
 
 const { t } = useI18n()
+const title = ref()
+const bar = ref()
+const desc = ref()
+
+const animations = [
+  fade_left(title, 100),
+  fade_left(bar, 200),
+  fade_left(desc, 300),
+]
+
+onMounted(() => {
+  animations.forEach(animation => animation.mount())
+})
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
 </script>
 
 <template lang="pug">
 page_container(:img="snow")
   .page
     .top
-      .title
+      .title(ref="title")
         i18n-t(keypath="title")
           template(#exclusive)
             b {{ t('exclusive') }}
-      .bar
-      .desc {{ t('desc') }}
+      .bar(ref="bar")
+      .desc(ref="desc") {{ t('desc') }}
     .bottom
       class_card.barbare(:icon="barbarian" :title="t('barbare')" :desc="t('barbare_desc')" :weapon="t('barbare_bonus')" color="#A84E44")
       class_card.paladin(:icon="paladin" :title="t('paladin')" :desc="t('paladin_desc')" :weapon="t('paladin_bonus')" color="#7784B2")

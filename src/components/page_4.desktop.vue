@@ -34,6 +34,7 @@ en:
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 import bg from '../assets/page4bg.jpeg'
 import box from '../assets/open-box.png'
@@ -42,33 +43,58 @@ import guild from '../assets/guild.png'
 import feathers from '../assets/feathers.png'
 import github from '../assets/github.png'
 import earth from '../assets/earth.png'
+import { fade_down } from '../core/anime'
 
 import feature_card from './feature_card.inline.vue'
 import page_container from './page_container.desktop.vue'
 
 const { t } = useI18n()
+const f1 = ref()
+const f2 = ref()
+const f3 = ref()
+const f4 = ref()
+const f5 = ref()
+const f6 = ref()
+const title = ref()
+const desc = ref()
+
+const animations = [
+  fade_down(f1, 100),
+  fade_down(f2, 200),
+  fade_down(f3, 300),
+  fade_down(f4, 400),
+  fade_down(f5, 500),
+  fade_down(f6, 600),
+  fade_down(title),
+  fade_down(desc, 100),
+]
+
+onMounted(() => {
+  animations.forEach(animation => animation.mount())
+})
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
 </script>
 
 <template lang="pug">
 page_container(:img="bg")
   .page
     .left
-      feature_card(:icon="box" :title="t('mods')" :desc="t('mods_desc')")
-      feature_card(:icon="metaverse" :title="t('metaverse')" :desc="t('metaverse_desc')")
-      feature_card(:icon="guild" :title="t('guild')" :desc="t('guild_desc')")
-      feature_card(:icon="feathers" :title="t('instance')" :desc="t('instance_desc')")
-      feature_card(:icon="github" :title="t('open')" :desc="t('open_desc')")
-      feature_card(:icon="earth" :title="t('immersive')" :desc="t('immersive_desc')")
+      feature_card(ref="f1" :icon="box" :title="t('mods')" :desc="t('mods_desc')")
+      feature_card(ref="f2" :icon="metaverse" :title="t('metaverse')" :desc="t('metaverse_desc')")
+      feature_card(ref="f3" :icon="guild" :title="t('guild')" :desc="t('guild_desc')")
+      feature_card(ref="f4" :icon="feathers" :title="t('instance')" :desc="t('instance_desc')")
+      feature_card(ref="f5" :icon="github" :title="t('open')" :desc="t('open_desc')")
+      feature_card(ref="f6" :icon="earth" :title="t('immersive')" :desc="t('immersive_desc')")
     .center
       img.circle(src="../assets/circle.png")
       img.circle.second(src="../assets/circle.png")
       img.circle.third(src="../assets/circle.png")
       img.helmet(src="../assets/spartan.png")
     .right
-      .title
+      .title(ref="title")
         .lines
         .text {{ t('server') }}
-      .desc {{ t('server_desc') }}
+      .desc(ref="desc") {{ t('server_desc') }}
       img.code(src='../assets/code.png')
 </template>
 
