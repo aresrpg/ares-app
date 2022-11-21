@@ -41,6 +41,7 @@ const props = defineProps(['img'])
   width 100%
   height 100vh
   min-height 900px
+  border-top 1px solid black
   background url('../assets/ice_gradient.jpeg') center / cover
   border-bottom-left-radius 30px
   border-bottom-right-radius 30px
