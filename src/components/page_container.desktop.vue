@@ -40,6 +40,7 @@ const props = defineProps(['img'])
 :slotted(.page)
   width 100%
   height 100vh
+  min-height 900px
   background url('../assets/ice_gradient.jpeg') center / cover
   border-bottom-left-radius 30px
   border-bottom-right-radius 30px
