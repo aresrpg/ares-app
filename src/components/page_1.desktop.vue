@@ -95,6 +95,7 @@ classic = 1px 2px 3px black
   padding-top 100px
   border-bottom-left-radius 30px
   border-bottom-right-radius 30px
+  min-height 900px
   .trailer
     display flex
     flex-flow row nowrap
@@ -117,12 +118,13 @@ classic = 1px 2px 3px black
       font-weight 900
       font-size 3.3em
       writing-mode vertical-lr
+      @media screen and (max-width: 1384px)
+        letter-spacing 0
     img
       border-radius 12px
       object-fit contain
       width 70vw
       max-width 1200px
-      // max-height 600px
       filter material-2
     iframe
       border-radius 12px

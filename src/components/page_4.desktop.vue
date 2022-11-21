@@ -104,6 +104,7 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
   display flex
   flex-flow row nowrap
   padding 2em 2em 0 1em
+  overflow hidden
   .left
     display flex
     flex-flow column nowrap

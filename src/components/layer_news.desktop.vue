@@ -48,6 +48,8 @@ text-color = rgba(#2C3E50, .9)
   left 0
   transform translateY(-50%)
   backdrop-filter blur(50px)
+  border-top 1px solid rgba(#a4b5c1, .7)
+  border-bottom @border-top
   font-family 'DM Sans'
   display flex
   flex-flow column nowrap
