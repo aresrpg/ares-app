@@ -95,7 +95,7 @@ page_container(:img="bg")
         .lines
         .text {{ t('server') }}
       .desc(ref="desc") {{ t('server_desc') }}
-      img.code(src='../assets/code.png')
+      img.code(src='../assets/code.jpeg')
 </template>
 
 <style lang="stylus" scoped>
