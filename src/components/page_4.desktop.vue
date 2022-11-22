@@ -181,6 +181,7 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
       margin-top 2em
       mix-blend-mode lighten
       align-self flex-end
+      transform translate3d(0,0,0)
 
 @keyframes disapear
   from

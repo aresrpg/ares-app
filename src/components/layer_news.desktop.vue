@@ -47,6 +47,7 @@ text-color = rgba(#2C3E50, .9)
   top 100vh
   left 0
   transform translateY(-50%)
+  -webkit-backdrop-filter blur(50px)
   backdrop-filter blur(50px)
   border-top 1px solid rgba(#a4b5c1, .7)
   border-bottom @border-top
@@ -59,6 +60,7 @@ text-color = rgba(#2C3E50, .9)
     position relative
     width max-content
     margin-bottom 1em
+    z-index 2
     &::after
       content ''
       position absolute
@@ -72,6 +74,7 @@ text-color = rgba(#2C3E50, .9)
   .news
     justify-self center
     text-align center
+    z-index 2
     .kick
       color #27AE60
       font-weight 900
