@@ -14,7 +14,6 @@ const props = defineProps(['title', 'desc', 'img'])
   display grid
   grid 'img title' max-content 'img desc' max-content / 60px 1fr
   backdrop-filter blur(20px)
-  font-family 'Roboto Condensed'
   background rgba(black, .4)
   color white
   position relative

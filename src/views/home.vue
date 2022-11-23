@@ -13,7 +13,15 @@
 .root(v-else)
   lang_selector
   .gold_line
-  hero
+  hero(:page="selected_page" :scroller="Scroller")
+  news_layer
+  page_1_desktop(ref="trailer")
+  page_2_desktop(ref="classes")
+  page_3_desktop(ref="gameplay")
+  page_4_desktop(ref="server")
+  page_5_desktop(ref="assets")
+  page_6_desktop(ref="worlds")
+  footer_desktop
 </template>
 
 <script setup>
@@ -31,13 +39,43 @@ import page_6_mobile from '../components/page_6.mobile.vue'
 import page_7_mobile from '../components/page_7.mobile.vue'
 import lang_selector from '../components/lang_selector.vue'
 import scroll_indicator from '../components/scroll_indicator.vue'
+import news_layer from '../components/layer_news.desktop.vue'
+import page_1_desktop from '../components/page_1.desktop.vue'
+import page_2_desktop from '../components/page_2.desktop.vue'
+import page_3_desktop from '../components/page_3.desktop.vue'
+import page_4_desktop from '../components/page_4.desktop.vue'
+import page_5_desktop from '../components/page_5.desktop.vue'
+import page_6_desktop from '../components/page_6.desktop.vue'
+import footer_desktop from '../components/footer.desktop.vue'
 
 const logged = ref(false)
 const wallet = ref({})
 const root = ref()
 const scrolled_index = ref(0)
 
+const trailer = ref()
+const classes = ref()
+const gameplay = ref()
+const server = ref()
+const assets = ref()
+const worlds = ref()
+
+const scroll_into_view = ref => () =>
+  ref.value.$el.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  })
+const Scroller = {
+  trailer: scroll_into_view(trailer),
+  classes: scroll_into_view(classes),
+  gameplay: scroll_into_view(gameplay),
+  server: scroll_into_view(server),
+  assets: scroll_into_view(assets),
+  worlds: scroll_into_view(worlds),
+}
+
 const icon_size = '2x'
+const selected_page = ref('trailer')
 
 provide('logged', logged)
 provide('wallet', wallet)
@@ -49,20 +87,35 @@ const breakpoints = useBreakpoints({
 const on_scroll = () =>
   (scrolled_index.value = Math.ceil(window.scrollY / window.innerHeight))
 
-onMounted(() => window.addEventListener('scroll', on_scroll))
+const observe = (ref, name) => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) selected_page.value = name
+    },
+    { threshold: [0.5] }
+  )
+  observer.observe(ref.value.$el)
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', on_scroll)
+  observe(trailer, 'trailer')
+  observe(classes, 'classes')
+  observe(gameplay, 'gameplay')
+  observe(server, 'server')
+  observe(assets, 'assets')
+  observe(worlds, 'worlds')
+})
 onBeforeUnmount(() => window.removeEventListener('scroll', on_scroll))
 </script>
 
 <style lang="stylus" scoped>
 .root_sm
-  // min-width 300px
   width 100vw
-  // height 100vh
   overflow hidden
-  // overflow-y auto
-  // scroll-snap-type y proximity
   display flex
   flex-flow column nowrap
+  font-family 'Roboto Condensed'
   .frame
     width 100%
     min-height 700px
@@ -71,6 +124,16 @@ onBeforeUnmount(() => window.removeEventListener('scroll', on_scroll))
   width 100vw
   display flex
   flex-flow column nowrap
+  position relative
+  font-family 'DM Sans'
   .gold_line
-    background url('../assets/goldline2.png') repeat-x
+    position absolute
+    opacity .3
+    width 50px
+    top -2em
+    bottom 0
+    left 2em
+    background url('../assets/goldline2.png') repeat-y
+    mix-blend-mode luminosity
+    z-index 5
 </style>

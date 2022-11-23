@@ -7,10 +7,6 @@ const name = 'app'
 </script>
 
 <style lang="stylus">
-@font-face
-  font-family "nimbus-sans"
-  src url("assets/nimbus-sans.bold.otf") format("otf");
-
 sc-reset()
     margin 0
     padding 0
@@ -30,9 +26,9 @@ sc-disableScollBar()
 *
   sc-reset()
   sc-disableScollBar()
-  font-family 'DM Sans'
-  font-family 'Montserrat'
-  font-family 'Roboto Condensed'
+  // font-family 'DM Sans'
+  // font-family 'Montserrat'
+  // font-family 'Roboto Condensed'
   outline none
   scroll-behavior smooth
   &::-webkit-scrollbar-track

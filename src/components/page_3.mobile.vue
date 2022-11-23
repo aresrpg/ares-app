@@ -93,7 +93,6 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
   background url('../assets/background_noise.jpeg') center / cover
   position relative
   color white
-  font-family 'Montserrat'
   align-items center
   .top_img
     box-shadow inset -3px -3px 10px black

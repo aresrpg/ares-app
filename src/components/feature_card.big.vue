@@ -14,7 +14,6 @@ const props = defineProps(['img', 'title', 'desc'])
   display flex
   flex-flow column nowrap
   text-align center
-  font-family 'DM Sans'
   justify-content center
   align-items center
   color white

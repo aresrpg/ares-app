@@ -32,6 +32,7 @@ const select = ({ locale }) => {
   right .5em
   padding .25em
   border-radius 5px
+  cursor pointer
   img
     width 20px
   >img
