@@ -1,26 +1,38 @@
 <i18n>
-fr:
-  title: Un gameplay {exclusive}
-  exclusive: exclusif
-  desc: Pour débuter votre aventure, vous devrez choisir l'une des 4 classes disponibles.
-  barbare: barbare
-  barbare_bonus: haches
-  barbare_desc: Les barbares sont des brutes qui massacrent leurs ennemis avec leurs muscles impressionnants, avant de rentrer chez eux pour un bon shaker de whey isolate
-  paladin: paladin
-  paladin_bonus: ÉPÉES
-  paladin_desc: Les paladins protègent le royaume des créatures malfaisantes, ils sont respectés pour leur honneur et montre une aisance offensive aussi impressionnante que défensive
-  archer: archer
-  archer_bonus: Arcs
-  archer_desc: Discrets et rapide, dote d'une vision perçante, les archers sont de puissants alliés capable d'éliminer des cibles distantes
-  mage: mage
-  mage_bonus: BÂTONS
-  mage_desc: Les paladins protègent le royaume des créatures malfaisantes, ils sont respectés pour leur honneur et montre une aisance offensive aussi impressionnante que défensive
+  fr:
+    title: Un gameplay {exclusive}
+    exclusive: exclusif
+    desc: Pour débuter votre aventure, vous devrez choisir l'une des 4 classes disponibles.
+    barbare: barbare
+    barbare_bonus: haches
+    barbare_desc: Les barbares sont des brutes qui massacrent leurs ennemis avec leurs muscles impressionnants, avant de rentrer chez eux pour un bon shaker de whey isolate
+    paladin: paladin
+    paladin_bonus: ÉPÉES
+    paladin_desc: Les paladins protègent le royaume des créatures malfaisantes, ils sont respectés pour leur honneur et montre une aisance offensive aussi impressionnante que défensive
+    archer: archer
+    archer_bonus: Arcs
+    archer_desc: Discrets et rapide, dotés d'une vision perçante, les archers sont de puissants alliés capable d'éliminer des cibles distantes
+    mage: mage
+    mage_bonus: BÂTONS
+    mage_desc: Les mages sont d'excellents supports, capable de soigner leurs alliés ou de les protéger ! Attention toutefois aux sorts offensifs qui peuvent causer d'immenses dégâts en zone
 
-en:
-  title: An {exclusive} gameplay
-  exclusive: exclusive
-  desc: To start your adventure, you will have to chose one of the 4 available class
-</i18n>
+  en:
+    title: An {exclusive} gameplay
+    exclusive: exclusive
+    desc: To start your adventure, you will have to chose one of the 4 available class
+    barbare: Barbarian
+    barbare_bonus: Axes
+    barbare_desc: Barbarians are brutes who slaughter their enemies with their impressive muscles, before heading back home for a good protein shake
+    paladin: Paladin
+    paladin_bonus: Swords
+    paladin_desc: Paladins protect the kingdom from evil creatures, they are respected for their honor and show as much offensive strength as defensive abilities
+    archer: Archers
+    archer_bonus: Bows
+    archer_desc: Swift like the wind ! Born with a piercing vision, the archers are powerful allies capable of crushing distant targets
+    mage: Mages
+    mage_bonus: Sticks
+    mage_desc: Mages are excellent supports, able to heal their allies and protect them! Beware however of offensive spells that can cause insane area damages.
+  </i18n>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
