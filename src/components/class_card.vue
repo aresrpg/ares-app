@@ -2,7 +2,7 @@
 fr:
   bonus: Bonus d'arme
 en:
-  bonus: Weapon bonus
+  bonus: Strong with
 </i18n>
 
 <script setup>
