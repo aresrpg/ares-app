@@ -26,6 +26,7 @@ en:
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import ScrollParallax from 'vue3-parallax/src/components/ScrollParallax.vue'
 
 import {
   anime,
@@ -79,7 +80,8 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
   .left
     .desc(ref="desc") {{ t('desc') }}
     .title(ref="title") {{ t('title') }}
-  .right
+  scroll-parallax.right(direction="y" speed="0.3")
+    img(src="../assets/ice_dragon.dragon.gif")
 </template>
 
 <style lang="stylus" scoped>
@@ -91,13 +93,26 @@ classic = 1px 2px 3px black
   height 100vh
   border-top-left-radius 30px
   border-top-right-radius 30px
-  background url('../assets/ice_dragon.jpeg') center / cover
+  background url('../assets/ice_dragon.gif') center / cover
   font-family 'Roboto Condensed'
   display flex
   flex-flow row nowrap
   color white
   align-items center
   position relative
+  overflow hidden
+  .right
+    position absolute
+    top 0
+    left 0
+    width 100%
+    bottom 0
+    z-index 1
+    >img
+      width 100%
+      height 100%
+      object-fit contain
+
   .left
     position relative
     flex 1 1 50%
@@ -108,7 +123,7 @@ classic = 1px 2px 3px black
     .desc
       max-width 600px
       text-align right
-      filter material-2
+      text-shadow 1px 2px 6px black
       position relative
       z-index 2
       &::after
@@ -136,7 +151,7 @@ classic = 1px 2px 3px black
     background url('../assets/iron-grid.png') repeat
     opacity .2
     z-index 2
-  img
+  .logo
     position absolute
     top 2em
     left 2.5em
