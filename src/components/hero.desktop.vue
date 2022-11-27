@@ -201,6 +201,7 @@ classic = 1px 2px 3px black
     z-index 50
     cursor pointer
   .fog
+    pointer-events none
     position absolute
     bottom 0
     left 0
