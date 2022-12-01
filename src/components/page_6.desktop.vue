@@ -2,12 +2,12 @@
 fr:
   palier: Les Paliers
   desc: Le monde d'AresRPG est constitué de 6 paliers, chacun majoritairement incarnant un biome spécifique.
-  desc_2: Un palier est similaire à une ile volante qui représente un univers miniature et dangereusement gardé par un redoutable dragon.
+  desc_2: Un palier est similaire à une ile volante qui représente un univers miniature et dangereusement gardé par un Dieu.
   desc_3: Pour passer au palier suivant, vous devrez trouver, affronter, et vaincre son gardien.
 en:
   palier: The Worlds
   desc: AresRPG's realm is made of 6 worlds, each having its own biome.
-  desc_2: A world is similar to a floating island which contains an entire miniature universe dangerously guarded by a dreadful dragon.
+  desc_2: A world is similar to a floating island which contains an entire miniature universe dangerously guarded by a dreadful God.
   desc_3: To move up a world, you will need to find, face, and eradicate its keeper
 </i18n>
 

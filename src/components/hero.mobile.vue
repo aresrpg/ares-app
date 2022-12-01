@@ -3,7 +3,7 @@
     title: UNE {adventure} INCROYABLE DANS UN UNIVERS {unique}
     adventure: AVENTURE
     unique: UNIQUE
-    desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est de réunir les 6 œufs de dragon. {desc_2}
+    desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est d'obtenir les reliques des 6 dieux. {desc_2}
     desc_2: Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences
     discover: Découvrir
     wip: Le serveur est en développement et proposera un {kick} très prochainement, rejoignez le discord pour être prioritaire !
@@ -13,7 +13,7 @@
     title: A {adventure} MMORPG EXPERIENCE IN {unique}
     adventure: DELIGHTFUL
     unique: MINECRAFT
-    desc: AresRPG is a no mods minecraft mmorpg server in which your goal is to find all 6 dragon eggs. {desc_2}
+    desc: AresRPG is a no-mods mmorpg minecraft server in which your goal is to find all 6 relics from the gods. {desc_2}
     desc_2: The world is full of diverse creatures that you can reduce to atoms in order to upgrade your stuff and skills
     discover: Discover
     wip: The server is under construction and will launch a {kick} campaign very soon, join the discord to skip the line !

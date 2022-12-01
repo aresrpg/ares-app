@@ -1,10 +1,10 @@
 <i18n>
   fr:
     title: Les Paliers
-    desc: Le monde d'AresRPG est constitué de 6 paliers. Un palier est une ile volante représentant un univers miniature et gardé par un redoutable dragon. Pour passer au palier suivant, vous devez trouver et affronter son gardien
+    desc: Le monde d'AresRPG est constitué de 6 paliers. Un palier est une ile volante représentant un univers miniature et gardé par un des 6 dieux. Pour passer au palier suivant, vous devez trouver et affronter son gardien
   en:
     title: World Layers
-    desc: AresRPG's world is made of 6 layers. A layer is kind of a floating island containing it's own universe and kept by a powerful dragon. To reach new layers you will have to find and vainquish it's keeper
+    desc: AresRPG's world is made of 6 layers. A layer is kind of a floating island containing it's own universe and kept by a powerful God. To reach new layers you will have to find and vainquish it's keeper
   </i18n>
 
 <script setup>

@@ -1,7 +1,7 @@
 <i18n>
 fr:
   ip: play.aresrpg.world
-  desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est de réunir les 6 œufs de dragon. Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences
+  desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est d'obtenir les reliques des 6 dieux. Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences
   title: Entrez dans La Legende
   trailer: Trailer
   class: Classes
@@ -11,7 +11,7 @@ fr:
   layers: Mondes
   copy: adresse copiée
 en:
-  desc: AresRPG is a no-mods mmorpg minecraft server in which your goal is to find all 6 dragons eggs. The world is infested of creatures that you will need to fight and destroy in order to upgrade your equipment and stats
+  desc: AresRPG is a no-mods mmorpg minecraft server in which your goal is to find all 6 relics from the gods. The world is infested of creatures that you will need to fight and destroy in order to upgrade your equipment and stats
   title: A Delightful RP Adventure
   trailer: Trailer
   class: Classes

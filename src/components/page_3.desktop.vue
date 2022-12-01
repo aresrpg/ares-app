@@ -16,7 +16,7 @@ fr:
   dj_desc: Seul ou en groupe, vous pouvez entrer dans une multitude de donjons et confronter des créatures plus puissantes. Les donjons sont instanciés avec un système de salles.
 en:
   game: The Game
-  desc: You start in the city of Thebes with nothing but your base weapon, your goal is to become strong enough to vanquish the terrific dragon behind the gates in the mountains. It's your lucky day! the town is infested with chickens and rats, which will help you gather your first set of armor
+  desc: You start in the city of Thebes with nothing but your base weapon, your goal is to become strong enough to vanquish the terrific God behind the gates in the mountains. It's your lucky day! the town is infested with chickens and rats, which will help you gather your first set of armor
   stats: characteristics
   stats_desc: Each new level allows you to increase your stats
   fights: Fights
