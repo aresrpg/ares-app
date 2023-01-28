@@ -6,7 +6,7 @@
     desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est d'obtenir les reliques des 6 dieux. {desc_2}
     desc_2: Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences
     discover: Découvrir
-    wip: Le serveur est en développement et proposera un {kick} très prochainement, rejoignez le discord pour être prioritaire !
+    wip: Le trailer officiel est disponible ! Faites vos quetes {crew3} pour obtenir un max de recompenses
     email: Enregistrement réussi !
     email_invalid: L'email semble incorrect
   en:
@@ -16,7 +16,7 @@
     desc: AresRPG is a no-mods mmorpg minecraft server in which your goal is to find all 6 relics from the gods. {desc_2}
     desc_2: The world is full of diverse creatures that you can reduce to atoms in order to upgrade your stuff and skills
     discover: Discover
-    wip: The server is under construction and will launch a {kick} campaign very soon, join the discord to skip the line !
+    wip: THE OFFICIAL TRAILER IS NOW RELEASED ! COMPLETE YOUR {crew3} QUESTS TO WIN A LOT OF REWARDS
     email: Sign up sucess !
     email_invalid: Email seems invalid!
 </i18n>
@@ -75,8 +75,8 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
     fa.icon(:icon="['fab', 'discord']" size="2x")
   .wip
     i18n-t(keypath="wip")
-      template(#kick)
-        b Kickstarter
+      template(#crew3)
+        b Crew3
   .discover(@click="scroll_down")
     span {{t('discover')}}
     img(src="../assets/chevron.svg")

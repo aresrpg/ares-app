@@ -68,7 +68,7 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
 
 <template lang="pug">
 .frame
-  .trailer
+  iframe.trailer(width="560" height="315" src="https://www.youtube.com/embed/_vSGW0Je-Es" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
   .text
     .title {{ t('title') }}
     .desc {{ t('desc') }}

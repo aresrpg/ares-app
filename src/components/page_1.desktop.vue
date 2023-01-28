@@ -72,8 +72,8 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
       img.tiktok(src="../assets/tiktok.png")
   .trailer
     .text(ref="trailer1") {{ t('trailer') }}
-    img(src="../assets/comingsoon.jpeg")
-    //- iframe(width="560" height="315" src="https://www.youtube.com/embed/oqUz8cXZTIw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+    //- img(src="../assets/comingsoon.jpeg")
+    iframe(width="560" height="315" src="https://www.youtube.com/embed/_vSGW0Je-Es" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
     .video
     .text(ref="trailer2") {{ t('trailer') }}
 </template>

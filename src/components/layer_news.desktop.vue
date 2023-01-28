@@ -1,12 +1,12 @@
 <i18n>
 fr:
   title: News
-  news: LE SERVEUR EST EN DÉVELOPPEMENT ET PROPOSERA UN {kickstarter} TRÈS PROCHAINEMENT, {joinus} POUR ÊTRE PRIORITAIRE !
-  kickstarter: KICKSTARTER
+  news: LE TRAILER OFFICIEL EST DISPONIBLE ! FAITES  VOS QUÊTES {crew3} POUR OBTENIR UN MAX DE RÉCOMPENSES
+  crew3: CREW3
   joinus: REJOINT LE DISCORD
 en:
   title: News
-  news: The serveur is currently under development and will launch a {kickstarter} campaign real soon, {joinus} to secure your slot
+  news: THE OFFICIAL TRAILER IS NOW RELEASED ! COMPLETE YOUR {crew3} QUESTS TO WIN A LOT OF REWARDS
   joinus: JOIN THE DISCORD
 </i18n>
 
@@ -30,8 +30,8 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
   .title(ref="title") {{ t('title') }}
   .news
     i18n-t(keypath="news")
-      template(#kickstarter)
-        span.kick {{ t('kickstarter') }}
+      template(#crew3)
+        span.kick {{ t('crew3') }}
       template(#joinus)
         a.join(href="https://discord.gg/aresrpg" target="_blank") {{ t('joinus') }}
 </template>
