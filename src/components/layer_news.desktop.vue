@@ -31,7 +31,7 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
   .news
     i18n-t(keypath="news")
       template(#crew3)
-        span.kick {{ t('crew3') }}
+        a(href="https://crew3.xyz/c/aresrpg" target="_blank").kick {{ t('crew3') }}
       template(#joinus)
         a.join(href="https://discord.gg/aresrpg" target="_blank") {{ t('joinus') }}
 </template>
@@ -76,6 +76,7 @@ text-color = rgba(#2C3E50, .9)
     text-align center
     z-index 2
     .kick
+      display inline
       color #27AE60
       font-weight 900
     .join

@@ -76,7 +76,7 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
   .wip
     i18n-t(keypath="wip")
       template(#crew3)
-        b Crew3
+        a(href="https://crew3.xyz/c/aresrpg" target="_blank") Crew3
   .discover(@click="scroll_down")
     span {{t('discover')}}
     img(src="../assets/chevron.svg")
@@ -107,7 +107,8 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
     text-shadow 1px 2px 5px #212121
     font-weight 900
     z-index 1
-    b
+    a
+      display inline
       color #09B83E
       text-shadow 1px 2px 5px black
     &::before
