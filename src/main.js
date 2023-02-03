@@ -46,7 +46,7 @@ console.log(
   "%c but don't bother, i'm open-source!",
   'color: #E67E22;font-size:18px;'
 )
-console.log('%c https://github.com/aresrpg/ares-app', 'font-size:15px;')
+console.log('%c https://github.com/aresrpg/web', 'font-size:15px;')
 
 const vue_app = createApp(app)
 const toast = useToast()
