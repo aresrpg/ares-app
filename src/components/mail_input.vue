@@ -13,10 +13,12 @@
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useReCaptcha } from 'vue-recaptcha-v3'
+import { useToast } from 'vue-toastification'
 
 const { executeRecaptcha, recaptchaLoaded, instance } = useReCaptcha()
 
 const { t } = useI18n()
+const toast = useToast()
 const mail = ref('')
 const email_regex = /[\w-]+@([\w-]+\.)+[\w-]+/gm
 
@@ -31,7 +33,7 @@ const submit_mail = async () => {
         token,
       }),
     })
-    alert(t('email'))
+    toast.success(t('email'))
     mail.value = ''
   }
 }
