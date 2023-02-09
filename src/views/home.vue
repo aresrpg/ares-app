@@ -11,6 +11,7 @@
   page_6_mobile
   page_7_mobile
 .root(v-else)
+  img.launch_app(@click="launch_app" src="../assets/treasure-chest.png")
   lang_selector
   .gold_line
   hero(:page="selected_page" :scroller="Scroller")
@@ -94,7 +95,7 @@ const observe = (ref, name) => {
     },
     { threshold: [0.5] }
   )
-  observer.observe(ref.value.$el)
+  if (ref.value?.$el) observer.observe(ref.value.$el)
 }
 
 onMounted(() => {
@@ -107,9 +108,25 @@ onMounted(() => {
   observe(worlds, 'worlds')
 })
 onBeforeUnmount(() => window.removeEventListener('scroll', on_scroll))
+
+const open_app = () => {
+  window.open('https://app.aresrpg.world', '_blank')
+}
 </script>
 
 <style lang="stylus" scoped>
+.launch_app
+  position fixed
+  top .5em
+  right 50px
+  z-index 100
+  width 25px
+  object-fit contain
+  filter drop-shadow(1px 2px 3px black)
+  cursor pointer
+  transition all 200ms ease-in-out
+  &:hover
+    width 30px
 .root_sm
   width 100vw
   overflow hidden

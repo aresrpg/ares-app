@@ -1,21 +1,20 @@
 <i18n>
 fr:
-  title: Premier arrivé, premier servi
-  desc: Les places pour la bêta du serveur sont limitées. Rejoint vite la liste d'attente pour ne rien manquer !
+  title: Se connecter
+  desc: Connecte ton compte Minecraft et récupère tes récompenses Mastery
   trailer: Trailer Officiel
 en:
-  title: First come, first serve
-  desc: Beta slots are limited, join the list asap to not miss anything !
+  title: Launch app
+  desc: Connect your Minecraft account and claim your Mastery rewards
   trailer: Official Trailer
 </i18n>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import app_button from './app_button.vue'
 
 import { rotate_in, fade_in } from '../core/anime'
-
-import mail from './mail_input.vue'
 
 const a0 = ref()
 const a1 = ref()
@@ -44,6 +43,10 @@ onMounted(() => {
   animations.forEach(animation => animation.mount())
 })
 onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+
+const open_app = () => {
+  window.open('https://app.aresrpg.world', '_blank')
+}
 </script>
 
 <template lang="pug">
@@ -59,8 +62,13 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
     a(ref="a3" href="https://github.com/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="github")
       img.github(src="../assets/github_square.png")
     .input_container
-      mail
-      .title {{ t('title') }}
+      app_button(
+        clickable="true"
+        @click="open_app"
+        )
+        template(#content)
+          span.button {{ t('title') }}
+          img.button(src="../assets/treasure-chest.png")
       .desc {{ t('desc') }}
     a(ref="a4" href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="telegram")
       img.telegram(src="../assets/telegram.png")
@@ -139,7 +147,7 @@ classic = 1px 2px 3px black
     flex-flow row nowrap
     position relative
     z-index 2
-    img
+    a>img
       width 50px
       margin 0 1.5em
       object-fit contain
@@ -154,24 +162,15 @@ classic = 1px 2px 3px black
       justify-content center
       align-items center
       position relative
-      .input_box
-        border 1px solid white
-        position relative
-        border-radius 30px
-        width 100%
-        max-width 350px
-        margin-bottom .5em
-        box-shadow 1px 2px 3px rgba(#212121, .5)
-        input
-          padding 1em
-          background none
-          color white
-          border none
-        .icon
-          position absolute
-          top 50%
-          right .75em
-          transform translateY(-50%)
+
+      img.button
+        width 25px
+        filter drop-shadow(1px 2px 3px black)
+        margin-right .75em
+        object-fit contain
+      span.button
+        margin 0 .5em 0 .75em
+        color #34495E
       .title
         text-transform uppercase
         font-weight 500
@@ -179,10 +178,12 @@ classic = 1px 2px 3px black
         filter material-2
         padding .5em
       .desc
-        font-weight 100
+        font-weight 900
+        padding-top .5em
         text-align center
-        font-size .9em
-        max-width 400px
+        font-size .6em
+        max-width 300px
+        text-transform uppercase
   .fog
     position absolute
     top 0

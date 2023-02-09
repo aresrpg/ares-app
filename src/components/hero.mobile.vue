@@ -1,5 +1,6 @@
 <i18n>
   fr:
+    launch: Se connecter
     title: UNE {adventure} INCROYABLE DANS UN UNIVERS {unique}
     adventure: AVENTURE
     unique: UNIQUE
@@ -10,6 +11,7 @@
     email: Enregistrement réussi !
     email_invalid: L'email semble incorrect
   en:
+    launch: Launch app
     title: A {adventure} MMORPG EXPERIENCE IN {unique}
     adventure: DELIGHTFUL
     unique: MINECRAFT
@@ -24,10 +26,9 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import app_button from './app_button.vue'
 
 import { fade_up, fade_down } from '../core/anime'
-
-import mail from './mail_input.vue'
 
 const { t } = useI18n()
 const scroll_down = () =>
@@ -66,7 +67,13 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
     i18n-t(keypath="desc")
       template(#desc_2)
         b {{ t('desc_2')}}
-  mail
+  app_button.app_button(
+    clickable="true"
+    @click="open_app"
+    )
+    template(#content)
+      span.button {{ t('launch') }}
+      img.button(src="../assets/treasure-chest.png")
   a.twitter(href="https://twitter.com/AresRPG" target="_blank" rel="noopener noreferrer" aria-label="Twitter" ref="twitter")
     fa.icon(:icon="['fab', 'twitter']" size="2x")
   a.telegram(href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Telegram" ref="telegram")
@@ -150,6 +157,16 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
     b
       margin-top 1em
       font-weight @font-weight
+
+  .app_button
+    grid-area mail
+    img.button
+      width 25px
+      filter drop-shadow(1px 2px 3px black)
+      margin-right .5em
+    span.button
+      margin 0 .25em 0 .5em
+      color #34495E
 
   a
     color white
