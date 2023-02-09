@@ -52,6 +52,10 @@ onMounted(() => {
   animations.forEach(animation => animation.mount())
 })
 onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+
+const open_app = () => {
+  window.open('https://app.aresrpg.world', '_blank')
+}
 </script>
 
 <template lang="pug">
