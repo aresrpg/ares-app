@@ -11,7 +11,7 @@
   page_6_mobile
   page_7_mobile
 .root(v-else)
-  img.launch_app(@click="launch_app" src="../assets/treasure-chest.png")
+  img.launch_app(@click="open_app" src="../assets/treasure-chest.png")
   lang_selector
   .gold_line
   hero(:page="selected_page" :scroller="Scroller")
