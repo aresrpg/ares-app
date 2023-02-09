@@ -1,7 +1,0 @@
-const {
-  VITE_API_URL,
-  VITE_MICROSOFT_REDIRECT_URI = 'https://localhost:80/oauth',
-  VITE_RECAPTCHA_KEY,
-} = import.meta.env
-
-export { VITE_API_URL, VITE_MICROSOFT_REDIRECT_URI, VITE_RECAPTCHA_KEY }

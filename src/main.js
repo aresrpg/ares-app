@@ -6,7 +6,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import 'vue-toastification/dist/index.css'
 import 'vue-universal-modal/dist/index.css'
 import VueUniversalModal from 'vue-universal-modal'
-import { VueReCaptcha } from 'vue-recaptcha-v3'
 import { VueClipboard } from '@soerenmartius/vue3-clipboard'
 import {
   faDiscord,
@@ -19,7 +18,6 @@ import {
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { createI18n } from 'vue-i18n'
 
-import { VITE_RECAPTCHA_KEY } from './env'
 import app from './app.vue'
 import router from './router.js'
 
@@ -53,7 +51,6 @@ const toast = useToast()
 
 vue_app
   .use(router)
-  .use(VueReCaptcha, { siteKey: '6LfklcMiAAAAAG6KxHTI23ytDJz1Sow5sJvS4vab' })
   .use(VueUniversalModal, { teleportTarget: '#modals' })
   .use(i18n)
   .use(VueClipboard)
