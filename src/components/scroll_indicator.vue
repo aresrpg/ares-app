@@ -1,18 +1,18 @@
 <script setup>
-import { ref, onBeforeUnmount, onMounted } from 'vue'
+import { ref, onBeforeUnmount, onMounted } from 'vue';
 
-const props = defineProps(['count', 'selected'])
-const percent = ref('0px')
+const props = defineProps(['count', 'selected']);
+const percent = ref('0px');
 const on_scroll = () => {
-  const scrollTop = window.scrollY
-  const docHeight = document.body.offsetHeight
-  const winHeight = window.innerHeight
-  const scrollPercent = scrollTop / (docHeight - winHeight)
-  percent.value = `${Math.round(scrollPercent * 100)}px`
-}
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.offsetHeight;
+  const winHeight = window.innerHeight;
+  const scrollPercent = scrollTop / (docHeight - winHeight);
+  percent.value = `${Math.round(scrollPercent * 100)}px`;
+};
 
-onMounted(() => window.addEventListener('scroll', on_scroll))
-onBeforeUnmount(() => window.removeEventListener('scroll', on_scroll))
+onMounted(() => window.addEventListener('scroll', on_scroll));
+onBeforeUnmount(() => window.removeEventListener('scroll', on_scroll));
 </script>
 
 <template lang="pug">

@@ -1,20 +1,20 @@
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { ref } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
 
-import france from '../assets/france.png'
-import usa from '../assets/usa.png'
+import france from '../assets/france.png';
+import usa from '../assets/usa.png';
 
 const langs = [
   { locale: 'fr', flag: france },
   { locale: 'en', flag: usa },
-]
-const i18n = useI18n()
-const selected = ref(langs.find(lang => i18n.locale.value === lang.locale))
+];
+const i18n = useI18n();
+const selected = ref(langs.find(lang => i18n.locale.value === lang.locale));
 const select = ({ locale }) => {
-  i18n.locale.value = locale
-  selected.value = langs.find(lang => locale === lang.locale)
-}
+  i18n.locale.value = locale;
+  selected.value = langs.find(lang => locale === lang.locale);
+};
 </script>
 
 <template lang="pug">

@@ -24,38 +24,38 @@
 </i18n>
 
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import app_button from './app_button.vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import app_button from './app_button.vue';
 
-import { fade_up, fade_down } from '../core/anime'
+import { fade_up, fade_down } from '../core/anime';
 
-const { t } = useI18n()
+const { t } = useI18n();
 const scroll_down = () =>
   window.scrollTo({
     top: window.innerHeight,
     behavior: 'smooth',
-  })
-const twitter = ref()
-const telegram = ref()
-const discord = ref()
-const logo = ref()
+  });
+const twitter = ref();
+const telegram = ref();
+const discord = ref();
+const logo = ref();
 
 const animations = [
   fade_down(logo, 100),
   fade_up(twitter, 200),
   fade_up(telegram, 300),
   fade_up(discord, 600),
-]
+];
 
 onMounted(() => {
-  animations.forEach(animation => animation.mount())
-})
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+  animations.forEach(animation => animation.mount());
+});
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 
 const open_app = () => {
-  window.open('https://app.aresrpg.world', '_blank')
-}
+  window.open('https://app.aresrpg.world', '_blank');
+};
 </script>
 
 <template lang="pug">

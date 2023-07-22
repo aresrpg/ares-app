@@ -8,20 +8,20 @@
   </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-import { fade_up } from '../core/anime'
+import { fade_up } from '../core/anime';
 
-const { t } = useI18n()
-const c1 = ref()
-const c2 = ref()
-const c3 = ref()
+const { t } = useI18n();
+const c1 = ref();
+const c2 = ref();
+const c3 = ref();
 
-const animations = [fade_up(c1, 100), fade_up(c2, 200), fade_up(c3, 300)]
+const animations = [fade_up(c1, 100), fade_up(c2, 200), fade_up(c3, 300)];
 
-onMounted(() => animations.forEach(animation => animation.mount()))
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+onMounted(() => animations.forEach(animation => animation.mount()));
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">

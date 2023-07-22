@@ -12,25 +12,25 @@ en:
 </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-import { rotate_in, appear_left, appear_right } from '../core/anime'
+import { rotate_in, appear_left, appear_right } from '../core/anime';
 
-const { t } = useI18n()
-const a0 = ref()
-const a1 = ref()
-const a2 = ref()
-const a3 = ref()
-const a4 = ref()
-const a5 = ref()
-const a6 = ref()
-const a7 = ref()
-const a8 = ref()
-const a9 = ref()
+const { t } = useI18n();
+const a0 = ref();
+const a1 = ref();
+const a2 = ref();
+const a3 = ref();
+const a4 = ref();
+const a5 = ref();
+const a6 = ref();
+const a7 = ref();
+const a8 = ref();
+const a9 = ref();
 
-const m1 = ref()
-const m2 = ref()
+const m1 = ref();
+const m2 = ref();
 
 const animations = [
   rotate_in(a0, 300),
@@ -45,10 +45,10 @@ const animations = [
   rotate_in(a9, 1200),
   appear_left(m1, 100),
   appear_right(m2, 100),
-]
+];
 
-onMounted(() => animations.forEach(animation => animation.mount()))
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+onMounted(() => animations.forEach(animation => animation.mount()));
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">

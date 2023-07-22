@@ -1,33 +1,33 @@
 <script setup>
-import { computed, ref } from '@vue/reactivity'
-import { onMounted, onUnmounted, watch } from 'vue'
+import { computed, ref } from '@vue/reactivity';
+import { onMounted, onUnmounted, watch } from 'vue';
 
-import play from '../assets/play-button.png'
-import pause from '../assets/pause.png'
+import play from '../assets/play-button.png';
+import pause from '../assets/pause.png';
 
-const props = defineProps(['video', 'selected', 'poster', 'title'])
-const video = ref(null)
-const emits = defineEmits('playing')
-const playing = ref(false)
-const current_button = computed(() => (playing.value ? pause : play))
+const props = defineProps(['video', 'selected', 'poster', 'title']);
+const video = ref(null);
+const emits = defineEmits('playing');
+const playing = ref(false);
+const current_button = computed(() => (playing.value ? pause : play));
 
 const toggle = () => {
   if (video.value?.paused) {
-    playing.value = true
-    video.value.play()
+    playing.value = true;
+    video.value.play();
     emits('playing', {
       video: video.value,
       reset_button: () => (playing.value = false),
-    })
+    });
   } else {
-    playing.value = false
-    video.value.pause()
+    playing.value = false;
+    video.value.pause();
   }
-}
+};
 
 watch(video, () => {
-  playing.value = false
-})
+  playing.value = false;
+});
 </script>
 
 <template lang="pug">

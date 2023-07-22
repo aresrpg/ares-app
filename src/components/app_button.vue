@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
 
 const props = defineProps({
   color: { default: '#34495E' },
@@ -8,11 +8,11 @@ const props = defineProps({
   background: { default: undefined },
   dropdown: { default: false },
   height: { default: '55px' },
-})
+});
 
-const background = computed(() => props.background ?? props.border)
-const hovering_card = ref(false)
-const hovering_dropdown = ref(false)
+const background = computed(() => props.background ?? props.border);
+const hovering_card = ref(false);
+const hovering_dropdown = ref(false);
 </script>
 
 <template lang="pug">

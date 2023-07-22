@@ -14,28 +14,28 @@
   </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-import { rotate_in, fade_down } from '../core/anime'
-import bg from '../assets/page6bg.jpeg'
+import { rotate_in, fade_down } from '../core/anime';
+import bg from '../assets/page6bg.jpeg';
 
-import page_container from './page_container.desktop.vue'
+import page_container from './page_container.desktop.vue';
 
-const { t } = useI18n()
-const music = ref()
-const items = ref()
-const y1 = ref()
-const y2 = ref()
-const y3 = ref()
-const y4 = ref()
-const i1 = ref()
-const i2 = ref()
-const i3 = ref()
-const i4 = ref()
-const i5 = ref()
-const i6 = ref()
-const i7 = ref()
+const { t } = useI18n();
+const music = ref();
+const items = ref();
+const y1 = ref();
+const y2 = ref();
+const y3 = ref();
+const y4 = ref();
+const i1 = ref();
+const i2 = ref();
+const i3 = ref();
+const i4 = ref();
+const i5 = ref();
+const i6 = ref();
+const i7 = ref();
 
 const animations = [
   fade_down(music, 100),
@@ -51,12 +51,12 @@ const animations = [
   rotate_in(i5, 500),
   rotate_in(i6, 600),
   rotate_in(i7, 700),
-]
+];
 
 onMounted(() => {
-  animations.forEach(animation => animation.mount())
-})
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+  animations.forEach(animation => animation.mount());
+});
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">

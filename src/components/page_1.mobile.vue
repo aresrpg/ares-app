@@ -32,26 +32,26 @@
 </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-import { appear_right } from '../core/anime'
-import eagle from '../assets/eagle.png'
-import helmet from '../assets/helmetsword.png'
-import skullaxe from '../assets/skullaxe.png'
-import barbarian from '../assets/barbarian.png'
-import spells from '../assets/spells.png'
-import cards from '../assets/cards.png'
+import { appear_right } from '../core/anime';
+import eagle from '../assets/eagle.png';
+import helmet from '../assets/helmetsword.png';
+import skullaxe from '../assets/skullaxe.png';
+import barbarian from '../assets/barbarian.png';
+import spells from '../assets/spells.png';
+import cards from '../assets/cards.png';
 
-import feature from './feature_card.vue'
+import feature from './feature_card.vue';
 
-const { t } = useI18n()
-const f1 = ref()
-const f2 = ref()
-const f3 = ref()
-const f4 = ref()
-const f5 = ref()
-const f6 = ref()
+const { t } = useI18n();
+const f1 = ref();
+const f2 = ref();
+const f3 = ref();
+const f4 = ref();
+const f5 = ref();
+const f6 = ref();
 
 const animations = [
   appear_right(f1, 100),
@@ -60,10 +60,10 @@ const animations = [
   appear_right(f4, 400),
   appear_right(f5, 500),
   appear_right(f6, 600),
-]
+];
 
-onMounted(() => animations.forEach(animation => animation.mount()))
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+onMounted(() => animations.forEach(animation => animation.mount()));
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">

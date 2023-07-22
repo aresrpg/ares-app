@@ -8,26 +8,26 @@ en:
 </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-import { rotate_in } from '../core/anime'
+import { rotate_in } from '../core/anime';
 
-const { t } = useI18n()
-const c1 = ref()
-const c2 = ref()
-const c3 = ref()
-const c4 = ref()
+const { t } = useI18n();
+const c1 = ref();
+const c2 = ref();
+const c3 = ref();
+const c4 = ref();
 
 const animations = [
   rotate_in(c1, 200),
   rotate_in(c2, 400),
   rotate_in(c3, 600),
   rotate_in(c4, 800),
-]
+];
 
-onMounted(() => animations.forEach(animation => animation.mount()))
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+onMounted(() => animations.forEach(animation => animation.mount()));
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">

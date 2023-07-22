@@ -35,34 +35,34 @@
   </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-import { fade_left, minimal_fade_up } from '../core/anime'
-import snow from '../assets/snow.jpeg'
-import barbarian from '../assets/barbarian_light.png'
-import paladin from '../assets/paladin.png'
-import archer from '../assets/archer.png'
-import mage from '../assets/mage.png'
+import { fade_left, minimal_fade_up } from '../core/anime';
+import snow from '../assets/snow.jpeg';
+import barbarian from '../assets/barbarian_light.png';
+import paladin from '../assets/paladin.png';
+import archer from '../assets/archer.png';
+import mage from '../assets/mage.png';
 
-import class_card from './class_card.vue'
-import page_container from './page_container.desktop.vue'
+import class_card from './class_card.vue';
+import page_container from './page_container.desktop.vue';
 
-const { t } = useI18n()
-const title = ref()
-const bar = ref()
-const desc = ref()
+const { t } = useI18n();
+const title = ref();
+const bar = ref();
+const desc = ref();
 
 const animations = [
   fade_left(title, 100),
   fade_left(bar, 200),
   fade_left(desc, 300),
-]
+];
 
 onMounted(() => {
-  animations.forEach(animation => animation.mount())
-})
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+  animations.forEach(animation => animation.mount());
+});
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">

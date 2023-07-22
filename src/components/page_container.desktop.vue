@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['img'])
+const props = defineProps(['img']);
 </script>
 
 <template lang="pug">

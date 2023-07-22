@@ -12,29 +12,29 @@ en:
 </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-import bg from '../assets/page6bg.jpeg'
-import { minimal_fade_up } from '../core/anime'
+import bg from '../assets/page6bg.jpeg';
+import { minimal_fade_up } from '../core/anime';
 
-import page_container from './page_container.desktop.vue'
+import page_container from './page_container.desktop.vue';
 
-const { t } = useI18n()
-const title = ref()
-const img = ref()
-const desc = ref()
+const { t } = useI18n();
+const title = ref();
+const img = ref();
+const desc = ref();
 
 const animations = [
   minimal_fade_up(title),
   minimal_fade_up(img, 200),
   minimal_fade_up(desc, 300),
-]
+];
 
 onMounted(() => {
-  animations.forEach(animation => animation.mount())
-})
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+  animations.forEach(animation => animation.mount());
+});
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">

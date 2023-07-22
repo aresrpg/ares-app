@@ -1,5 +1,5 @@
 <script setup>
-const { icon, title, desc } = defineProps(['icon', 'title', 'desc'])
+const { icon, title, desc } = defineProps(['icon', 'title', 'desc']);
 </script>
 
 <template lang="pug">

@@ -6,10 +6,10 @@ en:
 </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n';
 
-const props = defineProps(['icon', 'title', 'weapon', 'desc', 'color'])
-const { t } = useI18n()
+const props = defineProps(['icon', 'title', 'weapon', 'desc', 'color']);
+const { t } = useI18n();
 </script>
 
 <template lang="pug">

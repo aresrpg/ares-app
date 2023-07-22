@@ -1,22 +1,22 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-import { fade_up } from '../core/anime'
+import { fade_up } from '../core/anime';
 
-const c1 = ref()
-const c2 = ref()
-const c3 = ref()
-const c4 = ref()
+const c1 = ref();
+const c2 = ref();
+const c3 = ref();
+const c4 = ref();
 
 const animations = [
   fade_up(c1, 100),
   fade_up(c2, 100),
   fade_up(c3, 100),
   fade_up(c4, 100),
-]
+];
 
-onMounted(() => animations.forEach(animation => animation.mount()))
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+onMounted(() => animations.forEach(animation => animation.mount()));
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">

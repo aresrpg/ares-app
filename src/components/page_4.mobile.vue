@@ -10,19 +10,19 @@ en:
 </i18n>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
-import mirin from '../assets/mirin.mp4'
-import farlands from '../assets/farlands.mp4'
-import manracni from '../assets/manracni.mp4'
-import ss1 from '../assets/ss1.jpg'
-import snow from '../assets/snow.jpeg'
-import tuto from '../assets/tuto.jpeg'
+import mirin from '../assets/mirin.mp4';
+import farlands from '../assets/farlands.mp4';
+import manracni from '../assets/manracni.mp4';
+import ss1 from '../assets/ss1.jpg';
+import snow from '../assets/snow.jpeg';
+import tuto from '../assets/tuto.jpeg';
 
-import video_card from './video_card.vue'
+import video_card from './video_card.vue';
 
-const { t } = useI18n()
+const { t } = useI18n();
 const options = {
   [mirin]: {
     poster: ss1,
@@ -36,36 +36,36 @@ const options = {
     poster: tuto,
     title: 'Manracni',
   },
-}
-const videos = ref([mirin, farlands, manracni])
-const to_left = ref(true)
-const currently_playing = ref(null)
+};
+const videos = ref([mirin, farlands, manracni]);
+const to_left = ref(true);
+const currently_playing = ref(null);
 
 const switch_next = () => {
-  to_left.value = true
-  currently_playing.value?.video?.pause()
-  currently_playing.value?.reset_button?.()
-  videos.value.push(videos.value.shift())
-}
+  to_left.value = true;
+  currently_playing.value?.video?.pause();
+  currently_playing.value?.reset_button?.();
+  videos.value.push(videos.value.shift());
+};
 const switch_previous = () => {
-  to_left.value = false
-  currently_playing.value?.video?.pause()
-  currently_playing.value?.reset_button?.()
-  videos.value.unshift(videos.value.pop())
-}
+  to_left.value = false;
+  currently_playing.value?.video?.pause();
+  currently_playing.value?.reset_button?.();
+  videos.value.unshift(videos.value.pop());
+};
 
 const style_of = index => ({
   'z-index': to_left.value ? videos.value.length - index : index,
-})
+});
 
 const on_video_click = index => {
-  console.log('click on', index)
-  if (index === middle_index.value) return
-  if (index > middle_index.value) return switch_next()
-  return switch_previous()
-}
+  console.log('click on', index);
+  if (index === middle_index.value) return;
+  if (index > middle_index.value) return switch_next();
+  return switch_previous();
+};
 
-const middle_index = computed(() => Math.floor(videos.value.length / 2))
+const middle_index = computed(() => Math.floor(videos.value.length / 2));
 </script>
 
 <template lang="pug">

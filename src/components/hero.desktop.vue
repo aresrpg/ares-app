@@ -23,41 +23,41 @@ en:
 </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { useToast } from 'vue-toastification'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import ScrollParallax from 'vue3-parallax/src/components/ScrollParallax.vue'
+import { useI18n } from 'vue-i18n';
+import { useToast } from 'vue-toastification';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+import ScrollParallax from 'vue3-parallax/src/components/ScrollParallax.vue';
 
 import {
   anime,
   appear_left,
   appear_right,
   minimal_fade_up,
-} from '../core/anime'
+} from '../core/anime';
 
-const toast = useToast()
-const { t } = useI18n()
-const props = defineProps(['page', 'scroller'])
+const toast = useToast();
+const { t } = useI18n();
+const props = defineProps(['page', 'scroller']);
 
-const on_copy = () => toast.info(t('copy'))
+const on_copy = () => toast.info(t('copy'));
 
-const ip = ref()
-const logo = ref()
-const nav = ref()
-const desc = ref()
-const title = ref()
+const ip = ref();
+const logo = ref();
+const nav = ref();
+const desc = ref();
+const title = ref();
 const animations = [
   anime({ translateY: ['-100%', 0], translateX: ['-50%', '-50%'] })(ip, 200),
   appear_left(logo, 100),
   appear_right(nav, 2000),
   minimal_fade_up(desc, 400),
   minimal_fade_up(title, 800),
-]
+];
 
 onMounted(() => {
-  animations.forEach(animation => animation.mount())
-})
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+  animations.forEach(animation => animation.mount());
+});
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">

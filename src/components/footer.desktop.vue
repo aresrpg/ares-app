@@ -14,30 +14,30 @@ en:
 </i18n>
 
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { useToast } from 'vue-toastification'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n';
+import { useToast } from 'vue-toastification';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-import { rotate_in, minimal_fade_up } from '../core/anime'
+import { rotate_in, minimal_fade_up } from '../core/anime';
 
-const { t } = useI18n()
-const toast = useToast()
+const { t } = useI18n();
+const toast = useToast();
 const scroll_top = () =>
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
-  })
-const on_copy = () => toast.info(t('copy'))
-const a0 = ref()
-const a1 = ref()
-const a2 = ref()
-const a3 = ref()
-const a4 = ref()
-const a5 = ref()
-const a6 = ref()
-const a8 = ref()
-const texts = ref()
-const designed = ref()
+  });
+const on_copy = () => toast.info(t('copy'));
+const a0 = ref();
+const a1 = ref();
+const a2 = ref();
+const a3 = ref();
+const a4 = ref();
+const a5 = ref();
+const a6 = ref();
+const a8 = ref();
+const texts = ref();
+const designed = ref();
 
 const animations = [
   rotate_in(a0, 100),
@@ -50,11 +50,11 @@ const animations = [
   rotate_in(a8, 800),
   minimal_fade_up(texts, 1000),
   minimal_fade_up(designed, 1200),
-]
+];
 onMounted(() => {
-  animations.forEach(animation => animation.mount())
-})
-onBeforeUnmount(() => animations.forEach(animation => animation.unmount()))
+  animations.forEach(animation => animation.mount());
+});
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">
