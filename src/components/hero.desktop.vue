@@ -62,13 +62,23 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 
 <template>
   <div class="hero">
-    <img class="logo" src="../assets/logo.svg" alt="">
+    <img ref="logo" class="logo" src="../assets/logo.svg" alt="">
+    <div ref="ip" class="ip" v-clipboard:copy="'play.aresrpg.world'" v-clipboard:success="on_copy">{{ t('ip') }}</div>
     <div class="iron-grid"></div>
     <div class="fog"></div>
+    <nav ref="nav" id="nav">
+        <div class="trailer" @click="props.scroller.trailer" :class="{ selected: props.page === 'trailer' }">{{ t('trailer') }}</div>
+        <div class="class" @click="props.scroller.classes" :class="{ selected: props.page === 'classes' }">{{ t('class') }}</div>
+        <div class="game" @click="props.scroller.gameplay" :class="{ selected: props.page === 'gameplay' }">{{ t('game') }}</div>
+        <div class="server" @click="props.scroller.server" :class="{ selected: props.page === 'server' }">{{ t('server') }}</div>
+        <div class="assets" @click="props.scroller.assets" :class="{ selected: props.page === 'assets' }">{{ t('assets') }}</div>
+        <div class="layers" @click="props.scroller.worlds" :class="{ selected: props.page === 'worlds' }">{{ t('layers') }}</div>
+    </nav>
+
     <div class="text-content">
       <div>
-        <h1>A Delightful RP Adventure</h1>
-        <p>AresRPG is a no-mods mmorpg minecraft server in which your goal is to find all 6 relics from the gods. The world is infested of creatures that you will need to fight and destroy in order to upgrade your equipment and stats</p>
+        <h1 ref="title">{{ t('title') }}</h1>
+        <p ref="desc">{{ t('desc') }}</p>
       </div>
     </div>
     <img class="flying-dragon" src="../assets/ice_dragon.dragon.gif" alt="">
@@ -121,11 +131,11 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
     z-index: 5;
   }
   .text-content > div{
-    width: 52%;
+    width: 59%;
   }
   .text-content h1{
     color: #8787F4;
-    font-size:  clamp(3.75rem, 5vw, 5.5rem);
+    font-size:  clamp(3.75rem, 5.5vw, 9.75rem);
     text-shadow: 
         -1.5px -1.5px 0 black,  
         1.5px -1.5px 0 black,
@@ -142,7 +152,62 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
     stroke: 0.5px black;
     -webkit-text-stroke: 0.5px black;
     margin-top: 0.4rem;
+    width: 80%;
   }
+
+  nav {
+    position: fixed;
+    top: 5.7em;
+    right: 1em;
+    color: white;
+    text-transform: uppercase;
+    align-items: flex-end;
+    font-size: 0.7em;
+    display: flex;
+    flex-flow: column nowrap;
+    z-index: 10;
+    text-shadow: 1px 2px 3px black;
+  }
+
+  nav > div {
+      cursor: pointer;
+      opacity: 0.7;
+  }
+
+  nav .selected {
+      position: relative;
+      opacity: 1;
+  }
+
+  nav .selected::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -50px;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 1px;
+      box-shadow: 1px 2px 3px black;
+      background: white;
+  }
+
+  .ip {
+    position: fixed;
+    top: 1em;
+    font-family: 'DM Sans';
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 2px 2px 4px #000;
+    letter-spacing: 7px;
+    font-weight: 900;
+    mix-blend-mode: difference;
+    color: white;
+    text-transform: uppercase;
+    z-index: 55;
+    cursor: pointer;
+  }
+
+
  /* material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(black, .3))
 classic = 1px 2px 3px black  */
 

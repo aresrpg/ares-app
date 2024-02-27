@@ -47,6 +47,7 @@ const hovering_dropdown = ref(false);
         display flex
         justify-content center
         align-items center
+        font-weight bold
         .arrow
           color v-bind('props.color')
           margin-right .5em

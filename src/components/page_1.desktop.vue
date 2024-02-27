@@ -13,6 +13,7 @@ en:
 import { useI18n } from 'vue-i18n';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import app_button from './app_button.vue';
+import news_layer from '../components/layer_news.desktop.vue';
 
 import { rotate_in, fade_in } from '../core/anime';
 
@@ -20,10 +21,6 @@ const a0 = ref();
 const a1 = ref();
 const a2 = ref();
 const a3 = ref();
-const a4 = ref();
-const a5 = ref();
-const a6 = ref();
-const a8 = ref();
 const trailer1 = ref();
 const trailer2 = ref();
 const { t } = useI18n();
@@ -32,10 +29,6 @@ const animations = [
   rotate_in(a1, 200),
   rotate_in(a2, 300),
   rotate_in(a3, 400),
-  rotate_in(a4, 500),
-  rotate_in(a5, 600),
-  rotate_in(a6, 700),
-  rotate_in(a8, 800),
   fade_in(trailer1, 700),
   fade_in(trailer2, 700),
 ];
@@ -51,16 +44,14 @@ const open_app = () => {
 
 <template lang="pug">
 .container
+  news_layer
   .fog
   .cta
     a(ref="a0" href="https://www.youtube.com/channel/UC9YFBFi_jrBYIc449Io7adQ" target="_blank" rel="noopener noreferrer" aria-label="youtube")
       img.yt(src="../assets/youtube.png")
     a(ref="a1" href="https://twitter.com/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="twitter")
       img.twitter(src="../assets/twitter.png")
-    a(ref="a2" href="https://discord.gg/gbkvVJq" target="_blank" rel="noopener noreferrer" aria-label="discord")
-      img.discord(src="../assets/discord.png")
-    a(ref="a3" href="https://github.com/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="github")
-      img.github(src="../assets/github_square.png")
+    
     .input_container
       app_button(
         clickable="true"
@@ -70,14 +61,10 @@ const open_app = () => {
           span.button {{ t('title') }}
           img.button(src="../assets/treasure-chest.png")
       .desc {{ t('desc') }}
-    a(ref="a4" href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="telegram")
-      img.telegram(src="../assets/telegram.png")
-    a(ref="a5" href="https://www.reddit.com/r/aresrpg/" target="_blank" rel="noopener noreferrer" aria-label="reddit")
-      img.reddit(src="../assets/reddit.png")
-    a(ref="a6" href="https://instagram.com/ares_rpg" target="_blank" rel="noopener noreferrer" aria-label="instagram")
-      img.insta(src="../assets/instagram.png")
-    a(ref="a8" href="https://tiktok.com/@aresrpg.world" target="_blank" rel="noopener noreferrer" aria-label="tiktok")
-      img.tiktok(src="../assets/tiktok.png")
+    a(ref="a2" href="https://discord.gg/gbkvVJq" target="_blank" rel="noopener noreferrer" aria-label="discord")
+      img.discord(src="../assets/discord.png")
+    a(ref="a3" href="https://github.com/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="github")
+      img.github(src="../assets/github_square.png")
   .trailer
     .text(ref="trailer1") {{ t('trailer') }}
     //- img(src="../assets/comingsoon.jpeg")
@@ -92,7 +79,7 @@ classic = 1px 2px 3px black
 
 .container
   width 100%
-  height 100vh
+  min-height 100vh
   background url('../assets/ice_gradient.jpeg') center / cover
   font-family 'DM Sans'
   display flex
@@ -100,7 +87,8 @@ classic = 1px 2px 3px black
   color white
   align-items center
   position relative
-  padding-top 100px
+  padding-top 80px
+  padding-bottom 80px
   border-bottom-left-radius 30px
   border-bottom-right-radius 30px
   min-height 900px
@@ -108,6 +96,7 @@ classic = 1px 2px 3px black
     display flex
     flex-flow row nowrap
     flex 1
+    margin-top 2.5rem
     justify-content center
     align-items center
     position relative
@@ -142,6 +131,7 @@ classic = 1px 2px 3px black
       height 100%
       max-width 1200px
       max-height 600px
+      min-height 560px
   .cta
     display flex
     flex-flow row nowrap

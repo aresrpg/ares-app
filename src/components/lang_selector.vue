@@ -2,9 +2,7 @@
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
 
-// @ts-ignore
 import france from '../assets/france.png';
-// @ts-ignore
 import usa from '../assets/usa.png';
 
 const langs = [
@@ -30,7 +28,7 @@ const select = ({ locale }) => {
 <style lang="stylus" scoped>
 .langs
   position fixed
-  z-index 10
+  z-index 12
   top .7em
   right .5em
   padding .25em

@@ -16,7 +16,7 @@
   lang_selector
   .gold_line
   hero(:page="selected_page" :scroller="Scroller")
-  news_layer
+  //- news_layer
   page_1_desktop(ref="trailer")
   page_2_desktop(ref="classes")
   page_3_desktop(ref="gameplay")

@@ -1,6 +1,10 @@
-<script setup></script>
+<script setup>
+    const open_app = () => {
+        window.open('https://app.aresrpg.world', '_blank');
+    };
+</script>
 <template>
-    <button class="launch-app-btn">
+    <button class="launch-app-btn" @click="open_app">
         <span>Launch App</span>
         <img src="../assets/treasure-chest.png" alt="">
     </button>
