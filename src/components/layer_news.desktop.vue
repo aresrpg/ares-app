@@ -41,12 +41,11 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
 text-color = rgba(#2C3E50, .9)
 .container
   width 100%
-  position absolute
+
   z-index 6
   color text-color
-  top 100vh
-  left 0
-  transform translateY(-50%)
+  background url('../assets/fog.png') bottom / cover 
+  transform translateY(0%)
   -webkit-backdrop-filter blur(50px)
   backdrop-filter blur(50px)
   border-top 1px solid rgba(#a4b5c1, .7)

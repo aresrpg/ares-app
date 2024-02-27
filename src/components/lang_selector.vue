@@ -2,7 +2,9 @@
 import { useI18n } from 'vue-i18n';
 import { ref } from 'vue';
 
+// @ts-ignore
 import france from '../assets/france.png';
+// @ts-ignore
 import usa from '../assets/usa.png';
 
 const langs = [
@@ -12,6 +14,7 @@ const langs = [
 const i18n = useI18n();
 const selected = ref(langs.find(lang => i18n.locale.value === lang.locale));
 const select = ({ locale }) => {
+  console.log('asdasdasd',locale);
   i18n.locale.value = locale;
   selected.value = langs.find(lang => locale === lang.locale);
 };
@@ -28,7 +31,7 @@ const select = ({ locale }) => {
 .langs
   position fixed
   z-index 10
-  top .25em
+  top .7em
   right .5em
   padding .25em
   border-radius 5px

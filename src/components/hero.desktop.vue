@@ -60,37 +60,95 @@ onMounted(() => {
 onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
-<template lang="pug">
-.container
-  .grain
-  .fog
-  img.logo(ref="logo" src="../assets/logo.png")
-  .ip(
-    ref="ip"
-    v-clipboard:copy="'play.aresrpg.world'"
-    v-clipboard:success="on_copy"
-    ) {{ t('ip') }}
-  nav(ref="nav")
-    .trailer(@click="props.scroller.trailer" :class="{ selected: props.page === 'trailer' }") {{ t('trailer') }}
-    .class(@click="props.scroller.classes" :class="{ selected: props.page === 'classes' }") {{ t('class') }}
-    .game(@click="props.scroller.gameplay" :class="{ selected: props.page === 'gameplay' }") {{ t('game') }}
-    .server(@click="props.scroller.server" :class="{ selected: props.page === 'server' }") {{ t('server') }}
-    .assets(@click="props.scroller.assets" :class="{ selected: props.page === 'assets' }") {{ t('assets') }}
-    .layers(@click="props.scroller.worlds" :class="{ selected: props.page === 'worlds' }") {{ t('layers') }}
-  .left
-    .desc(ref="desc") {{ t('desc') }}
-    .title(ref="title") {{ t('title') }}
-  scroll-parallax.right(direction="y" speed="0.3")
-    img(src="../assets/ice_dragon.dragon.gif")
+<template>
+  <div class="hero">
+    <img class="logo" src="../assets/logo.svg" alt="">
+    <div class="iron-grid"></div>
+    <div class="fog"></div>
+    <div class="text-content">
+      <div>
+        <h1>A Delightful RP Adventure</h1>
+        <p>AresRPG is a no-mods mmorpg minecraft server in which your goal is to find all 6 relics from the gods. The world is infested of creatures that you will need to fight and destroy in order to upgrade your equipment and stats</p>
+      </div>
+    </div>
+    <img class="flying-dragon" src="../assets/ice_dragon.dragon.gif" alt="">
+
+  </div>
 </template>
 
-<style lang="stylus" scoped>
-material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(black, .3))
-classic = 1px 2px 3px black
+<style scoped>
+  .logo{
+    position: absolute;
+    z-index: 10;
+    top: 20px;
+    left: 1%;
+  }
+  .hero{
+    height: 100%;
+    min-height: 100vh;
+    background: url('../assets/ice_dragon.gif') no-repeat center center/cover;
+    position: relative;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
 
-.container
+    display: flex;
+    align-items: center;
+  }
+  .iron-grid{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/iron-grid.png');
+    opacity: 25%;
+  }
+  .fog{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: url('../assets/fog.png') no-repeat center center/cover;
+    opacity: 85%;
+  }
+  .flying-dragon{
+    position: absolute;
+    max-width: 100%;
+    right: 3rem;
+  }
+  .text-content{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    z-index: 5;
+  }
+  .text-content > div{
+    width: 52%;
+  }
+  .text-content h1{
+    color: #8787F4;
+    font-size:  clamp(3.75rem, 5vw, 5.5rem);
+    text-shadow: 
+        -1.5px -1.5px 0 black,  
+        1.5px -1.5px 0 black,
+        -1.5px 1.5px 0 black,
+        1.5px 1.5px 0 black;
+    /* stroke: 1.5px black;
+    -webkit-text-stroke: 1.5px black; */
+  }
+  .text-content p{
+    font-size: 1.15rem;
+    line-height: 37px;
+    color: #261F48;
+    opacity: 75%;
+    stroke: 0.5px black;
+    -webkit-text-stroke: 0.5px black;
+    margin-top: 0.4rem;
+  }
+ /* material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(black, .3))
+classic = 1px 2px 3px black  */
+
+/* .container
   width 100%
-  height 100vh
+  min-height 100vh
   border-top-left-radius 30px
   border-top-right-radius 30px
   background url('../assets/ice_dragon.gif') center / cover
@@ -101,6 +159,7 @@ classic = 1px 2px 3px black
   align-items center
   position relative
   overflow hidden
+  background-attachment: fixed;
   .right
     position absolute
     top 0
@@ -149,7 +208,7 @@ classic = 1px 2px 3px black
     right 0
     bottom 0
     background url('../assets/iron-grid.png') repeat
-    opacity .2
+    opacity .3
     z-index 2
   .logo
     position absolute
@@ -209,5 +268,6 @@ classic = 1px 2px 3px black
     height 100vh
     z-index 3
     display flex
-    background url('../assets/fog.png') bottom / cover
+    opacity .85
+    background url('../assets/fog.png') bottom / cover */
 </style>
