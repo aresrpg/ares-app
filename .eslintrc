@@ -1,11 +1,17 @@
 {
-  "extends": ["standard", "prettier"],
+  "extends": [
+    "standard",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint"],
   "parser": "vue-eslint-parser",
   "parserOptions": {
     "requireConfigFile": false,
     "sourceType": "module",
-    "ecmaVersion": 12
+    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser"
   },
+  "ignorePatterns": ["dist/*"],
   "rules": {
     "camelcase": "off",
     "no-var": "error",
@@ -20,6 +26,34 @@
     "import/order": ["error", { "newlines-between": "always" }],
     "no-unused-vars": 0,// <script setup>
     "node/no-callback-literal": 0,
-    "no-throw-literal": 0
+    "no-dupe-class-members": 0,
+    "no-labels": 0,
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variableLike",
+        "format": ["snake_case", "UPPER_CASE"]
+      },
+      {
+        "selector": "class",
+        "format": ["PascalCase"],
+        "leadingUnderscore": "forbid"
+      },
+      {
+        "selector": "variable",
+        "modifiers": ["destructured"],
+        "format": null
+      },
+      {
+        "selector": "parameter",
+        "modifiers": ["destructured"],
+        "format": null
+      },
+      {
+        "selector": "parameter",
+        "leadingUnderscore": "allowSingleOrDouble",
+        "format": ["snake_case", "UPPER_CASE"]
+      }
+  ]
   }
 }

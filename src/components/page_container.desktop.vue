@@ -26,6 +26,7 @@ const props = defineProps(['img']);
     border-top-left-radius 30px
     border-top-right-radius 30px
     object-fit cover
+    object-position 0% 70%
   .delimiter
     position absolute
     left 0

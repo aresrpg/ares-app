@@ -1,24 +1,25 @@
 <i18n>
 fr:
-  ip: play.aresrpg.world
-  desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est d'obtenir les reliques des 6 dieux. Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences
+  play: Jouer
+  desc: AresRPG est un MMORPG web, situé dans un monde voxel procédural infini construit sur la blockchain {0}. Lancez-vous dans une quête qui s'étend au-delà de l'horizon, où le destin vous appelle à combattre des créatures redoutables et à déterrer des reliques anciennes. Dans cette étendue sans limites, chaque aventure est enregistrée sur la blockchain, garantissant que votre héritage soit gravé dans l'éternité. Forgez votre chemin vers la gloire dans un royaume où vos choix façonnent le monde.
   title: Entrez dans La Legende
-  trailer: Trailer
-  class: Classes
-  game: Jeu
-  server: Serveur
+  motivation: Motivation
+  gameplay: Gameplay
+  worlds: Mondes
+  economy: Economie
+  technology: Technologie
   assets: Assets
-  layers: Mondes
   copy: adresse copiée
 en:
-  desc: AresRPG is a no-mods mmorpg minecraft server in which your goal is to find all 6 relics from the gods. The world is infested of creatures that you will need to fight and destroy in order to upgrade your equipment and stats
+  play: Play now
+  desc: AresRPG is a web MMORPG, set in an infinite procedural voxel world built on the cutting-edge {0} blockchain. Embark on a quest that stretches beyond the horizon, where destiny calls you to battle formidable creatures and unearth ancient relics. In this boundless expanse, every adventure is recorded on the blockchain, ensuring your legacy is etched in eternity. Forge your path to glory in a realm where your choices shape the world.
   title: A Delightful RP Adventure
-  trailer: Trailer
-  class: Classes
-  game: Game
-  server: Server
+  motivation: Motivation
+  gameplay: Gameplay
+  worlds: Worlds
+  economy: Economy
+  technology: Technology
   assets: Assets
-  layers: Worlds
   copy: copied to clipboard
 </i18n>
 
@@ -26,7 +27,6 @@ en:
 import { useI18n } from 'vue-i18n';
 import { useToast } from 'vue-toastification';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import ScrollParallax from 'vue3-parallax/src/components/ScrollParallax.vue';
 
 import {
   anime,
@@ -34,6 +34,8 @@ import {
   appear_right,
   minimal_fade_up,
 } from '../core/anime';
+
+import app_button from './app_button.vue';
 
 const toast = useToast();
 const { t } = useI18n();
@@ -54,6 +56,10 @@ const animations = [
   minimal_fade_up(title, 800),
 ];
 
+const open_app = () => {
+  window.open('https://app.aresrpg.world', '_blank');
+};
+
 onMounted(() => {
   animations.forEach(animation => animation.mount());
 });
@@ -63,25 +69,25 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 <template lang="pug">
 .container
   .grain
-  .fog
   img.logo(ref="logo" src="../assets/logo.png")
-  .ip(
+  app_button.ip(
     ref="ip"
-    v-clipboard:copy="'play.aresrpg.world'"
-    v-clipboard:success="on_copy"
-    ) {{ t('ip') }}
+    clickable="true"
+    @click="open_app"
+    )
+    template(#content)
+      span.button {{ t('play') }}
   nav(ref="nav")
-    .trailer(@click="props.scroller.trailer" :class="{ selected: props.page === 'trailer' }") {{ t('trailer') }}
-    .class(@click="props.scroller.classes" :class="{ selected: props.page === 'classes' }") {{ t('class') }}
-    .game(@click="props.scroller.gameplay" :class="{ selected: props.page === 'gameplay' }") {{ t('game') }}
-    .server(@click="props.scroller.server" :class="{ selected: props.page === 'server' }") {{ t('server') }}
+    .motivation(@click="props.scroller.motivation" :class="{ selected: props.page === 'motivation' }") {{ t('motivation') }}
+    .worlds(@click="props.scroller.worlds" :class="{ selected: props.page === 'worlds' }") {{ t('worlds') }}
+    .gameplay(@click="props.scroller.gameplay" :class="{ selected: props.page === 'gameplay' }") {{ t('gameplay') }}
+    .economy(@click="props.scroller.economy" :class="{ selected: props.page === 'economy' }") {{ t('economy') }}
+    .technology(@click="props.scroller.technology" :class="{ selected: props.page === 'technology' }") {{ t('technology') }}
     .assets(@click="props.scroller.assets" :class="{ selected: props.page === 'assets' }") {{ t('assets') }}
-    .layers(@click="props.scroller.worlds" :class="{ selected: props.page === 'worlds' }") {{ t('layers') }}
   .left
-    .desc(ref="desc") {{ t('desc') }}
+    i18n-t.desc(keypath="desc" tag="div" ref="desc")
+      a(href="https://sui.io" target="_blank") Sui
     .title(ref="title") {{ t('title') }}
-  scroll-parallax.right(direction="y" speed="0.3")
-    img(src="../assets/ice_dragon.dragon.gif")
 </template>
 
 <style lang="stylus" scoped>
@@ -93,7 +99,7 @@ classic = 1px 2px 3px black
   height 100vh
   border-top-left-radius 30px
   border-top-right-radius 30px
-  background url('../assets/ice_dragon.gif') center / cover
+  background url('../assets/art/shrine-1.jpeg') center / cover
   font-family 'Roboto Condensed'
   display flex
   flex-flow row nowrap
@@ -122,9 +128,13 @@ classic = 1px 2px 3px black
     z-index 2
     .desc
       max-width 600px
-      text-align right
+      text-align justify
       text-shadow 1px 2px 6px black
+      backdrop-filter blur(10px)
+      padding .5em
+      border-radius 12px
       position relative
+      color #eee
       z-index 2
       &::after
         content ''
@@ -135,6 +145,9 @@ classic = 1px 2px 3px black
         left 60%
         box-shadow classic
         background white
+      a
+        color white
+        text-decoration underline
     .title
       padding-top 200px
       max-width 700px
@@ -142,6 +155,15 @@ classic = 1px 2px 3px black
       font-weight 900
       filter material-2
       z-index 1
+    @media screen and (max-height: 1100px)
+      .title
+        padding-top 0
+  @media screen and (max-height: 1100px)
+    .desc
+      .title
+        padding-top 0
+      &::after
+        display none
   .grain
     position absolute
     top 0
@@ -155,8 +177,7 @@ classic = 1px 2px 3px black
     position absolute
     top 2em
     left 2.5em
-    mix-blend-mode luminosity
-    width 65px
+    width 200px
     z-index 2
     filter drop-shadow(1px 2px 3px black)
     object-fit contain
@@ -196,18 +217,12 @@ classic = 1px 2px 3px black
     text-shadow classic
     letter-spacing 7px
     font-weight 900
-    mix-blend-mode exclusion
+    mix-blend-mode hard-light
     text-transform uppercase
     z-index 50
     cursor pointer
-  .fog
-    pointer-events none
-    position absolute
-    bottom 0
-    left 0
-    width 100%
-    height 100vh
-    z-index 3
-    display flex
-    background url('../assets/fog.png') bottom / cover
+    border-radius 12px
+    .button
+      padding .5em
+      color black
 </style>
