@@ -1,20 +1,24 @@
 <i18n>
-fr:
-  title: Se connecter
-  desc: Connecte ton compte Minecraft et récupère tes récompenses Mastery
-  trailer: Trailer Officiel
 en:
-  title: Launch app
-  desc: Connect your Minecraft account and claim your Mastery rewards
-  trailer: Official Trailer
+  inspiration: Inspiration
+  inspiration_desc: Our vision is to recreate the nostalgic essence of the MMORPGs from our childhood, combining their best elements into one captivating game. Inspired by the breathtaking diversity of Japanese landscapes, we aim to infuse similar aesthetic richness into our design. Our primary influences include iconic games such as Minecraft, Dofus, Trove, and Cube World.
+  sui: Why Sui?
+  sui_desc: Sui represents the forefront of blockchain technology, offering an ideal platform for developing substantial projects. Known for its lightning-fast performance, cost-efficiency, and remarkable scalability, Sui enables us to concentrate fully on crafting an engaging game experience. It mitigates concerns about architectural limitations or expenses, and it simplifies the user experience, requiring no prior blockchain knowledge from the players.
+fr:
+  inspiration: Inspiration
+  inspiration_desc: Notre vision est de recréer l'essence nostalgique des MMORPG de notre enfance, en combinant leurs meilleurs éléments en un seul jeu captivant. Inspirés par la diversité époustouflante des paysages japonais, nous visons à insuffler une richesse esthétique similaire dans notre conception. Nos principales influences incluent des jeux emblématiques tels que Minecraft, Dofus, Trove et Cube World.
+  sui: Pourquoi Sui ?
+  sui_desc: Sui représente l'avant-garde de la technologie blockchain, offrant une plateforme idéale pour le développement de projets substantiels. Connu pour sa performance ultra-rapide, son efficacité en termes de coûts et sa remarquable évolutivité, Sui nous permet de nous concentrer pleinement sur la création d'une expérience de jeu engageante. Elle atténue les préoccupations concernant les limitations architecturales ou les dépenses, et simplifie l'expérience utilisateur, ne nécessitant aucune connaissance préalable de la blockchain de la part des joueurs.
 </i18n>
 
 <script setup>
 import { useI18n } from 'vue-i18n';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import app_button from './app_button.vue';
+import Parallaxy from '@lucien144/vue3-parallaxy';
 
-import { rotate_in, fade_in } from '../core/anime';
+import { rotate_in, fade_up, fade_left, fade_in } from '../core/anime';
+
+import app_button from './app_button.vue';
 
 const a0 = ref();
 const a1 = ref();
@@ -24,8 +28,12 @@ const a4 = ref();
 const a5 = ref();
 const a6 = ref();
 const a8 = ref();
-const trailer1 = ref();
-const trailer2 = ref();
+
+const section_1 = ref();
+const section_2 = ref();
+
+const kanji = ref();
+
 const { t } = useI18n();
 const animations = [
   rotate_in(a0, 100),
@@ -36,8 +44,9 @@ const animations = [
   rotate_in(a5, 600),
   rotate_in(a6, 700),
   rotate_in(a8, 800),
-  fade_in(trailer1, 700),
-  fade_in(trailer2, 700),
+  fade_up(section_1, 300),
+  fade_left(section_2, 500),
+  fade_in(kanji, 1000),
 ];
 onMounted(() => {
   animations.forEach(animation => animation.mount());
@@ -51,7 +60,6 @@ const open_app = () => {
 
 <template lang="pug">
 .container
-  .fog
   .cta
     a(ref="a0" href="https://www.youtube.com/channel/UC9YFBFi_jrBYIc449Io7adQ" target="_blank" rel="noopener noreferrer" aria-label="youtube")
       img.yt(src="../assets/youtube.png")
@@ -61,15 +69,6 @@ const open_app = () => {
       img.discord(src="../assets/discord.png")
     a(ref="a3" href="https://github.com/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="github")
       img.github(src="../assets/github_square.png")
-    .input_container
-      app_button(
-        clickable="true"
-        @click="open_app"
-        )
-        template(#content)
-          span.button {{ t('title') }}
-          img.button(src="../assets/treasure-chest.png")
-      .desc {{ t('desc') }}
     a(ref="a4" href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="telegram")
       img.telegram(src="../assets/telegram.png")
     a(ref="a5" href="https://www.reddit.com/r/aresrpg/" target="_blank" rel="noopener noreferrer" aria-label="reddit")
@@ -78,12 +77,17 @@ const open_app = () => {
       img.insta(src="../assets/instagram.png")
     a(ref="a8" href="https://tiktok.com/@aresrpg.world" target="_blank" rel="noopener noreferrer" aria-label="tiktok")
       img.tiktok(src="../assets/tiktok.png")
-  .trailer
-    .text(ref="trailer1") {{ t('trailer') }}
-    //- img(src="../assets/comingsoon.jpeg")
-    iframe(width="560" height="315" src="https://www.youtube.com/embed/_vSGW0Je-Es" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
-    .video
-    .text(ref="trailer2") {{ t('trailer') }}
+  .kanji(ref="kanji") 美しい景色
+  section.inspiration(ref="section_1")
+    .text
+      .title {{ t('inspiration') }}
+      .desc {{ t('inspiration_desc') }}
+    img.a(src="../assets/art/shrine-2.jpeg")
+  section.sui(ref="section_2")
+    img.b(src="../assets/art/underwater-2.jpeg")
+    .text
+      .title {{ t('sui') }}
+      .desc {{ t('sui_desc') }}
 </template>
 
 <style lang="stylus" scoped>
@@ -99,98 +103,78 @@ classic = 1px 2px 3px black
   flex-flow column nowrap
   color white
   align-items center
+  justify-content center
   position relative
   padding-top 100px
   border-bottom-left-radius 30px
   border-bottom-right-radius 30px
   min-height 900px
-  .trailer
+  .kanji
+    position absolute
+    font-size 1.5em
+    bottom 50px
+    left 50%
+    transform translateX(-50%)
+    font-family "Noto Serif JP", serif
+    color #eee
+    text-shadow 1px 1px 2px #212121
+  >section
     display flex
     flex-flow row nowrap
-    flex 1
     justify-content center
     align-items center
-    position relative
-    width 100%
-    z-index 1
     padding 2em
+    border-radius 10px
+    width 90%
+    height 50%
     .text
-      text-transform uppercase
-      width max-content
-      height max-content
-      color rgba(#2C3E50, .2)
-      -webkit-text-stroke-width 1px
-      -webkit-text-stroke-color black
-      letter-spacing 5px
-      line-height 60px
-      font-weight 900
-      font-size 3.3em
-      writing-mode vertical-lr
-      @media screen and (max-width: 1384px)
-        letter-spacing 0
+      display flex
+      flex-flow column nowrap
+      padding 1em
+      position relative
+      width 60%
+      &:last-child::after
+        content 'The art here is an inspiration and not the current game look, we wish to achieve a similar aesthetic richness.'
+        display flex
+        position absolute
+        top -10px
+        z-index 1
+        font-size .6em
+        font-style italic
+        opacity .5
+      .title
+        font-weight 700
+        padding-bottom .5em
+      .desc
+        font-weight 100
+        font-family 'Montserrat'
+        text-align justify
+        color #eee
     img
-      border-radius 12px
-      object-fit contain
-      width 70vw
-      max-width 1200px
-      filter material-2
-    iframe
+      object-fit cover
+      margin .25em
       border-radius 12px
       overflow hidden
-      object-fit contain
-      width 70vw
+      filter material-2
       height 100%
-      max-width 1200px
-      max-height 600px
+      &.a
+        transform translateY(100px)
+      &.b
+        transform translateY(-100px)
   .cta
     display flex
     flex-flow row nowrap
     position relative
     z-index 2
-    a>img
-      width 50px
-      margin 0 1.5em
-      object-fit contain
-      filter drop-shadow(classic)
-      opacity .7
-      @media screen and (max-width: 1378px)
-        margin 0.35em
-    .input_container
-      margin 0 2em
-      display flex
-      flex-flow column nowrap
-      justify-content center
-      align-items center
-      position relative
-
-      img.button
-        width 25px
-        filter drop-shadow(1px 2px 3px black)
-        margin-right .75em
-        object-fit contain
-      span.button
-        margin 0 .5em 0 .75em
-        color #34495E
-      .title
-        text-transform uppercase
-        font-weight 500
-        font-size 1em
-        filter material-2
-        padding .5em
-      .desc
-        font-weight 900
-        padding-top .5em
-        text-align center
-        font-size .6em
-        max-width 300px
-        text-transform uppercase
-  .fog
     position absolute
-    top 0
-    left 0
-    right 0
-    bottom 0
-    z-index 1
-    background url('../assets/fog.png') top / cover
-    transform rotate(180deg)
+    top 50px
+    a
+      margin 0 1.5em
+      >img
+        width 50px
+        object-fit contain
+        filter drop-shadow(classic)
+        opacity .7
+        @media screen and (max-width: 1378px)
+          margin 0.35em
 </style>

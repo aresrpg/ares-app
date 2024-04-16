@@ -11,17 +11,16 @@
   page_6_mobile
   page_7_mobile
 .root(v-else)
-  img.launch_app(@click="open_app" src="../assets/treasure-chest.png")
   lang_selector
   .gold_line
   hero(:page="selected_page" :scroller="Scroller")
   news_layer
-  page_1_desktop(ref="trailer")
-  page_2_desktop(ref="classes")
+  page_1_desktop(ref="motivation")
+  page_2_desktop(ref="worlds")
   page_3_desktop(ref="gameplay")
-  page_4_desktop(ref="server")
-  page_5_desktop(ref="assets")
-  page_6_desktop(ref="worlds")
+  page_4_desktop(ref="economy")
+  page_5_desktop(ref="technology")
+  //- page_6_desktop(ref="assets")
   footer_desktop
 </template>
 
@@ -54,12 +53,12 @@ const wallet = ref({});
 const root = ref();
 const scrolled_index = ref(0);
 
-const trailer = ref();
-const classes = ref();
+const motivation = ref();
 const gameplay = ref();
-const server = ref();
-const assets = ref();
 const worlds = ref();
+const economy = ref();
+const technology = ref();
+const assets = ref();
 
 const scroll_into_view = ref => () =>
   ref.value.$el.scrollIntoView({
@@ -67,12 +66,12 @@ const scroll_into_view = ref => () =>
     block: 'start',
   });
 const Scroller = {
-  trailer: scroll_into_view(trailer),
-  classes: scroll_into_view(classes),
+  motivation: scroll_into_view(motivation),
   gameplay: scroll_into_view(gameplay),
-  server: scroll_into_view(server),
-  assets: scroll_into_view(assets),
   worlds: scroll_into_view(worlds),
+  economy: scroll_into_view(economy),
+  technology: scroll_into_view(technology),
+  assets: scroll_into_view(assets),
 };
 
 const icon_size = '2x';
@@ -100,12 +99,12 @@ const observe = (ref, name) => {
 
 onMounted(() => {
   window.addEventListener('scroll', on_scroll);
-  observe(trailer, 'trailer');
-  observe(classes, 'classes');
-  observe(gameplay, 'gameplay');
-  observe(server, 'server');
-  observe(assets, 'assets');
+  observe(motivation, 'motivation');
   observe(worlds, 'worlds');
+  observe(gameplay, 'gameplay');
+  observe(economy, 'economy');
+  observe(technology, 'technology');
+  observe(assets, 'assets');
 });
 onBeforeUnmount(() => window.removeEventListener('scroll', on_scroll));
 
@@ -115,18 +114,6 @@ const open_app = () => {
 </script>
 
 <style lang="stylus" scoped>
-.launch_app
-  position fixed
-  top .5em
-  right 50px
-  z-index 100
-  width 25px
-  object-fit contain
-  filter drop-shadow(1px 2px 3px black)
-  cursor pointer
-  transition all 200ms ease-in-out
-  &:hover
-    width 30px
 .root_sm
   width 100vw
   overflow hidden

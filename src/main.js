@@ -22,7 +22,7 @@ import app from './app.vue';
 import router from './router.js';
 
 const i18n = createI18n({
-  locale: 'fr',
+  locale: 'en',
   allowComposition: true, // you need to specify that!
 });
 
@@ -58,14 +58,8 @@ vue_app
   .use(Toast)
   .mount('#app');
 
-const updateSW = registerSW({
+registerSW({
   onOfflineReady() {
     toast('ready to work offline!', {});
   },
 });
-
-vue_app.config.compilerOptions.isCustomElement = tag => {
-  if (tag.startsWith('el-')) return true;
-  if (tag.startsWith('upload-')) return true;
-  return false;
-};
