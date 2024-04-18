@@ -7,7 +7,7 @@ import pause from '../assets/pause.png';
 
 const props = defineProps(['video', 'selected', 'poster', 'title']);
 const video = ref(null);
-const emits = defineEmits('playing');
+const emits = defineEmits(['playing']);
 const playing = ref(false);
 const current_button = computed(() => (playing.value ? pause : play));
 

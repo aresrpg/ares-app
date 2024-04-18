@@ -1,6 +1,6 @@
 {
   "include": ["src/**/*"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.vue"],
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
@@ -12,7 +12,7 @@
     "emitDeclarationOnly": true,
     "resolveJsonModule": true,
     "outDir": "types",
-    "types": ["element-plus/global"],
-    "jsx": "preserve"
+    "skipLibCheck": true,
+    "types": ["vite/client", "node", "vue"]
   }
 }

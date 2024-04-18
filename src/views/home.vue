@@ -20,7 +20,7 @@
   page_3_desktop(ref="gameplay")
   page_4_desktop(ref="economy")
   page_5_desktop(ref="technology")
-  //- page_6_desktop(ref="assets")
+  page_6_desktop(ref="assets")
   footer_desktop
 </template>
 

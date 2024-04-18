@@ -1,12 +1,17 @@
 <script setup>
 const { icon, title, desc } = defineProps(['icon', 'title', 'desc']);
+
+const enoki_link = () => {
+  window.open('https://enoki.mystenlabs.com/', '_blank');
+};
 </script>
 
 <template lang="pug">
 .inline_feature
-  .title {{ title }}
+  .title(v-if="title") {{ title }}
+  img.title(src="../assets/enoki.svg" v-else @click="enoki_link")
   .desc {{ desc }}
-  img(:src="icon")
+  img.icon(:src="icon")
 </template>
 
 <style lang="stylus" scoped>
@@ -16,8 +21,10 @@ const { icon, title, desc } = defineProps(['icon', 'title', 'desc']);
   text-align end
   grid-column-gap 1em
   width max-content
+  img.title
+    cursor pointer
   .title
-    text-transform uppercase
+    text-transform capitalize
     font-size 1.3em
     grid-area title
     place-self end end
@@ -28,7 +35,7 @@ const { icon, title, desc } = defineProps(['icon', 'title', 'desc']);
     grid-area desc
     width 270px
     place-self end end
-  img
+  img.icon
     grid-area icon
     object-fit contain
     width 100%
