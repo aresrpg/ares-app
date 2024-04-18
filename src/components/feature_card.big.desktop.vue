@@ -14,7 +14,7 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
 
 .big_card
   display grid
-  grid 'icon' 110px 'title' max-content 'desc' 120px / 350px
+  grid 'icon' 110px 'title' max-content 'desc' 140px / 350px
   place-items center center
   text-align center
   color white

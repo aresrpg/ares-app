@@ -1,23 +1,24 @@
 <i18n>
-  fr:
-    music: Les Musiques
-    music_desc: Une bande originale créée spécialement pour AresRPG
-    items: Les Items
-    items_desc: Une multitude de modèles pour les armes et armures sont intégrées au jeu, {flex}
-    flex: le flex devient réel
-  en:
-    music: The Musics
-    music_desc: An original soundtrack made specially for AresRPG
-    items: The Items
-    items_desc: A bunch of 3D models for weapons and armors are integrated in the game, {flex}
-    flex: the flex is real
-  </i18n>
+en:
+  music: The Musics
+  music_desc: An original soundtrack made specially for AresRPG
+  items: The Items
+  items_desc: A bunch of 3D models for weapons and armors are integrated in the game, {flex}
+  flex: the flex is real
+fr:
+  music: Les Musiques
+  music_desc: Une bande originale créée spécialement pour AresRPG
+  items: Les Items
+  items_desc: Une multitude de modèles pour les armes et armures sont intégrées au jeu, {flex}
+  flex: le flex devient réel
+</i18n>
 
 <script setup>
 import { useI18n } from 'vue-i18n';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 import { rotate_in, fade_down } from '../core/anime';
+import bg from '../assets/art/spider-cave.jpeg';
 
 import page_container from './page_container.desktop.vue';
 

@@ -99,7 +99,7 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
         margin-top 60px
         filter drop-shadow(1px 2px 3px black)
       >div
-        font-size .8em
+        font-size .9em
         font-family 'Montserrat'
         font-weight 100
         max-width 1000px

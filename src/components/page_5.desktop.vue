@@ -1,45 +1,47 @@
 <i18n>
-fr:
-  mods: Aucun Mods
-  mods_desc: Vous pouvez rejoindre le serveur avec le client Minecraft officiel
-  metaverse: METAVERSE
-  metaverse_desc: Les ArtWork et assets communautaires sous forme de NFT pourront être utilisés en jeu et parfaire votre style
-  guild: Guildes
-  guild_desc: Jouez en groupe pour raid les donjons, ou fondez votre guilde pour contrôler les terres d'AresRPG en communauté
-  instance: UNE INSTANCE
-  instance_desc: Le serveur est développé entièrement en JavaScript pour supporter des milliers de joueurs sur la même map
-  open: Open source
-  open_desc: AresRPG est open-source, vous pouvez meme lancer votre propre version du jeu
-  immersive: immersif
-  immersive_desc: Nous ajoutons une tonne de nouveaux son et models 3D
-  server: Le serveur
-  server_desc: AresRPG n'est pas juste un ensemble de plugins, c'est un serveur à part entière qui communique avec le client Minecraft en utilisant uniquement le protocole. À la différence des implémentations comme Spigot, seuls les mécaniques qui nous sont utiles sont implémentées.
 en:
-  mods: No mods
-  mods_desc: You can join the server with the official Minecraft client
+  sui: Suuuuuuuuii
+  sui_desc: |
+    We chose the Sui chain as our server-side database for its unparalleled speed,
+    cost efficiency, and scalability. Sui isn't just technically advanced—it's a leap forward in blockchain technology.
+    Here are some key features of Sui that we are leveraging to revolutionize GameFi
+  enoki_desc: |
+    Playing AresRPG doesn't require any blockchain knowledge.
+    We leverage ZkLogin and sponsored transactions to ensure a seamless and accessible gaming experience for everyone.
   metaverse: Metaverse
-  metaverse_desc: Artworks and community NFT assets will be able to be used in game as cosmetics
-  guild: Guilds
-  guild_desc: Play in group to raid dungeons, or create your own guild to control lands on AresRPG
-  instance: Single instance
-  instance_desc: The server is written entirely in JavaScript to support thousands of concurrent players on the same world
+  metaverse_desc: |
+    Until now, a truly integrated metaverse in Web3 has been elusive.
+    We are changing that by incorporating multiple communities into our game through unique elements like pets, titles, and equipment.
+    This approach creates a more connected and dynamic metaverse experience.
+  nodb: No Database
+  nodb_desc: There is nothing stored on our servers, Sui is the only database and allows true ownership of your progression
   open: Open Source
-  open_desc: AresRPG is open-source, you can even launch your own version of the game
-  immersive: Immersive
-  immersive_desc: We add a ton of new musics and 3D models
-  server: The Server
-  server_desc: AresRPG isn't just a pack of plugins, It's a fully fledged server which communicate with the Minecraft client through its protocol only. Unlike implementations like Spigot, only our own RPG mechanics are added
-
+  open_desc: AresRPG is open-source, you can even run the game locally and connect to our servers through your own client
+fr:
+  sui_desc: |
+    Nous avons choisi la chaine Sui comme base de données côté serveur pour sa vitesse, son efficacité et sa scalabilité inégalée.
+    Sui n'est pas seulement techniquement avancé, c'est un bond en avant dans la technologie blockchain.
+    Voici quelques fonctionnalités clés de Sui que nous exploitons pour révolutionner le GameFi
+  enoki_desc: Vous n'avez pas besoin de connaissance en blockchain pour jouer à AresRPG
+  metaverse: Métavers
+  metaverse_desc: |
+    Jusqu'à présent, aucun métavers vraiment intégré en Web3 n'a été créé.
+    Nous changeons cela en incorporant plusieurs communautés dans notre jeu à travers des éléments uniques comme les familiers, les titres et l'équipement.
+    Cette approche crée une expérience de métavers plus connectée et dynamique.
+  nodb: Pas de base de données
+  nodb_desc: Rien n'est stocké sur nos serveurs, Sui est la seule base de données et permet une véritable propriété de votre progression
+  open: Open Source
+  open_desc: AresRPG est open-source, vous pouvez même exécuter le jeu localement et vous connecter à nos serveurs via votre propre client
 </i18n>
 
 <script setup>
 import { useI18n } from 'vue-i18n';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-import bg from '../assets/page4bg.jpeg';
-import box from '../assets/open-box.png';
+import bg from '../assets/art/aether.jpeg';
+import hammer from '../assets/hammer.png';
 import metaverse from '../assets/metaverse.png';
-import guild from '../assets/guild.png';
+import shield from '../assets/sword-shield.png';
 import feathers from '../assets/feathers.png';
 import github from '../assets/github.png';
 import earth from '../assets/earth.png';
@@ -52,9 +54,7 @@ const { t } = useI18n();
 const f1 = ref();
 const f2 = ref();
 const f3 = ref();
-const f4 = ref();
 const f5 = ref();
-const f6 = ref();
 const title = ref();
 const desc = ref();
 
@@ -62,9 +62,7 @@ const animations = [
   fade_down(f1, 100),
   fade_down(f2, 200),
   fade_down(f3, 300),
-  fade_down(f4, 400),
   fade_down(f5, 500),
-  fade_down(f6, 600),
   fade_down(title),
   fade_down(desc, 100),
 ];
@@ -79,22 +77,17 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 page_container(:img="bg")
   .page
     .left
-      feature_card(ref="f1" :icon="box" :title="t('mods')" :desc="t('mods_desc')")
+      feature_card(ref="f1" :icon="hammer" :desc="t('enoki_desc')")
+      feature_card(ref="f3" :icon="shield" :title="t('nodb')" :desc="t('nodb_desc')")
       feature_card(ref="f2" :icon="metaverse" :title="t('metaverse')" :desc="t('metaverse_desc')")
-      feature_card(ref="f3" :icon="guild" :title="t('guild')" :desc="t('guild_desc')")
-      feature_card(ref="f4" :icon="feathers" :title="t('instance')" :desc="t('instance_desc')")
       feature_card(ref="f5" :icon="github" :title="t('open')" :desc="t('open_desc')")
-      feature_card(ref="f6" :icon="earth" :title="t('immersive')" :desc="t('immersive_desc')")
     .center
-      img.circle(src="../assets/circle.png")
-      img.circle.second(src="../assets/circle.png")
-      img.circle.third(src="../assets/circle.png")
-      img.helmet(src="../assets/spartan.png")
+      img.helmet(src="../assets/art/sui-art.png")
     .right
       .title(ref="title")
         .lines
-        .text {{ t('server') }}
-      .desc(ref="desc") {{ t('server_desc') }}
+        .text {{ t('sui') }}
+      .desc(ref="desc") {{ t('sui_desc') }}
       img.code(src='../assets/code.jpeg')
 </template>
 
@@ -124,14 +117,13 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
     @media screen and (max-width: 1250px)
       display none
     .helmet
-      mix-blend-mode multiply
       max-width 600px
       width 100%
       height auto
       z-index 1
       object-fit contain
-      opacity .8
-      animation float 5s infinite alternate ease-in-out
+      opacity .5
+      animation float 10s infinite alternate ease-in-out
     .circle
       position absolute
       width 800px
@@ -155,12 +147,16 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
     flex-flow column nowrap
     justify-content center
     flex 1 1 30%
+    height 100%
     .title
       font-size 3em
       font-weight 600
       display flex
+      margin-top 1em
       flex-flow row nowrap
       align-items center
+      font-family 'Montserrat'
+
       .lines
         border 1px solid white
         border-bottom 0
@@ -174,9 +170,8 @@ material-2 = drop-shadow(0 2px 6px rgba(black .15)) drop-shadow(0 1px 2px rgba(b
       padding-right 2em
       font-family 'Montserrat'
       font-weight 100
-    img
+    img.code
       object-fit contain
-      min-width 550px
       width 100%
       margin-top 2em
       mix-blend-mode lighten

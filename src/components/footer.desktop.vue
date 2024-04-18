@@ -78,12 +78,9 @@ footer
       img.tiktok(src="../assets/tiktok.png")
   .texts(ref="texts")
     .home(@click="scroll_top") {{ t('home') }}
-    a.support(href="mailto:contact@aresrpg.fr") {{ t('support') }}
-    a.carrers(href="https://discord.com/channels/265104803531587584/1032277246616014961" target="_blank") {{ t('careers') }}
-    .play(
-    v-clipboard:copy="'play.aresrpg.world'"
-    v-clipboard:success="on_copy"
-    ) {{ t('play') }}
+    a.support(href="https://discord.gg/aresrpg" target="_blank") {{ t('support') }}
+    a.carrers(href="https://discord.gg/aresrpg" target="_blank") {{ t('careers') }}
+    a.play(href="https://play.aresrpg.world" target="_blank") {{ t('play') }}
   .designed(ref="designed") Designed & Integrated by #[a(href="https://sceat.xyz/" target="_blank") Sceat]
 </template>
 

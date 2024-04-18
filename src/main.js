@@ -1,6 +1,5 @@
-import { createApp, provide } from 'vue';
-import { registerSW } from 'virtual:pwa-register';
-import Toast, { useToast } from 'vue-toastification';
+import { createApp } from 'vue';
+import Toast from 'vue-toastification';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import 'vue-toastification/dist/index.css';
@@ -47,7 +46,6 @@ console.log(
 console.log('%c https://github.com/aresrpg/website', 'font-size:15px;');
 
 const vue_app = createApp(app);
-const toast = useToast();
 
 vue_app
   .use(router)
@@ -57,9 +55,3 @@ vue_app
   .component('fa', FontAwesomeIcon)
   .use(Toast)
   .mount('#app');
-
-registerSW({
-  onOfflineReady() {
-    toast('ready to work offline!', {});
-  },
-});

@@ -136,7 +136,7 @@ const spell = {
         {
           type: 'damage',
           min: 15,
-          max: 118,
+          max: 18,
           target: 'cell',
           element: 'air',
           chance: 100,
