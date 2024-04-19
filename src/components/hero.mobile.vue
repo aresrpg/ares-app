@@ -4,6 +4,7 @@ en:
   title: |
     {explore} the infinite lands of {aresrpg}
   explore: Explore
+  discover: Discover
   desc: |
     AresRPG is a web MMORPG, set in an infinite procedural voxel world built on the cutting-edge {0} blockchain.
     Embark on a quest that stretches beyond the horizon, where destiny calls you to battle formidable

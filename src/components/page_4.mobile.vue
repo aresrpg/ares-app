@@ -14,9 +14,11 @@ en:
     We are changing that by incorporating multiple communities into our game through unique elements like pets, titles, and equipment.
     This approach creates a more connected and dynamic metaverse experience.
   nodb: No Database
-  nodb_desc: There is nothing stored on our servers, Sui is the only database and allows true ownership of your progression
+  nodb_desc: |
+    There is nothing stored on our servers, Sui is the only database and allows true ownership of your progression
   open: Open Source
-  open_desc: AresRPG is open-source, you can even run the game locally and connect to our servers through your own client
+  open_desc: |
+    AresRPG is open-source, you can even run the game locally and connect to our servers through your own client
 fr:
   sui_desc: |
     Nous avons choisi la chaine Sui comme base de données côté serveur pour sa vitesse, son efficacité et sa scalabilité inégalée.
