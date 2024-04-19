@@ -5,7 +5,8 @@ const props = defineProps(['img', 'title', 'desc']);
 <template lang="pug">
 .big_card
   img(:src="props.img")
-  .title {{ props.title }}
+  .title(v-if="props.title") {{ props.title }}
+  img.title(v-else src="../assets/enoki.svg")
   .desc {{ props.desc }}
 </template>
 
@@ -22,6 +23,8 @@ const props = defineProps(['img', 'title', 'desc']);
     width 50px
     filter drop-shadow(1px 2px 3px black)
     margin-bottom .5em
+  img.title
+    width 60px
   .title
     font-size 14px
     font-weight 700
@@ -33,4 +36,5 @@ const props = defineProps(['img', 'title', 'desc']);
     opacity .7
     text-shadow 1px 2px 3px black
     max-width 250px
+    font-family 'Montserrat'
 </style>

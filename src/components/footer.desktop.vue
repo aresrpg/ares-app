@@ -4,13 +4,11 @@ fr:
   support: Support
   careers: Recrutement
   play: Jouer
-  copy: play.aresrpg.world copié
 en:
   home: Home
   support: Support
   careers: Careers
   play: Play
-  copy: play.aresrpg.world copied
 </i18n>
 
 <script setup>

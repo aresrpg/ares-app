@@ -1,34 +1,34 @@
 <i18n>
-  fr:
-    launch: Se connecter
-    title: UNE {adventure} INCROYABLE DANS UN UNIVERS {unique}
-    adventure: AVENTURE
-    unique: UNIQUE
-    desc: AresRPG est un serveur minecraft sans mods dans lequel votre objectif est d'obtenir les reliques des 6 dieux. {desc_2}
-    desc_2: Le monde est infesté de créatures que vous devrez réduire en poussière pour améliorer votre équipement et vos compétences
-    discover: Découvrir
-    wip: Le trailer officiel est disponible ! Faites vos quetes {crew3} pour obtenir un max de recompenses
-    email: Enregistrement réussi !
-    email_invalid: L'email semble incorrect
-  en:
-    launch: Launch app
-    title: A {adventure} MMORPG EXPERIENCE IN {unique}
-    adventure: DELIGHTFUL
-    unique: MINECRAFT
-    desc: AresRPG is a no-mods mmorpg minecraft server in which your goal is to find all 6 relics from the gods. {desc_2}
-    desc_2: The world is full of diverse creatures that you can reduce to atoms in order to upgrade your stuff and skills
-    discover: Discover
-    wip: THE OFFICIAL TRAILER IS NOW RELEASED ! COMPLETE YOUR {crew3} QUESTS TO WIN A LOT OF REWARDS
-    email: Sign up sucess !
-    email_invalid: Email seems invalid!
+en:
+  launch: Play now
+  title: |
+    {explore} the infinite lands of {aresrpg}
+  explore: Explore
+  desc: |
+    AresRPG is a web MMORPG, set in an infinite procedural voxel world built on the cutting-edge {0} blockchain.
+    Embark on a quest that stretches beyond the horizon, where destiny calls you to battle formidable
+    creatures and unearth ancient relics. In this boundless expanse, every adventure is recorded on the blockchain,
+    ensuring your legacy is etched in eternity. Forge your path to glory in a realm where your choices shape the world.
+fr:
+  launch: Jouer
+  title: |
+    {explore} les terres infinies d'{aresrpg}
+  explore: Explorez
+  discover: Découvrir
+  desc: |
+    AresRPG est un MMORPG web, situé dans un monde voxel procédural infini construit sur la blockchain {0}.
+    Lancez-vous dans une quête qui s'étend au-delà de l'horizon, où le destin vous appelle à combattre des créatures redoutables
+    et à déterrer des reliques anciennes. Dans cette étendue sans limites, chaque aventure est enregistrée sur la blockchain,
+    garantissant que votre héritage soit gravé dans l'éternité. Forgez votre chemin vers la gloire dans un royaume où vos choix façonnent le monde.
 </i18n>
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import app_button from './app_button.vue';
 
-import { fade_up, fade_down } from '../core/anime';
+import { fade_up, fade_down, fade_in } from '../core/anime';
+
+import app_button from './app_button.vue';
 
 const { t } = useI18n();
 const scroll_down = () =>
@@ -40,11 +40,17 @@ const twitter = ref();
 const telegram = ref();
 const discord = ref();
 const logo = ref();
+const title = ref();
+const btn = ref();
+const txt = ref();
 
 const animations = [
   fade_down(logo, 100),
-  fade_up(twitter, 200),
-  fade_up(telegram, 300),
+  fade_down(title, 200),
+  fade_down(btn, 300),
+  fade_in(txt, 400),
+  fade_up(twitter, 300),
+  fade_up(telegram, 400),
   fade_up(discord, 600),
 ];
 
@@ -60,21 +66,19 @@ const open_app = () => {
 
 <template lang="pug">
 .frame
-  img.logo(src="../assets/text_logo_fr.png" ref="logo")
-  .title
+  img.logo(src="../assets/text_logo.png" ref="logo")
+  .title(ref="title")
     i18n-t(keypath="title")
-      template(#adventure)
-        b {{ t('adventure') }}
-      template(#unique)
-        b {{ t('unique') }}
-  .description
-    i18n-t(keypath="desc")
-      template(#desc_2)
-        b {{ t('desc_2')}}
+      template(#explore)
+        b {{ t('explore') }}
+      template(#aresrpg)
+        b AresRPG
   app_button.app_button(
     clickable="true"
     @click="open_app"
-    )
+    height="60px"
+    ref="btn"
+  )
     template(#content)
       span.button {{ t('launch') }}
       img.button(src="../assets/treasure-chest.png")
@@ -82,12 +86,11 @@ const open_app = () => {
     fa.icon(:icon="['fab', 'twitter']" size="2x")
   a.telegram(href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Telegram" ref="telegram")
     fa.icon(:icon="['fab', 'telegram']" size="2x")
-  a.discord(href="https://discord.gg/gbkvVJq" target="_blank" rel="noopener noreferrer" aria-label="Discord" ref="discord")
+  a.discord(href="https://discord.gg/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="Discord" ref="discord")
     fa.icon(:icon="['fab', 'discord']" size="2x")
-  .wip
-    i18n-t(keypath="wip")
-      template(#crew3)
-        a(href="https://crew3.xyz/c/aresrpg" target="_blank") Crew3
+  .blur(ref="txt")
+    i18n-t(keypath="desc" tag="div" ref="desc")
+      a(href="https://sui.io" target="_blank") Sui
   .discover(@click="scroll_down")
     span {{t('discover')}}
     img(src="../assets/chevron.svg")
@@ -96,58 +99,58 @@ const open_app = () => {
 <style lang="stylus" scoped>
 .frame
   display grid
-  grid 'logo logo logo' 2fr 'title title title' 1.5fr 'desc desc desc' 2.5fr 'mail mail mail' 1fr 'twitter telegram github' 1fr 'wip wip wip' 1fr 'disc disc disc' 4fr / 1fr 1fr 1fr
+  grid 'logo logo logo' 2fr 'title title title' 2.5fr 'mail mail mail' 70px 'wip wip wip' max-content 'twitter telegram github' 1fr 'disc disc disc' 2fr / 1fr 1fr 1fr
   width 100%
   height 100vh
-  background url('../assets/mobile_bg_v1.png') bottom / cover
+  background url('../assets/pixel_shrine.jpg') bottom / cover
   color #eee
   font-family 'Roboto Condensed'
   place-items center center
-  padding 2em
+  // padding 2em
   padding-bottom 1em
   grid-row-gap 1em
   scroll-snap-align start
 
-  .wip
+  .blur
     grid-area wip
     text-transform uppercase
     text-align center
     font-size .7em
-    width 100%
     position relative
     text-shadow 1px 2px 5px #212121
     font-weight 900
     z-index 1
-    a
+    padding 1em
+    backdrop-filter blur(20px)
+    b
       display inline
-      color #09B83E
-      text-shadow 1px 2px 5px black
-    &::before
-      content ''
-      position absolute
-      width 200vw
-      height 150%
-      // background crimson
-      top -25%
-      left -50%
-      z-index -1
-      backdrop-filter blur(20px)
-      // opacity .5
+    a
+      color white
+      text-decoration underline
+
   .logo
     grid-area logo
     object-fit contain
     width 100%
     height 100%
-    max-width 400px
+    max-width 300px
   .title
     grid-area title
     text-transform uppercase
     text-align center
-    font-size 1.5em
-    text-shadow 1px 2px 3px black
-    place-self end center
+    font-size 2em
+    background-image radial-gradient(circle, #80DEEA, #1976D2, #eee)
+    background-size 100%;
+    background-clip text;
+    color transparent;
+    place-self start center
+    filter drop-shadow(1px 2px 1px black)
     b
-      color #F39C12
+      font-family 'Montserrat'
+      background-image radial-gradient(circle, #80DEEA, #1976D2, #eee)
+      background-size 100%;
+      background-clip text;
+      color transparent;
 
   .description
     grid-area desc
@@ -172,7 +175,7 @@ const open_app = () => {
       margin 0 .25em 0 .5em
       color #34495E
 
-  a
+  >a
     color white
     display flex
     align-items baseline
