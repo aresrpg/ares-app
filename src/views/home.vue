@@ -8,8 +8,8 @@
   page_3_mobile
   page_4_mobile
   page_5_mobile
-  page_6_mobile
   page_7_mobile
+  page_6_mobile
 .root(v-else)
   lang_selector
   .gold_line

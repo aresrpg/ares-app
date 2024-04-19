@@ -6,9 +6,22 @@ fr:
   creatures: En explorant le vaste monde, vous rencontrerez des créatures et des monstres uniques. Combattez-les pour collecter des ressources que vous pourrez utiliser pour fabriquer votre équipement. Chaque biome apporte de nouveaux défis et récompenses, rendant votre aventure excitante et enrichissante à mesure que vous collectez des matériaux et améliorez votre équipement.
 en:
   discover: Discover the infinite possibilities of procedural worlds
-  procedural: The world of AresRPG is a vast tapestry of many biomes, each uniquely crafted to provide a diverse and engaging environment. This infinite universe is procedurally generated, ensuring that every exploration offers new landscapes and adventures. Venture through everything from lush forests to arid deserts, each biome seamlessly integrating into the next to create a boundless and ever-evolving world.
-  structures: In AresRPG, adventure extends beyond the natural landscapes with community designed procedural structures. From ancient ruins to complex dungeons, each structure is uniquely generated, filled with random rooms and challenges that ensure no two explorations are the same. Additionally, the game features multiple dimensions, each offering a distinct universe with its own set of challenges and aesthetics. These dimensions provide a fresh perspective on gameplay, immersing players in diverse environments that range from celestial expanses to dark, mystical realms. Together, the procedural structures and varied dimensions enrich the gameplay, making each journey through AresRPG uniquely captivating.
-  creatures: As you explore the vast world, you'll encounter unique creatures and monsters. Fight them to collect resources that you can use to craft your equipment. Each biome brings new challenges and rewards, making your adventure exciting and rewarding as you gather materials and enhance your gear.
+  procedural: |
+    The world of AresRPG is a vast tapestry of many biomes, each uniquely crafted to provide a diverse and engaging environment.
+    This infinite universe is procedurally generated, ensuring that every exploration offers new landscapes and adventures.
+    Venture through everything from lush forests to arid deserts, each biome seamlessly integrating into the next to create a boundless and ever-evolving world.
+  structures: |
+    In AresRPG, adventure extends beyond the natural landscapes with community designed procedural structures.
+    From ancient ruins to complex dungeons, each structure is uniquely generated,
+    filled with random rooms and challenges that ensure no two explorations are the same.
+    Additionally, the game features multiple dimensions, each offering a distinct universe with its own set of challenges and aesthetics.
+    These dimensions provide a fresh perspective on gameplay, immersing players in diverse environments that range from celestial expanses to dark,
+    mystical realms. Together, the procedural structures and varied dimensions enrich the gameplay,
+    making each journey through AresRPG uniquely captivating.
+  creatures: |
+    As you explore the vast world, you'll encounter unique creatures and monsters.
+    Fight them to collect resources that you can use to craft your equipment.
+    Each biome brings new challenges and rewards, making your adventure exciting and rewarding as you gather materials and enhance your gear.
 </i18n>
 
 <script setup>

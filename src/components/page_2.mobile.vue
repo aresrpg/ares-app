@@ -1,66 +1,46 @@
 <i18n>
-fr:
-  title: Une Aventure vanilla
-  desc: mais sous
-  mods: Aucun Mods
-  mods_desc: Vous pouvez rejoindre le serveur avec le client Minecraft officiel
-  instance: Une Instance
-  instance_desc: Le serveur est développé entièrement en JavaScript pour supporter des milliers de joueurs sur la même map
-  source: Open Source
-  source_desc: AresRPG est open-source, vous pouvez meme lancer votre propre version du jeu
-  immersif: Immersif
-  immersif_desc: Nous ajoutons une tonne de nouveaux son et models 3D
-  meta: Metaverse
-  meta_desc: Les ArtWork et assets communautaires sous forme de NFT pourront être utilisés en jeu et parfaire votre style
-  guilds: Guildes
-  guilds_desc: Jouez en groupe pour raid les donjons, ou fondez votre guilde pour contrôler les terres d’AresRPG en communauté
 en:
-  title: A vanilla Adventure
-  desc: but on
-  mods: No Mods
-  mods_desc: You can join the server with the official Minecraft client
-  instance: Seamless
-  instance_desc: The server is written entirely in JavaScript to support thousands of players on the same map
-  source: Open Source
-  source_desc: AresRPG is open source, you can even run your own fork of the server
-  immersif: Immersive
-  immersif_desc: We add a ton of new sounds and 3D models
-  meta: Metaverse
-  meta_desc: Artworks and communautary assets will have the possibility of being used in game to show off
-  guilds: Guilds
-  guilds_desc: Play in groups to raid dungeons, or create your own guild and control AresRPG's lands with your community
+  title: The World
+  desc: |
+    In the infinite, procedurally generated world of AresRPG,
+    players explore diverse biomes and encounter unique creatures.
+    Each journey offers new landscapes, from lush forests to arid deserts,
+    along with community-designed structures like ancient ruins and complex dungeons across multiple dimensions.
+    These environments are filled with challenges and varied monsters, providing resources for crafting equipment
+    and making each adventure distinct and immersive.
+fr:
+  title: Le Monde
+  desc: |
+    Dans le vaste monde procédurale d'AresRPG,
+    les joueurs explorent des biomes divers et rencontrent des créatures uniques.
+    Chaque voyage offre de nouveaux paysages, des forêts luxuriantes aux déserts arides,
+    ainsi que des structures conçues par la communauté telles que des ruines anciennes et des donjons complexes à travers plusieurs dimensions.
+    Ces environnements regorgent de défis et de monstres variés, fournissant des ressources pour fabriquer de l'équipement
+    et rendant chaque aventure distincte et immersive.
 </i18n>
 
 <script setup>
 import { useI18n } from 'vue-i18n';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-import open_box from '../assets/open-box.png';
-import feathers from '../assets/feathers.png';
-import github from '../assets/github.png';
-import earth from '../assets/earth.png';
-import metaverse from '../assets/metaverse.png';
-import guild from '../assets/guild.png';
-import { fade_up } from '../core/anime';
-
-import feature from './feature_card.vue';
-import card from './feature_card.big.vue';
+import { fade_down, fade_in, fade_right, fade_up } from '../core/anime';
 
 const { t } = useI18n();
+const s1 = ref();
+const s2 = ref();
+const s3 = ref();
+
 const c1 = ref();
 const c2 = ref();
 const c3 = ref();
-const c4 = ref();
-const c5 = ref();
-const c6 = ref();
 
 const animations = [
-  fade_up(c1, 100),
-  fade_up(c2, 200),
-  fade_up(c3, 300),
-  fade_up(c4, 400),
-  fade_up(c5, 500),
-  fade_up(c6, 600),
+  fade_in(s1, 100),
+  fade_right(s2, 200),
+  fade_right(s3, 300),
+  fade_down(c1, 100),
+  fade_down(c2, 200),
+  fade_down(c3, 300),
 ];
 
 onMounted(() => animations.forEach(animation => animation.mount()));
@@ -68,83 +48,64 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">
-.frame
-  .title {{ t('title') }}
-  .desc {{ t('desc') }} #[b steroids]
-  .cards
-    card(
-      :img="open_box"
-      :title="t('mods')"
-      :desc="t('mods_desc')"
-      ref="c1"
-    )
-    card(
-      :img="feathers"
-      :title="t('instance')"
-      :desc="t('instance_desc')"
-      ref="c2"
-    )
-    card(
-      :img="github"
-      :title="t('source')"
-      :desc="t('source_desc')"
-      ref="c3"
-    )
-    card(
-      :img="earth"
-      :title="t('immersif')"
-      :desc="t('immersif_desc')"
-      ref="c4"
-    )
-    card(
-      :img="metaverse"
-      :title="t('meta')"
-      :desc="t('meta_desc')"
-      ref="c5"
-    )
-    card(
-      :img="guild"
-      :title="t('guilds')"
-      :desc="t('guilds_desc')"
-      ref="c6"
-    )
-  img.tree(src="../assets/tree.png")
+section.frame.world
+  .image(ref="s1")
+  .title(ref="s2") {{ t('title') }}
+  .desc(ref="s3") {{ t('desc') }}
+  .keys
+    img.sword(ref="c1" src="../assets/fire_sword.png")
+    img.gold_key(ref="c2" src="../assets/gold_key.png")
+    img.silver_key(ref="c3" src="../assets/silver_key.png")
 </template>
 
 <style lang="stylus" scoped>
 .frame
-  background url('../assets/background_noise.reverse.jpg') center / cover
-  color white
   display flex
   flex-flow column nowrap
+  overflow hidden
+  color white
+  background url('../assets/background_noise.reverse.jpg') center / cover
   align-items center
+  text-align center
   position relative
-  .title
-    font-size 30px
-    font-weight 800
-    margin-top 2em
-    text-shadow 1px 2px 3px rgba(black, .5)
-  .desc
-    font-size 20px
-    font-weight 100
-    opacity .65
-    font-family 'Montserrat'
-    letter-spacing 2px
-    margin-bottom 2em
-    b
-      color #F39C12
-      font-weight 100
-  .cards
-    display grid
-    grid-template-rows 1fr 1fr 1fr
-    grid-template-columns 1fr 1fr
-    place-items baseline center
-    z-index 2
-    >div
-      padding 1em
-  img.tree
-    transform translateX(20%)
+  .image
+    box-shadow inset -3px -3px 10px black
+    width 100vw
+    height 25vh
+    display flex
     z-index 1
-    width 200px
-    filter drop-shadow(1px 2px 3px rgba(black, .5))
+    width 100%
+    object-fit cover
+    background url('../assets/art/openworld-1.jpeg') center / cover
+    border-top 1px solid white
+    border-bottom 1px solid white
+  .title
+    font-family 'Montserrat'
+    font-size 28px
+    font-weight 900
+    padding-top 2em
+    background-image linear-gradient(45deg, #80DEEA, #1976D2, #eee)
+    background-size 100%;
+    background-clip text;
+    color transparent;
+  .desc
+    font-weight 100
+    font-family 'Montserrat'
+    text-align center
+    font-size .8em
+    margin-bottom 50px
+    padding 1em
+  .keys
+    height 200px
+    img
+      position absolute
+      bottom 1em
+    .sword
+      left 1em
+    .gold_key
+      left 50%
+      transform translateX(-30%)
+    .silver_key
+      right 1em
+      bottom 4em
 </style>

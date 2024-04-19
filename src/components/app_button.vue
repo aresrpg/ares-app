@@ -40,9 +40,9 @@ const hovering_dropdown = ref(false);
       position relative
       .content
         border-radius 12px
-        height v-bind('props.height')
+        height 55px
         position relative
-        border 1px solid v-bind('props.border')
+        border 1px solid #34495E
         background linear-gradient(to right, #e0eafc, #cfdef3)
         display flex
         justify-content center
@@ -64,7 +64,7 @@ const hovering_dropdown = ref(false);
         left 0
         width 100%
         height 100%
-        border 1px solid v-bind('props.border')
+        border 1px solid #34495E
         background linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4)
 
   .drop_down__container

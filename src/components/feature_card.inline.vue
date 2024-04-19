@@ -34,6 +34,7 @@ const enoki_link = () => {
     opacity .65
     grid-area desc
     width 270px
+    text-align justify
     place-self end end
   img.icon
     grid-area icon

@@ -42,9 +42,7 @@ import bg from '../assets/art/aether.jpeg';
 import hammer from '../assets/hammer.png';
 import metaverse from '../assets/metaverse.png';
 import shield from '../assets/sword-shield.png';
-import feathers from '../assets/feathers.png';
 import github from '../assets/github.png';
-import earth from '../assets/earth.png';
 import { fade_down } from '../core/anime';
 
 import feature_card from './feature_card.inline.vue';

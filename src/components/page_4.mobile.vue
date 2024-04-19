@@ -1,143 +1,145 @@
 <i18n>
-fr:
-  title: Les musiques
-  desc: Une bande originale vous bercera tout au long de votre aventure
-  more: Écouter la playlist complète sur YouTube
 en:
-  title: Musics
-  desc: An original soundtrack will bring more emotions to your adventure
-  more: Listen to the full playlist on YouTube
+  sui: Suuuuuuuuii
+  sui_desc: |
+    We chose the Sui chain as our server-side database for its unparalleled speed,
+    cost efficiency, and scalability. Sui isn't just technically advanced—it's a leap forward in blockchain technology.
+    Here are some key features of Sui that we are leveraging to revolutionize GameFi
+  enoki_desc: |
+    Playing AresRPG doesn't require any blockchain knowledge.
+    We leverage ZkLogin and sponsored transactions to ensure a seamless and accessible gaming experience for everyone.
+  metaverse: Metaverse
+  metaverse_desc: |
+    Until now, a truly integrated metaverse in Web3 has been elusive.
+    We are changing that by incorporating multiple communities into our game through unique elements like pets, titles, and equipment.
+    This approach creates a more connected and dynamic metaverse experience.
+  nodb: No Database
+  nodb_desc: There is nothing stored on our servers, Sui is the only database and allows true ownership of your progression
+  open: Open Source
+  open_desc: AresRPG is open-source, you can even run the game locally and connect to our servers through your own client
+fr:
+  sui_desc: |
+    Nous avons choisi la chaine Sui comme base de données côté serveur pour sa vitesse, son efficacité et sa scalabilité inégalée.
+    Sui n'est pas seulement techniquement avancé, c'est un bond en avant dans la technologie blockchain.
+    Voici quelques fonctionnalités clés de Sui que nous exploitons pour révolutionner le GameFi
+  enoki_desc: Vous n'avez pas besoin de connaissance en blockchain pour jouer à AresRPG
+  metaverse: Métavers
+  metaverse_desc: |
+    Jusqu'à présent, aucun métavers vraiment intégré en Web3 n'a été créé.
+    Nous changeons cela en incorporant plusieurs communautés dans notre jeu à travers des éléments uniques comme les familiers, les titres et l'équipement.
+    Cette approche crée une expérience de métavers plus connectée et dynamique.
+  nodb: Pas de base de données
+  nodb_desc: Rien n'est stocké sur nos serveurs, Sui est la seule base de données et permet une véritable propriété de votre progression
+  open: Open Source
+  open_desc: AresRPG est open-source, vous pouvez même exécuter le jeu localement et vous connecter à nos serveurs via votre propre client
 </i18n>
 
 <script setup>
-import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-import mirin from '../assets/mirin.mp4';
-import farlands from '../assets/farlands.mp4';
-import manracni from '../assets/manracni.mp4';
-import ss1 from '../assets/ss1.jpg';
-import snow from '../assets/snow.jpeg';
-import tuto from '../assets/tuto.jpeg';
+import hammer from '../assets/hammer.png';
+import metaverse from '../assets/metaverse.png';
+import shield from '../assets/sword-shield.png';
+import github from '../assets/github.png';
+import { appear_left, fade_up } from '../core/anime';
 
-import video_card from './video_card.vue';
+import feature from './feature_card.vue';
+import card from './feature_card.big.vue';
 
 const { t } = useI18n();
-const options = {
-  [mirin]: {
-    poster: ss1,
-    title: 'Mirin',
-  },
-  [farlands]: {
-    poster: snow,
-    title: 'Farlands',
-  },
-  [manracni]: {
-    poster: tuto,
-    title: 'Manracni',
-  },
-};
-const videos = ref([mirin, farlands, manracni]);
-const to_left = ref(true);
-const currently_playing = ref(null);
+const c1 = ref();
+const c2 = ref();
+const c3 = ref();
+const c4 = ref();
 
-const switch_next = () => {
-  to_left.value = true;
-  currently_playing.value?.video?.pause();
-  currently_playing.value?.reset_button?.();
-  videos.value.push(videos.value.shift());
-};
-const switch_previous = () => {
-  to_left.value = false;
-  currently_playing.value?.video?.pause();
-  currently_playing.value?.reset_button?.();
-  videos.value.unshift(videos.value.pop());
-};
+const s1 = ref();
+const s2 = ref();
 
-const style_of = index => ({
-  'z-index': to_left.value ? videos.value.length - index : index,
-});
+const animations = [
+  appear_left(s1, 100),
+  appear_left(s2, 200),
+  fade_up(c1, 100),
+  fade_up(c2, 200),
+  fade_up(c3, 300),
+  fade_up(c4, 400),
+];
 
-const on_video_click = index => {
-  console.log('click on', index);
-  if (index === middle_index.value) return;
-  if (index > middle_index.value) return switch_next();
-  return switch_previous();
-};
-
-const middle_index = computed(() => Math.floor(videos.value.length / 2));
+onMounted(() => animations.forEach(animation => animation.mount()));
+onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
 </script>
 
 <template lang="pug">
 .frame
-  .title {{ t('title') }}
-  .desc {{ t('desc') }}
-  .sounds
-    TransitionGroup(name="list")
-      video_card(
-        v-for="(video, index) in videos"
-        @playing="current => currently_playing = current"
-        :key="video"
-        :style="style_of(index)"
-        :video="video"
-        :poster="options[video].poster"
-        :title="options[video].title"
-        :class="{ selected: index === middle_index }"
-        @click="() => on_video_click(index)"
-      )
-  .listen
-    fa(:icon="['fab','youtube']" size="2x")
-    a(href="https://www.youtube.com/playlist?list=PLPUOPE90R8XUmdrixGBMBJyGV1s0F0x0p" target="_blank") {{ t('more') }}
+  .title(ref="s1") {{ t('sui') }}
+  .desc(ref="s2") {{ t('sui_desc') }}
+  .cards
+    card(
+      :img="hammer"
+      :desc="t('enoki_desc')"
+      ref="c1"
+    )
+    card(
+      :img="shield"
+      :title="t('nodb')"
+      :desc="t('nodb_desc')"
+      ref="c2"
+    )
+    card(
+      :img="metaverse"
+      :title="t('metaverse')"
+      :desc="t('metaverse_desc')"
+      ref="c3"
+    )
+    card(
+      :img="github"
+      :title="t('open')"
+      :desc="t('open_desc')"
+      ref="c4"
+    )
+  img.tree(src="../assets/tree.png")
 </template>
 
 <style lang="stylus" scoped>
-.list-move, /* apply transition to moving elements */
-.list-enter-active,
-.list-leave-active
-  transition all .5s ease-in-out
-.list-enter-active
-  // z-index -1
-  position relative
 .frame
-  display flex
-  align-items center
-  justify-content center
-  color white
   background url('../assets/background_noise.reverse.jpg') center / cover
+  color white
+  display flex
   flex-flow column nowrap
+  align-items center
+  position relative
   .title
+    font-size 30px
+    font-weight 800
     margin-top 2em
+    filter drop-shadow(1px 2px 3px rgba(black, .5))
     font-family 'Montserrat'
-    font-size 1.3em
-    font-weight 900
-    text-align center
+    background-image radial-gradient(#80DEEA, #1976D2, #eee)
+    background-size 100%;
+    background-clip text;
+    color transparent;
   .desc
-    font-family 'DM Sans'
+    font-size .8em
     font-weight 100
-    font-size .875em
     opacity .65
+    font-family 'Montserrat'
+    letter-spacing 2px
+    margin-bottom 2em
     text-align center
-    width 70%
-    margin 1em
-  .sounds
-    width max-content
-    height 65vh
-    display flex
-    flex-flow row nowrap
-    overflow hidden
-    align-items center
-    justify-content center
-    padding 1em
-  .listen
-    display flex
-    flex-flow row nowrap
-    align-items center
-    justify-content center
-    margin 2em 0
-    a
+    margin-top .25em
+    padding 0 .5em
+    b
+      color #F39C12
       font-weight 100
-      text-decoration underline
-      font-size .8em
-      margin-left 1em
-      color white
+  .cards
+    display flex
+    flex-flow column nowrap
+    z-index 2
+    >div
+      padding 1em
+  img.tree
+    transform translateX(20%)
+    z-index 1
+    width 200px
+    filter drop-shadow(1px 2px 3px rgba(black, .5))
 </style>
