@@ -125,7 +125,6 @@ import { fade_left } from '../core/anime';
 import snow from '../assets/art/snow-sakura.jpg';
 
 import spellCard from './spell_card.vue';
-import class_card from './class_card.vue';
 import page_container from './page_container.desktop.vue';
 
 const { t } = useI18n();
