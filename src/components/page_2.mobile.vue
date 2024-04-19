@@ -89,8 +89,7 @@ section.frame.world
     background-clip text;
     color transparent;
   .desc
-    font-weight 100
-    font-family 'Montserrat'
+    font-family 'DM Sans'
     text-align center
     font-size .8em
     margin-bottom 50px

@@ -94,8 +94,7 @@ classic = 1px 2px 3px black
     font-size 1.5em
     text-shadow 1px 1px 2px #212121
   .desc
-    font-weight 100
-    font-family 'Montserrat'
+    font-family 'DM Sans'
     text-align center
     font-size .8em
     margin-bottom 50px

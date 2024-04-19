@@ -119,10 +119,9 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
     background-clip text;
     color transparent;
   .desc
+    font-family 'DM Sans'
     font-size .8em
-    font-weight 100
     opacity .65
-    font-family 'Montserrat'
     letter-spacing 2px
     margin-bottom 2em
     text-align center
