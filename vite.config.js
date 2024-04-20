@@ -47,25 +47,6 @@ export default defineConfig({
           },
         ],
       },
-      manifest: {
-        name: 'AresRPG',
-        short_name: 'AresRPG',
-        description:
-          'Start your adventure right now and join thousands of players in an immersive open-world ! Fight for your life and become the strongest warrior.',
-        theme_color: '#212121',
-        icons: [
-          {
-            src: 'android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: 'android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      },
     }),
   ],
 });
