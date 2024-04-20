@@ -6,6 +6,7 @@ import 'vue-toastification/dist/index.css';
 import 'vue-universal-modal/dist/index.css';
 import VueUniversalModal from 'vue-universal-modal';
 import { VueClipboard } from '@soerenmartius/vue3-clipboard';
+import { inject } from '@vercel/analytics';
 import {
   faDiscord,
   faGithub,
@@ -19,6 +20,8 @@ import { createI18n } from 'vue-i18n';
 
 import app from './app.vue';
 import router from './router.js';
+
+inject();
 
 const i18n = createI18n({
   locale: 'en',
