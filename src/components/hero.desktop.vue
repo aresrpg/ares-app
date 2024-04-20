@@ -133,6 +133,10 @@ classic = 1px 2px 3px black
     filter material-2
     z-index 3
     font-family 'Montserrat'
+    @media screen and (max-width: 1590px)
+      max-width 700px
+    @media screen and (max-width: 1300px)
+      bottom 300px
 
   .grain
     position absolute

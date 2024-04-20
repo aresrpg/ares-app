@@ -81,7 +81,7 @@ provide('logged', logged);
 provide('wallet', wallet);
 
 const breakpoints = useBreakpoints({
-  mobile: 1000,
+  mobile: 1144,
 });
 
 const on_scroll = () =>
