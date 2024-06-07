@@ -68,12 +68,6 @@ footer
       img.github(src="../assets/github_square.png")
     a(ref="a4" href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="telegram")
       img.telegram(src="../assets/telegram.png")
-    a(ref="a5" href="https://www.reddit.com/r/aresrpg/" target="_blank" rel="noopener noreferrer" aria-label="reddit")
-      img.reddit(src="../assets/reddit.png")
-    a(ref="a6" href="https://instagram.com/ares_rpg" target="_blank" rel="noopener noreferrer" aria-label="instagram")
-      img.insta(src="../assets/instagram.png")
-    a(ref="a8" href="https://tiktok.com/@aresrpg.world" target="_blank" rel="noopener noreferrer" aria-label="tiktok")
-      img.tiktok(src="../assets/tiktok.png")
   .texts(ref="texts")
     .home(@click="scroll_top") {{ t('home') }}
     a.support(href="https://discord.gg/aresrpg" target="_blank") {{ t('support') }}

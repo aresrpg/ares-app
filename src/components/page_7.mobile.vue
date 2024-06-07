@@ -66,16 +66,6 @@ onBeforeUnmount(() => animations.forEach(animation => animation.unmount()));
       img.github(src="../assets/github_square.png")
     a(ref="a4" href="https://t.me/aresrpg" target="_blank" rel="noopener noreferrer" aria-label="telegram")
       img.telegram(src="../assets/telegram.png")
-    a(ref="a5" href="https://www.reddit.com/r/aresrpg/" target="_blank" rel="noopener noreferrer" aria-label="reddit")
-      img.reddit(src="../assets/reddit.png")
-    a(ref="a6" href="https://instagram.com/ares_rpg" target="_blank" rel="noopener noreferrer" aria-label="instagram")
-      img.insta(src="../assets/instagram.png")
-    a(ref="a7" href="https://medium.com" target="_blank" rel="noopener noreferrer" aria-label="medium")
-      img.medium(src="../assets/medium.png")
-    a(ref="a8" href="https://tiktok.com/@aresrpg.world" target="_blank" rel="noopener noreferrer" aria-label="tiktok")
-      img.tiktok(src="../assets/tiktok.png")
-    a(ref="a9" href="https://twitch.tv" target="_blank" rel="noopener noreferrer" aria-label="twitch")
-      img.twitch(src="../assets/twitch.png")
   .forum
     img(src="../assets/chat-bubble.png")
     span {{ t('forum') }}
